@@ -26,12 +26,12 @@ const PORT = process.env.PORT;
 const start = async () => {
     try {
         
-        httpsServer.listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log('HTTPS Server BotTest running on port ' + PORT);
         });
 
     } catch (error) {
-        console.log('Подключение к БД сломалось!', error)
+        console.log('Ошибка!', error.message)
     }
 }
 
