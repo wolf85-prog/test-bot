@@ -21,7 +21,7 @@ bot.on('message', (msg) => {
 })
 
 //-------------------------------------------------------------------------------------------------------------------------------
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 const start = async () => {
     try {
