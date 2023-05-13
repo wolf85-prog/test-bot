@@ -9,6 +9,15 @@ const fs = require('fs');
 
 const token = process.env.TELEGRAM_API_TOKEN
 
+//notion api
+const { Client } = require("@notionhq/client");
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const token_fetch = 'Bearer ' + process.env.NOTION_API_KEY;
+const databaseId = process.env.NOTION_DATABASE_ID
+const databaseAddressId = process.env.NOTION_DATABASE_ADDRESS_ID
+const databaseWorkersId = process.env.NOTION_DATABASE_WORKERS_ID
+const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
+
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
 
