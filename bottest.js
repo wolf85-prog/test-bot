@@ -24,6 +24,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//подключение к БД PostreSQL
+const sequelize = require('./bottest/connections/db')
+const {Project} = require('./bottest/models/models')
+
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('cert.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/cert.pem', 'utf8');
@@ -52,15 +56,8 @@ bot.on('message', async (msg) => {
         // команда Старт
         if (text === '/start') {
         
-            await bot.sendMessage(chatId, 'Добро пожаловать в телеграм-бот U.L.E.Y_Projects. Смотрите и создавайте проекты U.L.E.Y в ' +
-                'web-приложении прямо из мессенджера Telegram.', {
-                reply_markup: ({
-                    inline_keyboard:[
-                        [{text: 'Информация', callback_data:'Информация'}, {text: 'Настройки', callback_data:'Настройки'}],
-                        [{text: 'Открыть проекты U.L.E.Y', web_app: {url: webAppUrl}}],
-                    ]
-                })
-            })
+            await bot.sendMessage(chatId, 'Добро пожаловать в телеграм-бот U.L.E.Y_Test. Смотрите и создавайте проекты U.L.E.Y в ' +
+                'web-приложении прямо из мессенджера Telegram.')
         }
 
 
@@ -70,6 +67,7 @@ bot.on('message', async (msg) => {
             await newDatabase5(project_id);
         }
 
+        // startreports {id проекта}
         if(text.startsWith('/startreports')) {
             const project = text.split(' ');
 
@@ -164,22 +162,6 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                         //отправка сообщения в чат бота
                         await bot.sendMessage(project2.chatId, text)
 
-                        // сохранить отправленное боту сообщение пользователя в БД
-                        const convId = sendMyMessage(text, 'text', project2.chatId, messageId)
-
-                        //Подключаемся к серверу socket
-                        let socket = io(socketUrl);
-                        socket.emit("addUser", project2.chatId)
-
-                        //отправить сообщение в админку
-                        socket.emit("sendMessage", {
-                                    senderId: project2.chatId,
-                                    receiverId: chatTelegramId,
-                                    text: text,
-                                    type: 'text',
-                                    convId: convId,
-                                    messageId: messageId,
-                        })
                     } //end if
 
                     i++ 
