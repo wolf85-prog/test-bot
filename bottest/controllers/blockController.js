@@ -13,7 +13,7 @@ async function getBlocks(blockId) {
         let res;
 
         const responseResults = response.results.map((block) => {
-            if (block.child_database.title == "Основной состав"){
+            if (block.child_database?.title === "Основной состав"){
                res = id 
             }
             
