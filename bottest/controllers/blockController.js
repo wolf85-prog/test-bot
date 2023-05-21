@@ -14,7 +14,7 @@ async function getBlocks(blockId) {
 
         const responseResults = response.results.map((block) => {
             if (block.child_database?.title === "Основной состав"){
-               res = id 
+               res = block.id 
             }
             
             // if (block.child_database) {
