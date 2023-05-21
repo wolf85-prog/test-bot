@@ -6,6 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const https = require('https');
 const fs = require('fs');
+const router = require('./bottest/routes/index')
 
 const token = process.env.TELEGRAM_API_TOKEN
 
@@ -23,6 +24,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use('/', router)
 
 const getReports = require('./bottest/common/getReports')
 
