@@ -105,7 +105,8 @@ bot.on('message', async (msg) => {
             const phone = msg.contact.phone_number
             const firstname = msg.contact.first_name
             const lastname = msg.contact.last_name
-            await bot.sendMessage(chatGiaId, `${phone} \n \n от ${firstname} ${lastname}`)  
+            const vcard = msg.contact.vcard
+            await bot.sendContact(chatGiaId, phone, firstname, lastname, vcard)  
         }
 
     } catch (error) {
