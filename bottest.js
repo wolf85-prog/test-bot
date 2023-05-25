@@ -19,6 +19,9 @@ const databaseAddressId = process.env.NOTION_DATABASE_ADDRESS_ID
 const databaseWorkersId = process.env.NOTION_DATABASE_WORKERS_ID
 const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 
+const chatTelegramId = process.env.CHAT_ID
+const chatGiaId = process.env.GIA_CHAT_ID
+
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
 
@@ -99,6 +102,11 @@ bot.on('message', async (msg) => {
         //обработка изображений
         if (msg.contact) {
             await bot.sendMessage(chatId, `Ваш контакт получен!`)
+            const phone = msg.contact.phone_number
+            const firstname = msg.contact.first_name
+            const lastname = msg.contact.last_name
+            const chatId = msg.user_id
+            await bot.sendMessage(chatGiaId, `${phone} \n \n от ${firstname} ${lastname} ${chatId}`)  
         }
 
     } catch (error) {
