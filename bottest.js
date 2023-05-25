@@ -89,7 +89,7 @@ bot.on('message', async (msg) => {
         if (text.startsWith('/getDate')) {
             // текущая дата
             const date = new Date();
-            await bot.sendMessage(chatId, date.getFullYear + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
+            await bot.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
         }
 //----------------------------------------------------------------------------------------------------------------      
         
