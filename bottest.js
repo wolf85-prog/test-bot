@@ -91,6 +91,16 @@ bot.on('message', async (msg) => {
             //await bot.sendMessage(chatTelegramId, `${text} \n \n от ${firstname} ${lastname} ${chatId}`)           
         }
 
+        //обработка изображений
+        if (msg.photo) {
+            await bot.sendMessage(chatId, `Ваше фото получено!`)
+        }
+
+        //обработка изображений
+        if (msg.contact) {
+            await bot.sendMessage(chatId, `Ваш контакт получен!`)
+        }
+
     } catch (error) {
         console.log('Произошла непредвиденная ошибка! ', error.message)
     }
