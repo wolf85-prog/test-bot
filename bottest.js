@@ -84,6 +84,12 @@ bot.on('message', async (msg) => {
             getReports(project2, bottest)
             
         }
+
+        //получить дату с текущим месяцем
+        if (text.startsWith('/getDate')) {
+            const date = ("2023-0" + ((new Date()).getMonth()+1) + "-01T00:00:00.000").slice(-2)
+            await bot.sendMessage(chatId, date)
+        }
 //----------------------------------------------------------------------------------------------------------------      
         
         //обработка сообщений    
@@ -99,7 +105,7 @@ bot.on('message', async (msg) => {
             await bot.sendMessage(chatId, `Ваше фото получено!`)
         }
 
-        //обработка изображений
+        //обработка контактов
         if (msg.contact) {
             await bot.sendMessage(chatId, `Ваш контакт получен!`)
             const phone = msg.contact.phone_number
