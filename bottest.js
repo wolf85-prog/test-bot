@@ -55,7 +55,7 @@ bot.on('message', async (msg) => {
     const text = msg.text ? msg.text : '';
     const messageId = msg.message_id;
 
-    console.log("msg: ", msg)
+    //console.log("msg: ", msg)
     //console.log("text: ", text)
 
     try {
@@ -87,8 +87,10 @@ bot.on('message', async (msg) => {
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
-            const date = ("2023-0" + ((new Date()).getMonth()+1) + "-01T00:00:00.000").slice(-2)
-            await bot.sendMessage(chatId, date)
+            // текущая дата
+            const date = new Date();
+            //const date = ("2023-0" + ((new Date()).getMonth()+1) + "-01T00:00:00.000").slice(-2)
+            await bot.sendMessage(chatId, "0" + date.getMonth()+1)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
