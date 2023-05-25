@@ -49,10 +49,10 @@ bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
     const firstname = msg.from.first_name
     const lastname = msg.from.last_name
-    const text = msg.text;
+    const text = msg.text ? msg.text : '';
     const messageId = msg.message_id;
 
-    console.log("msg: ", msg)
+    //console.log("msg: ", msg)
     //console.log("text: ", text)
 
     try {
