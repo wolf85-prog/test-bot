@@ -90,7 +90,7 @@ bot.on('message', async (msg) => {
             // текущая дата
             const date = new Date();
             //const date = ("2023-0" + ((new Date()).getMonth()+1) + "-01T00:00:00.000").slice(-2)
-            await bot.sendMessage(chatId, "0" + date.getMonth()+1)
+            await bot.sendMessage(chatId, "0" + ((date.getMonth())+1))
         }
 //----------------------------------------------------------------------------------------------------------------      
         
