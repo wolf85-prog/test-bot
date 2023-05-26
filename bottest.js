@@ -111,7 +111,7 @@ bot.on('message', async (msg) => {
             await bot.sendMessage(chatId, `Ваш контакт получен!`)
             const phone = msg.contact.phone_number
             const firstname = msg.contact.first_name
-            const lastname = msg.contact.last_name
+            const lastname = msg.contact.last_name ? msg.contact.last_name : ""
             //const vcard = msg.contact.vcard
             await bot.sendContact(chatGiaId, phone, firstname, lastname)  
         }
