@@ -113,7 +113,9 @@ bot.on('message', async (msg) => {
             const firstname = msg.contact.first_name
             const lastname = msg.contact.last_name ? msg.contact.last_name : ""
             //const vcard = msg.contact.vcard
-            await bot.sendContact(chatGiaId, phone, firstname, lastname)  
+            //await bot.sendContact(chatGiaId, phone, firstname, lastname)  
+            const text_contact = `${phone} ${firstname} ${lastname}`
+            console.log(text_contact)
         }
 
     } catch (error) {
