@@ -99,9 +99,11 @@ bot.on('message', async (msg) => {
            if (msg.reply_to_message) {
                 const str = `"${msg.reply_to_message.text}_reply_${text}"`
                 await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}_reply_${text}"`)
+                //парсинг строки
                 const reply = str.split('_reply_');
                 console.log("Пересылаемое сообщение: ", reply[0]);
                 console.log("Основное сообщение: ", reply[1]);
+
             } else {
                 await bot.sendMessage(chatId, `Ваше сообщение "${text}" обрабатывается!`) 
             }
