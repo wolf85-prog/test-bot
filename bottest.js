@@ -100,7 +100,7 @@ bot.on('message', async (msg) => {
                 await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}"`)
             } 
 
-            const text_full = `"${msg.reply_to_message.text}"_reply_"${text}"`
+            const text_full = `${msg.reply_to_message.text}_reply_${text}`
             
             // ответ бота
             await bot.sendMessage(chatId, `Ваше сообщение "${text_full}" обрабатывается!`)
