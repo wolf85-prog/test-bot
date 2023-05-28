@@ -96,13 +96,15 @@ bot.on('message', async (msg) => {
         //обработка сообщений    
         if ((text || '')[0] !== '/' && text) {       
 
-            // ответ бота
-            await bot.sendMessage(chatId, `Ваше сообщение "${text}" обрабатывается!`)
-            //await bot.sendMessage(chatTelegramId, `${text} \n \n от ${firstname} ${lastname} ${chatId}`)  
-            
-            if (msg.reply_to_message) {
+           if (msg.reply_to_message) {
                 await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}"`)
-            }         
+            } 
+
+            const text_full = `"${msg.reply_to_message.text}"_reply_"${text}"`
+            
+            // ответ бота
+            await bot.sendMessage(chatId, `Ваше сообщение "${text_full}" обрабатывается!`)
+            //await bot.sendMessage(chatTelegramId, `${text} \n \n от ${firstname} ${lastname} ${chatId}`)           
         }
 
         //обработка изображений
