@@ -97,7 +97,7 @@ bot.on('message', async (msg) => {
         if ((text || '')[0] !== '/' && text) {       
 
            if (msg.reply_to_message) {
-                await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}"`)
+                await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}_reply_${text}"`)
             } else {
                 await bot.sendMessage(chatId, `Ваше сообщение "${text}" обрабатывается!`) 
             }
