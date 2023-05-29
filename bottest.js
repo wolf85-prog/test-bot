@@ -98,8 +98,8 @@ bot.on('message', async (msg) => {
 
            if (msg.reply_to_message) {
                 if (msg.reply_to_message.photo) {
-                    const str = `"${msg.reply_to_message.photo}_reply_${text}"`
-                    await bot.sendMessage(chatId, `Есть пересылаемое фото: "${msg.reply_to_message.photo}_reply_${text}"`)
+                    const str = `"${msg.reply_to_message.photo[0].file_unique_id}_reply_${text}"`
+                    await bot.sendMessage(chatId, `Есть пересылаемое фото: "${msg.reply_to_message.photo[0].file_unique_id}_reply_${text}"`)
                     //парсинг строки
                     //const reply = str.split('_reply_');
                     //console.log("Пересылаемое сообщение: ", reply[0]);
