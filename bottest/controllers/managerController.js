@@ -271,12 +271,12 @@ class ManagerController {
     async managersId(req, res) {
         const id = req.params.id; // получаем id
         const manager = await getManagerId(id);
-       // if(manager){
+        if(manager){
             res.json(manager);
-        // }
-        // else{
-        //     res.json({});
-        // }
+        }
+        else{
+            res.json({});
+        }
     }
 
     async managerName(req, res) {
