@@ -232,14 +232,14 @@ async function createManager(id, firstname, lastname) {
                     "select": {
                         "id": "e2c4b173-3d60-467f-9597-81a2f8248437",
                         "name": "Менеджер",
-                        "color": "yellow"
+                        "color": "blue"
                     }
                 },
                 "Заказчики": {
                     "type": "relation",
                     "relation": [
                         {
-                            "id": "b27565fe-ce91-4457-983e-5e40c1bcbceb"
+                            "id": "2061b358-0e23-4574-a69a-854a3e5dff00"
                         }
                     ],
                 },
