@@ -23,7 +23,7 @@ async function getManagerId(id) {
         console.log("TelegramID: ", id)
         console.log("ManagerId: ", response.results[0].id)
 
-        return response.results[0].id; 
+        return response; 
         
     } catch (error) {
         console.error(error.message)
