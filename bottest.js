@@ -78,7 +78,9 @@ bottest.on('message', async (msg) => {
         if(text.startsWith('/startreports')) {
             const project = text.split(' ');
 
-            const project2 = await Project.findOne({ where:{ projectId: project[1] } })                 
+            const project2 = await Project.findOne({ where:{ projectId: project[1] } })   
+            
+            console.log("project2: ", project2)
                     
             //начать получать отчеты
             getReports(project2, bottest)
