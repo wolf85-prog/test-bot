@@ -22,7 +22,7 @@ const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 const chatTelegramId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
 
-const bot = new TelegramBot(token, {polling: true});
+const bottest = new TelegramBot(token, {polling: true});
 const app = express();
 
 app.use(express.json());
