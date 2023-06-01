@@ -227,14 +227,14 @@ async function createManager(id, firstname, lastname) {
                         }
                     ]
                 },
-                "Должность": {
-                    "type": "select",
-                    "select": {
-                        "id": "e2c4b173-3d60-467f-9597-81a2f8248437",
-                        "name": "Менеджер",
-                        "color": "blue"
-                    }
-                },
+                // "Должность": {
+                //     "type": "select",
+                //     "select": {
+                //         "id": "e2c4b173-3d60-467f-9597-81a2f8248437",
+                //         "name": "Менеджер",
+                //         "color": "blue"
+                //     }
+                // },
                 "Заказчики": {
                     "type": "relation",
                     "relation": [
