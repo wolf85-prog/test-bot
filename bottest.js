@@ -48,7 +48,7 @@ const credentials = {
 
 const httpsServer = https.createServer(credentials, app);
 
-bot.on('message', async (msg) => {
+bottest.on('message', async (msg) => {
     const chatId = msg.chat.id;
     const firstname = msg.from.first_name
     const lastname = msg.from.last_name
@@ -63,7 +63,7 @@ bot.on('message', async (msg) => {
         // команда Старт
         if (text === '/start') {
         
-            await bot.sendMessage(chatId, 'Добро пожаловать в телеграм-бот U.L.E.Y_Test. Смотрите и создавайте проекты U.L.E.Y в ' +
+            await bottest.sendMessage(chatId, 'Добро пожаловать в телеграм-бот U.L.E.Y_Test. Смотрите и создавайте проекты U.L.E.Y в ' +
                 'web-приложении прямо из мессенджера Telegram.')
         }
 
@@ -89,7 +89,7 @@ bot.on('message', async (msg) => {
         if (text.startsWith('/getDate')) {
             // текущая дата
             const date = new Date();
-            await bot.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
+            await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
         }
 //----------------------------------------------------------------------------------------------------------------      
         
@@ -99,7 +99,7 @@ bot.on('message', async (msg) => {
            if (msg.reply_to_message) {
                 if (msg.reply_to_message.photo) {
                     const str = `"${msg.reply_to_message.photo[0].file_unique_id}_reply_${text}"`
-                    await bot.sendMessage(chatId, `Есть пересылаемое фото: "${msg.reply_to_message.photo[0].file_unique_id}_reply_${text}"`)
+                    await bottest.sendMessage(chatId, `Есть пересылаемое фото: "${msg.reply_to_message.photo[0].file_unique_id}_reply_${text}"`)
                     //парсинг строки
                     //const reply = str.split('_reply_');
                     //console.log("Пересылаемое сообщение: ", reply[0]);
@@ -107,7 +107,7 @@ bot.on('message', async (msg) => {
                 }
                 if (msg.reply_to_message.text) {
                     const str = `"${msg.reply_to_message.text}_reply_${text}"`
-                    await bot.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}_reply_${text}"`)
+                    await bottest.sendMessage(chatId, `Есть пересылаемое сообщение: "${msg.reply_to_message.text}_reply_${text}"`)
                     //парсинг строки
                     const reply = str.split('_reply_');
                     console.log("Пересылаемое сообщение: ", reply[0]);
@@ -115,29 +115,29 @@ bot.on('message', async (msg) => {
                 }
 
             } else {
-                await bot.sendMessage(chatId, `Ваше сообщение "${text}" обрабатывается!`) 
+                await bottest.sendMessage(chatId, `Ваше сообщение "${text}" обрабатывается!`) 
             }
 
             //const text_full = msg.reply_to_message.text ? `${msg.reply_to_message?.text}_reply_${text}` : `${text}`
             
             // ответ бота
-            //await bot.sendMessage(chatId, `Ваше сообщение "${text_full}" обрабатывается!`)
-            //await bot.sendMessage(chatTelegramId, `${text} \n \n от ${firstname} ${lastname} ${chatId}`)           
+            //await bottest.sendMessage(chatId, `Ваше сообщение "${text_full}" обрабатывается!`)
+            //await bottest.sendMessage(chatTelegramId, `${text} \n \n от ${firstname} ${lastname} ${chatId}`)           
         }
 
         //обработка изображений
         if (msg.photo) {
-            await bot.sendMessage(chatId, `Ваше фото получено!`)
+            await bottest.sendMessage(chatId, `Ваше фото получено!`)
         }
 
         //обработка контактов
         if (msg.contact) {
-            await bot.sendMessage(chatId, `Ваш контакт получен!`)
+            await bottest.sendMessage(chatId, `Ваш контакт получен!`)
             const phone = msg.contact.phone_number
             const firstname = msg.contact.first_name
             const lastname = msg.contact.last_name ? msg.contact.last_name : ""
             //const vcard = msg.contact.vcard
-            //await bot.sendContact(chatGiaId, phone, firstname, lastname)  
+            //await bottest.sendContact(chatGiaId, phone, firstname, lastname)  
             const text_contact = `${phone} ${firstname} ${lastname}`
             console.log(text_contact)
         }
