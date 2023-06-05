@@ -168,9 +168,9 @@ bottest.on('message', async (msg) => {
     bottest.on('callback_query', msg => {
         const data = msg.data;
         const chatId = msg.message.chat.id;
-        //const messageId = msg.message_id;
+        const messageId = msg.message.message_id;
 
-        console.log(msg)
+        console.log(messageId)
       
         if (data === '/menu') {
             return bottest.sendMessage(chatId, 'Смотрите и создавайте Notion-проекты в web-приложении прямо из мессенджера Telegram.', {
