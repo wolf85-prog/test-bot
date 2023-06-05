@@ -9,18 +9,24 @@ const databaseCompanyId = process.env.NOTION_DATABASE_COMPANY_ID
 async function getManagerId(id) {
     try {
         const response = await notion.databases.query({
-            database_id: databaseManagerId, 
+            database_id: databaseManagerId,
             "filter": {
                 "property": "id",
-                "rich_text": {
-                    "contains": id
-                }
+                "id": id,
             }
         });
 
-        console.log("ManagerId: ", response.results[0]?.id)
 
-        return response.results[0]?.id; 
+        response.results.map((manager) => {
+            return {
+               id: manager.id,
+               tgID: manager.properties.TelegramID.rich_text[0]?.plain_text,
+            };
+        });
+
+       // console.log("ManagerChatId: ", properties.TelegramID.rich_text[0]?.plain_text,)
+
+        //return response.results[0]?.id; 
         
     } catch (error) {
         console.error(error.message)
