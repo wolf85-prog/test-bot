@@ -139,6 +139,19 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                         }                             
                     });
 
+
+                    const chat = await fetch(
+                        `${botApiUrl}/managers/${project_manager}`
+                    )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data) {
+                            console.log("Manager TelegramId: ", data)
+                        }  else {
+                            console.log("Manager TelegramId не найден!")
+                        }                             
+                    });
+
                     await bot.sendMessage(project_manager, text2)  
                 }
                 
