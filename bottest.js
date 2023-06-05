@@ -152,7 +152,7 @@ bottest.on('message', async (msg) => {
   });
 
 //Ответ на нажатие кнопок настройки и информаци
-    bot.on('callback_query', msg => {
+    bottest.on('callback_query', msg => {
         const data = msg.data;
         const chatId = msg.message.chat.id;
         //const messageId = msg.message_id;
