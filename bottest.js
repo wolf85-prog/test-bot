@@ -177,7 +177,7 @@ bottest.on('message', async (msg) => {
                 reply_markup: ({
                     inline_keyboard:[
                         [{text: 'Информация', callback_data:'Информация'}, {text: 'Настройки', callback_data:'Настройки'}],
-                        [{text: 'Открыть Notion-проекты', web_app: {url: webAppUrl}}],
+                        [{text: 'Открыть Notion-проекты', web_app: {url: 'https://ya.ru'}}],
                     ]
                 })
             })
