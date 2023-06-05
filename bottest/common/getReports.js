@@ -122,7 +122,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     
                 //отправка сообщения в чат бота
                 if (i = 0) {
-                    await bottest.sendMessage(project.chatId, text)  
+                    await bot.sendMessage(project.chatId, text)  
                 } else {
                     //получить менеджера проекта из ноушена
                     let project_manager;
@@ -152,7 +152,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     //     }                             
                     // });
 
-                    await bottest.sendMessage(project_manager, text2)  
+                    await bot.sendMessage(project_manager, text2)  
                 }
                 
 
