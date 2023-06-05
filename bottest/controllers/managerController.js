@@ -8,25 +8,13 @@ const databaseCompanyId = process.env.NOTION_DATABASE_COMPANY_ID
 //получить TelegramID менеджера по его id
 async function getManagerId(id) {
     try {
-        const response = await notion.databases.query({
-            database_id: databaseManagerId,
-            "filter": {
-                "property": "id",
-                "id": id,
-            }
+        const manager = await notion.pages.retrieve({
+            page_id: id,
         });
 
+        console.log("ManagerChatId: ", manager.properties.TelegramID.rich_text[0]?.plain_text)
 
-        response.results.map((manager) => {
-            return {
-               id: manager.id,
-               tgID: manager.properties.TelegramID.rich_text[0]?.plain_text,
-            };
-        });
-
-       // console.log("ManagerChatId: ", properties.TelegramID.rich_text[0]?.plain_text,)
-
-        //return response.results[0]?.id; 
+        return manager.properties.TelegramID.rich_text[0]?.plain_text; 
         
     } catch (error) {
         console.error(error.message)
