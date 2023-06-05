@@ -113,9 +113,35 @@ module.exports = async function getReports(project, bot) {
 ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
                     
 ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
+
+
+const text2 = `Запрос на специалистов (из ноушен): 
+                        
+${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+                    
+${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
                     
                 //отправка сообщения в чат бота
-                const report = await bot.sendMessage(project.chatId, text)
+                if (i = 0) {
+                    await bot.sendMessage(project.chatId, text)  
+                } else {
+                    //получить менеджера проекта из ноушена
+                    let project_manager;
+                    const res = await fetch(
+                        `${botApiUrl}/project/${project.projectId}`
+                    )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data) {
+                            project_manager = data?.properties.Manager.relation[0]?.id;
+                        }  else {
+                            project_manager = project.name
+                        }                             
+                    });
+
+                    await bot.sendMessage(project_manager, text2)  
+                }
+                
 
                 // сохранить отправленное боту сообщение пользователя в БД 
 
