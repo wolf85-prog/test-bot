@@ -94,7 +94,7 @@ bottest.on('message', async (msg) => {
 
             const project2 = await Project.findOne({ where:{ id: project[1] } })   
             
-            console.log("project2: ", project2)
+            console.log("project2: ", project[1])
                     
             //начать получать отчеты
             getReports(project2, bottest)
