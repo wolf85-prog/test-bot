@@ -134,22 +134,23 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                         if (data) {
                             project_manager = data?.properties.Manager.relation[0]?.id;
                         }  else {
-                            project_manager = project.name
+                            project_manager = ''
                         }                             
                     });
 
+                    console.log(project_manager)
 
-                    const chat = await fetch(
-                        `${botApiUrl}/managers/${project_manager}`
-                    )
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data) {
-                            console.log("Manager TelegramId: ", data)
-                        }  else {
-                            console.log("Manager TelegramId не найден!")
-                        }                             
-                    });
+                    // const chat = await fetch(
+                    //     `${botApiUrl}/managers/${project_manager}`
+                    // )
+                    // .then((response) => response.json())
+                    // .then((data) => {
+                    //     if (data) {
+                    //         console.log("Manager TelegramId: ", data)
+                    //     }  else {
+                    //         console.log("Manager TelegramId не найден!")
+                    //     }                             
+                    // });
 
                     await bot.sendMessage(project_manager, text2)  
                 }
