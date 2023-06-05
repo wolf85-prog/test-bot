@@ -93,7 +93,7 @@ bottest.on('message', async (msg) => {
             const project = text.split(' ');
             //console.log(project[1])
 
-            const project2 = await Project.findOne({ where:{ id: project[1] } })   
+            const project2 = await Project.findOne({ where:{ id: project[1].toString() } })   
             
             console.log("project2: ", project2)
                     
