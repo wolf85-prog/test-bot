@@ -14,7 +14,7 @@ module.exports = {
     backOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard:[
-                [{text: 'Открыть проекты U.L.E.Y', web_app: {url: webAppUrl}}],
+                [{text: 'Открыть проекты U.L.E.Y', web_app: {url: 'https://ya.ru'}}],
                 [{text: 'Назад', callback_data:'/menu'}],
             ]
         })
