@@ -7,6 +7,7 @@ const cors = require('cors');
 const https = require('https');
 const fs = require('fs');
 const router = require('./bottest/routes/index')
+const {menuOptions, backOptions} = require('./options')
 
 const token = process.env.TELEGRAM_API_TOKEN
 
@@ -66,6 +67,18 @@ bottest.on('message', async (msg) => {
             await bottest.sendMessage(chatId, 'Добро пожаловать в телеграм-бот U.L.E.Y_Test. Смотрите и создавайте проекты U.L.E.Y в ' +
                 'web-приложении прямо из мессенджера Telegram.')
         }
+
+        // команда Меню
+        if (text === '/menu') {
+            await bottest.sendMessage(chatId, 'Смотрите и создавайте проекты U.L.E.Y в web-приложении прямо из мессенджера Telegram.', {
+                reply_markup: ({
+                    inline_keyboard:[
+                        [{text: 'Информация', callback_data:'Информация'}, {text: 'Настройки', callback_data:'Настройки'}],
+                        [{text: 'Открыть проекты U.L.E.Y', web_app: {url: webAppUrl}}],
+                    ]
+                })
+            })
+        } 
 
 
         // команда Добавить таблицу Претенденты
