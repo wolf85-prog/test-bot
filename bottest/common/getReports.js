@@ -14,7 +14,7 @@ const fetch = require('node-fetch');
 
 module.exports = async function getReports(project, bot) {
     console.log(project)
-    console.log('START GET REPORTS: ' + project.id + " " + project.name)
+    console.log('START TEST GET REPORTS: ' + project.id + " " + project.name)
 
     const d = new Date(project.datestart);
     const year = d.getFullYear();
@@ -43,7 +43,7 @@ module.exports = async function getReports(project, bot) {
             //1)получить блок и бд
             if (project.projectId) {
                 const blockId = await getBlocks(project.projectId);
-                console.log(new Date() + " Проект ID: " + project.name) 
+                console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
                 databaseBlock = await getDatabaseId(blockId); 
             }
 
