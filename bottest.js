@@ -160,7 +160,7 @@ bottest.on('message', async (msg) => {
         console.log(msg)
       
         if (data === '/menu') {
-            return bot.sendMessage(chatId, 'Смотрите и создавайте Notion-проекты в web-приложении прямо из мессенджера Telegram.', {
+            return bottest.sendMessage(chatId, 'Смотрите и создавайте Notion-проекты в web-приложении прямо из мессенджера Telegram.', {
                 reply_markup: ({
                     inline_keyboard:[
                         [{text: 'Информация', callback_data:'Информация'}, {text: 'Настройки', callback_data:'Настройки'}],
@@ -170,7 +170,7 @@ bottest.on('message', async (msg) => {
             })
         }
     
-        bot.sendMessage(chatId, `Вы нажали кнопку ${data}`, backOptions)
+        bottest.sendMessage(chatId, `Вы нажали кнопку ${data}`, backOptions)
     });
 
 //-------------------------------------------------------------------------------------------------------------------------------
