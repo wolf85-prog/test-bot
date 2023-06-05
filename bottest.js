@@ -34,7 +34,8 @@ const getReports = require('./bottest/common/getReports')
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
-const Project = require('./bottest/models/Project')
+//const Project = require('./bottest/models/Project')
+const {UserBot, Message, Conversation, Project, Report} = require('./bottest/models/models')
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -94,7 +95,7 @@ bottest.on('message', async (msg) => {
 
             const project2 = await Project.findOne({ where:{ id: project[1] } })   
             
-            console.log("project2: ", project[1])
+            console.log("project2: ", project2)
                     
             //начать получать отчеты
             getReports(project2, bottest)
