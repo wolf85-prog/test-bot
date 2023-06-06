@@ -114,7 +114,7 @@ ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
 
 
-const text2 = `Запрос на специалистов (из ноушен): 
+const text2 = `Запрос на специалистов: 
                         
 ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
                     
