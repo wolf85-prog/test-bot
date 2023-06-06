@@ -138,7 +138,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                         }                             
                     });
 
-                    console.log(project_manager)
+                    //console.log(project_manager)
 
                     const chat = await fetch(
                         `${botApiUrl}/managers/${project_manager}`
