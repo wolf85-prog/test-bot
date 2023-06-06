@@ -15,13 +15,6 @@ const fetch = require('node-fetch');
 module.exports = async function getReports(project, bot) {
     console.log('START TEST GET REPORTS: ' + project.id + " " + project.name)
 
-    const d = new Date(project.datestart);
-    const year = d.getFullYear();
-    const month = String(d.getMonth()+1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    const chas = d.getHours();
-    const minut = String(d.getMinutes()).padStart(2, "0");
-
     let count_fio;
     let i = 0;
     let j = 0;
@@ -89,8 +82,8 @@ module.exports = async function getReports(project, bot) {
                 }                                          
             }) // map spec end
 
-            //получить название проекта из ноушена
-            let project_name;
+            //получить название и дату проекта из ноушена
+            let project_name, project_date;
             const res = await fetch(
                  `${botApiUrl}/project/${project.projectId}`
             )
@@ -98,10 +91,22 @@ module.exports = async function getReports(project, bot) {
             .then((data) => {
                 if (data) {
                     project_name = data?.properties.Name.title[0]?.plain_text;
+                    project_date = data?.properties.Date.date.start;
                 }  else {
                     project_name = project.name
+                    project_date = project.datestart
                 }                             
             });
+
+            console.log("Дата проекта: ", project_date)
+
+            const d = new Date(project_date);
+            const year = d.getFullYear();
+            const month = String(d.getMonth()+1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            const chas = d.getHours();
+            const minut = String(d.getMinutes()).padStart(2, "0");
+
 
             var isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
                 
