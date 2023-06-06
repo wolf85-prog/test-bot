@@ -37,6 +37,7 @@ module.exports = async function getReports(project, bot) {
                 const blockId = await getBlocks(project.projectId);
                 console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
                 databaseBlock = await getDatabaseId(blockId); 
+                console.log("databaseBlock: ", databaseBlock)
             }
 
             //2) проверить массив специалистов
@@ -82,8 +83,8 @@ module.exports = async function getReports(project, bot) {
                 }                                          
             }) // map spec end
 
-            //получить название и дату проекта из ноушена
-            let project_name, project_date;
+            //получить название проекта из ноушена
+            let project_name;
             const res = await fetch(
                  `${botApiUrl}/project/${project.projectId}`
             )
@@ -91,12 +92,14 @@ module.exports = async function getReports(project, bot) {
             .then((data) => {
                 if (data) {
                     project_name = data?.properties.Name.title[0]?.plain_text;
-                    project_date = data?.properties.Date.date.start;
                 }  else {
                     project_name = project.name
-                    project_date = project.datestart
                 }                             
             });
+
+            //получить дату из Основного состава проекта в ноушена
+            let project_date = '2023-06-10T07:00:00';
+            
 
             console.log("Дата проекта: ", project.datestart)
             console.log("Дата проекта2: ", project_date)
