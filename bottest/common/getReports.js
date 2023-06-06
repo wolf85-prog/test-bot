@@ -98,14 +98,22 @@ module.exports = async function getReports(project, bot) {
                 }                             
             });
 
-            console.log("Дата проекта: ", project_date)
+            console.log("Дата проекта: ", project.datestart)
+            console.log("Дата проекта2: ", project_date)
 
-            const d = new Date(project_date);
+            const d = new Date(project.datestart);
             const year = d.getFullYear();
             const month = String(d.getMonth()+1).padStart(2, "0");
             const day = String(d.getDate()).padStart(2, "0");
             const chas = d.getHours();
             const minut = String(d.getMinutes()).padStart(2, "0");
+
+            const d2 = new Date(project_date);
+            const year2 = d2.getFullYear();
+            const month2 = String(d2.getMonth()+1).padStart(2, "0");
+            const day2 = String(d2.getDate()).padStart(2, "0");
+            const chas2 = d2.getHours();
+            const minut2 = String(d2.getMinutes()).padStart(2, "0");
 
 
             var isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
@@ -121,7 +129,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
 
 const text2 = `Запрос на специалистов: 
                         
-${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+${day2}.${month2} | ${chas2}:${minut2} | ${project_name} | U.L.E.Y
                     
 ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
                     
