@@ -147,7 +147,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     .then((data) => {
                         if (data) {
                             console.log("Manager TelegramId: ", data)
-                            bot.sendMessage(data, text2)  
+                            bot.sendMessage('6143011220', text2)  
                         }  else {
                             console.log("Manager TelegramId не найден!")
                         }                             
