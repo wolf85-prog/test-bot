@@ -21,6 +21,8 @@ module.exports = async function getReports(project, bot) {
     let databaseBlock
     let arr_count
     let arr_all = [] 
+    let table_date
+
 
     if (JSON.parse(project.spec).length > 0) {
         // начало цикла Специалисты ----------------------------------------------------------------------
