@@ -121,7 +121,7 @@ ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
                     
                 //отправка сообщения в чат бота
-                if (i = 0) {
+                if (i < 2) {
                     await bot.sendMessage(project.chatId, text)  
                 } else {
                     //получить менеджера проекта из ноушена
