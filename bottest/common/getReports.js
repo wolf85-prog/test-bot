@@ -139,7 +139,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     });
 
                     //console.log(project_manager)
-
+                    let chatId_manager;
                     const chat = await fetch(
                         `${botApiUrl}/managers/${project_manager}`
                     )
@@ -147,13 +147,13 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     .then((data) => {
                         if (data) {
                             console.log("Manager TelegramId: ", data)
-                            bot.sendMessage('6143011220', text2)  
+                            chatId_manager = data
                         }  else {
                             console.log("Manager TelegramId не найден!")
                         }                             
                     });
 
-                    //await bot.sendMessage(project_manager, text2)  
+                    await bot.sendMessage(chatId_manager, text2)  
                 }
                 
 
