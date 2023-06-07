@@ -15,14 +15,13 @@ const fetch = require('node-fetch');
 module.exports = async function getReports(project, bot) {
     console.log('START TEST GET REPORTS: ' + project.id + " " + project.name)
 
-    let count_fio;
+    let count_fio, count_fio2;
+    let count_title;
     let i = 0;
     let j = 0;
     let databaseBlock;
     let arr_count, arr_count2;
     let arr_all = [];
-    let table_main = [];
-
 
     if (JSON.parse(project.spec).length > 0) {
         // начало цикла Специалисты ----------------------------------------------------------------------
@@ -43,9 +42,10 @@ module.exports = async function getReports(project, bot) {
                 console.log("databaseBlock: ", databaseBlock)
             }
 
-            //2) проверить массив специалистов
+            //2) проверить массив специалистов (1-й отчет)
             JSON.parse(project.spec).map((value)=> {           
                 count_fio = 0;
+                count_fio2 = 0;
                 count_title = 0;
 
                 //если бд ноушена доступна
@@ -58,9 +58,7 @@ module.exports = async function getReports(project, bot) {
                             }else {
                                 count_fio;
                             } 
-                            count_title++; 
                         }
-                        table_main.push(db)
                     })
 
                     //для первого отчета
@@ -70,16 +68,7 @@ module.exports = async function getReports(project, bot) {
                         count_fio: count_fio,
                         count_title: value.count,
                     }
-                    arr_count.push(obj) 
-
-                    //для второго отчета
-                    const obj2 = {
-                        title: value.spec,
-                        title2: value.cat,
-                        count_fio: count_fio,
-                        count_title: count_title,
-                    }
-                    arr_count2.push(obj2) 
+                    arr_count.push(obj)                  
 
                     //сохранение массива в 2-х элементный массив
                     if (i % 2 == 0) {
@@ -87,6 +76,7 @@ module.exports = async function getReports(project, bot) {
                     } else {
                         arr_all[1] = arr_count 
                     }
+
                 } else {
                     console.log("База данных не найдена! Проект ID: " + project.name)
                     j++ //счетчик ошибок доступа к БД ноушена
@@ -97,6 +87,28 @@ module.exports = async function getReports(project, bot) {
                     }
                 }                                          
             }) // map spec end
+
+            //3) проверить массив специалистов из ноушен (2-й отчет)
+            if (databaseBlock) {   
+                databaseBlock.map((db) => {
+                    if (db.fio) {
+                        count_fio2++               
+                    }else {
+                        count_fio2;
+                    } 
+                    count_title++;                
+
+                    //для второго отчета
+                    const obj2 = {
+                        date: db.date,
+                        title: db.spec,
+                        title2: db.title,
+                        count_fio: count_fio,
+                        count_title: count_title,
+                    }
+                    arr_count2.push(obj2) 
+                })
+            }
 
             //получить название проекта из ноушена
             let project_name;
@@ -113,11 +125,7 @@ module.exports = async function getReports(project, bot) {
             });
 
             //получить дату из Основного состава проекта в ноушена
-            let project_date = table_main[0].date;
-            
-
-            console.log("Дата проекта: ", project.datestart)
-            console.log("Дата проекта2: ", project_date)
+            let project_date = arr_count2[0].date;
 
             const d = new Date(project.datestart);
             const year = d.getFullYear();
@@ -138,13 +146,14 @@ module.exports = async function getReports(project, bot) {
                 
             //3) отправить сообщение если есть изменения в составе работников    
             if (!isEqual) {
+                //1-й отчет
                 const text = `Запрос на специалистов: 
                         
 ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
                     
 ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
 
-
+//2-й и последующие отчеты
 const text2 = `Запрос на специалистов: 
                         
 ${day2}.${month2} | ${chas2}:${minut2} | ${project_name} | U.L.E.Y
