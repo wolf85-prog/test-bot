@@ -18,10 +18,10 @@ module.exports = async function getReports(project, bot) {
     let count_fio;
     let i = 0;
     let j = 0;
-    let databaseBlock
-    let arr_count
-    let arr_all = [] 
-    let table_main = []
+    let databaseBlock;
+    let arr_count, arr_count2;
+    let arr_all = [];
+    let table_main = [];
 
 
     if (JSON.parse(project.spec).length > 0) {
@@ -32,7 +32,8 @@ module.exports = async function getReports(project, bot) {
         // повторить с интервалом 1 минуту
         let timerId = setInterval(async() => {
             minutCount++  // a day has passed
-            arr_count = [] 
+            arr_count = []
+            arr_count2 = [] 
 
             //1)получить блок и бд
             if (project.projectId) {
@@ -56,11 +57,13 @@ module.exports = async function getReports(project, bot) {
                                 count_fio++               
                             }else {
                                 count_fio;
-                            }  
+                            } 
+                            count_title++; 
                         }
-                        table_main = db
+                        table_main.push(db)
                     })
 
+                    //для первого отчета
                     const obj = {
                         title: value.spec,
                         title2: value.cat,
@@ -68,6 +71,15 @@ module.exports = async function getReports(project, bot) {
                         count_title: value.count,
                     }
                     arr_count.push(obj) 
+
+                    //для второго отчета
+                    const obj2 = {
+                        title: value.spec,
+                        title2: value.cat,
+                        count_fio: count_fio,
+                        count_title: count_title,
+                    }
+                    arr_count2.push(obj2) 
 
                     //сохранение массива в 2-х элементный массив
                     if (i % 2 == 0) {
@@ -101,7 +113,7 @@ module.exports = async function getReports(project, bot) {
             });
 
             //получить дату из Основного состава проекта в ноушена
-            let project_date = table_main.date;
+            let project_date = table_main[0].date;
             
 
             console.log("Дата проекта: ", project.datestart)
@@ -137,7 +149,7 @@ const text2 = `Запрос на специалистов:
                         
 ${day2}.${month2} | ${chas2}:${minut2} | ${project_name} | U.L.E.Y
                     
-${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
+${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
                     
                 //отправка сообщения в чат бота
                 if (i < 1) {
