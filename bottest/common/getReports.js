@@ -21,7 +21,7 @@ module.exports = async function getReports(project, bot) {
     let databaseBlock
     let arr_count
     let arr_all = [] 
-    let table_date
+    let table_main = []
 
 
     if (JSON.parse(project.spec).length > 0) {
@@ -58,7 +58,10 @@ module.exports = async function getReports(project, bot) {
                                 count_fio;
                             }  
                         }
+                        table_main = dp
                     })
+
+                    console.log(table_main)
 
                     const obj = {
                         title: value.spec,
