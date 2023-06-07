@@ -61,8 +61,6 @@ module.exports = async function getReports(project, bot) {
                         table_main = db
                     })
 
-                    console.log(table_main)
-
                     const obj = {
                         title: value.spec,
                         title2: value.cat,
@@ -103,7 +101,7 @@ module.exports = async function getReports(project, bot) {
             });
 
             //получить дату из Основного состава проекта в ноушена
-            let project_date = '2023-06-10T07:00:00';
+            let project_date = table_main.date;
             
 
             console.log("Дата проекта: ", project.datestart)
