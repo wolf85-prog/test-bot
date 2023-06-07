@@ -58,7 +58,7 @@ module.exports = async function getReports(project, bot) {
                                 count_fio;
                             }  
                         }
-                        table_main = dp
+                        table_main = db
                     })
 
                     console.log(table_main)
