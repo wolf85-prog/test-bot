@@ -22,6 +22,7 @@ module.exports = async function getReports(project, bot) {
     let databaseBlock;
     let arr_count, arr_count2;
     let arr_all = [];
+    let arr_all2 = [];
 
     if (JSON.parse(project.spec).length > 0) {
         // начало цикла Специалисты ----------------------------------------------------------------------
@@ -107,6 +108,13 @@ module.exports = async function getReports(project, bot) {
                         count_title: count_title,
                     }
                     arr_count2.push(obj2) 
+
+                    //сохранение массива в 2-х элементный массив
+                    if (i % 2 == 0) {
+                        arr_all2[0] = arr_count2
+                    } else {
+                        arr_all2[1] = arr_count2 
+                    }
                 })
             }
 
@@ -141,33 +149,37 @@ module.exports = async function getReports(project, bot) {
             const chas2 = d2.getHours();
             const minut2 = String(d2.getMinutes()).padStart(2, "0");
 
-
             var isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
-                
-            //3) отправить сообщение если есть изменения в составе работников    
-            if (!isEqual) {
-                //1-й отчет
-                const text = `Запрос на специалистов: 
-                        
-${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
-                    
-${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
 
-//2-й и последующие отчеты
-const text2 = `Запрос на специалистов: 
+            let isEqual2 = JSON.stringify(arr_all2[0]) === JSON.stringify(arr_all2[1]);
+
+            //отправка сообщения в чат бота
+            if (i < 1) {             
+                //3) отправить сообщение если есть изменения в составе работников  
+                if (!isEqual) {
+                    //1-й отчет
+                    const text = `Запрос на специалистов: 
+                            
+${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
                         
-${day2}.${month2} | ${chas2}:${minut2} | ${project_name} | U.L.E.Y
-                    
-${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
-                    
-                //отправка сообщения в чат бота
-                if (i < 1) {
+${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`
+                
                     await bot.sendMessage(project.chatId, text)  
-                } else {
+
+                } // end if
+            } else {
+                if (!isEqual2) {
+                    //2-й и последующие отчеты
+                    const text2 = `Запрос на специалистов: 
+                            
+${day2}.${month2} | ${chas2}:${minut2} | ${project_name} | U.L.E.Y
+                        
+${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                    
+                    
                     //получить менеджера проекта из ноушена
                     let project_manager;
                     const res = await fetch(
-                        `${botApiUrl}/project/${project.projectId}`
+                         `${botApiUrl}/project/${project.projectId}`
                     )
                     .then((response) => response.json())
                     .then((data) => {
@@ -177,7 +189,7 @@ ${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + it
                             project_manager = ''
                         }                             
                     });
-
+    
                     //console.log(project_manager)
                     let chatId_manager;
                     const chat = await fetch(
@@ -192,14 +204,13 @@ ${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + it
                             console.log("Manager TelegramId не найден!")
                         }                             
                     });
-
+    
                     await bot.sendMessage(chatId_manager, text2)  
-                }
-                
+                }// end if
+                     
+            }
 
-                // сохранить отправленное боту сообщение пользователя в БД 
-
-            } // end if
+            // сохранить отправленное боту сообщение пользователя в БД 
             
             i++ // счетчик интервалов
         }, 60000); //каждую 1 минуту
