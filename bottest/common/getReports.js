@@ -97,7 +97,9 @@ module.exports = async function getReports(project, bot) {
         let project_name;
         
         const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
-        project_name = res?.properties.Name.title[0]?.plain_text;
+        console.log("res: ", res)
+        //project_name = res?.properties.Name.title[0]?.plain_text;
+        project_name = project.name
 
         //получить дату из Основного состава проекта в ноушена
         let project_date = arr_count[0].date;
