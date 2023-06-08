@@ -64,14 +64,17 @@ module.exports = async function getReports(project, bot) {
                         }               
 
                         //для второго отчета
-                        const obj = {
-                            date: db.date,
-                            title: db.spec,
-                            title2: db.title,
-                            count_fio: count_fio,
-                            count_title: count_title,
+                        if (count_title > 0) {
+                            const obj = {
+                                date: db.date,
+                                title: db.spec,
+                                title2: db.title,
+                                count_fio: count_fio,
+                                count_title: count_title,
+                            }
+                            arr_count.push(obj) 
                         }
-                        arr_count.push(obj) 
+                        
 
                         //сохранение массива в 2-х элементный массив
                         if (i % 2 == 0) {
