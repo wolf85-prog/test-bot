@@ -6,7 +6,9 @@ const getDatabaseId = require('./getDatabaseId')
 //const sendMyMessage = require('./sendMyMessage')
 // web-приложение
 const webAppUrl = process.env.WEB_APP_URL;
-const botApiUrl = process.env.REACT_APP_API_URL
+const botApiUrl = process.env.REACT_APP_API_URL;
+
+const specData = require('./../data/specData');
 
 
 //fetch api
@@ -23,6 +25,84 @@ module.exports = async function getReports(project, bot) {
     let arr_count, arr_count2;
     let arr_all = [];
     let arr_all2 = [];
+
+
+    // начало цикла Специалисты ----------------------------------------------------------------------
+    // 86400 секунд в дне
+    var minutCount = 0;
+        
+    // повторить с интервалом 1 минуту
+    //let timerId = setInterval(async() => {
+        minutCount++  // a day has passed
+        arr_count = []
+        arr_count2 = [] 
+
+        //1)получить блок и бд
+        if (project.projectId) {
+            const blockId = await getBlocks(project.projectId);
+            console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
+            databaseBlock = await getDatabaseId(blockId); 
+            console.log("databaseBlock: ", databaseBlock)
+        }
+
+        //2) проверить массив специалистов из ноушен (2-й отчет)
+        specData.map((specObject)=> {
+            specObject.models.map((spec)=> {
+                console.log(spec.name)
+            })
+        })
+
+        // if (databaseBlock) {   
+        //     databaseBlock.map((db) => {
+
+        //         if (db.fio) {
+        //             count_fio2++               
+        //         }else {
+        //             count_fio2;
+        //         } 
+        //         count_title++;                
+
+        //         //для второго отчета
+        //         const obj2 = {
+        //             date: db.date,
+        //             title: db.spec,
+        //             title2: db.title,
+        //             count_fio: count_fio,
+        //             count_title: count_title,
+        //         }
+        //         arr_count2.push(obj2) 
+
+        //         //сохранение массива в 2-х элементный массив
+        //         if (i % 2 == 0) {
+        //             arr_all2[0] = arr_count2
+        //         } else {
+        //             arr_all2[1] = arr_count2 
+        //         }
+        //     })
+        // }
+
+
+
+
+    
+        i++ // счетчик интервалов
+    //}, 60000); //каждую 1 минуту
+
+    // остановить вывод через 30 дней
+    // if (minutCount == 43200) {
+    //     clearInterval(timerId);
+    // }  
+
+
+
+
+
+
+
+
+
+
+
 
     if (JSON.parse(project.spec).length > 0) {
         // начало цикла Специалисты ----------------------------------------------------------------------
@@ -219,9 +299,7 @@ ${arr_count2.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + it
         if (minutCount == 43200) {
             clearInterval(timerId);
         }   
-    } else if (JSON.parse(project.equipment).length > 0) {
-        // начало цикла Оборудование ----------------------------------------------------------------------
-        // повторить с интервалом 1 минуту
-        
-    }
+    } 
+
+
 }
