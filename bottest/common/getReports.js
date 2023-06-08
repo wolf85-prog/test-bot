@@ -48,38 +48,44 @@ module.exports = async function getReports(project, bot) {
         //2) проверить массив специалистов из ноушен (2-й отчет)
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
-                console.log(spec.name)
+                //console.log(spec.name)
+                count_fio = 0;
+                count_title = 0;
+
+                if (databaseBlock) {   
+                    databaseBlock.map((db) => {
+                        if (spec.name === db.spec) {
+                            console.log(db.spec)
+                            // if (db.fio) {
+                            //     count_fio++               
+                            // }else {
+                            //     count_fio;
+                            // } 
+                        }               
+
+                        //для второго отчета
+                        const obj2 = {
+                            date: db.date,
+                            title: db.spec,
+                            title2: db.title,
+                            count_fio: count_fio,
+                            count_title: count_title,
+                        }
+                        arr_count2.push(obj2) 
+
+                        //сохранение массива в 2-х элементный массив
+                        if (i % 2 == 0) {
+                            arr_all2[0] = arr_count2
+                        } else {
+                            arr_all2[1] = arr_count2 
+                        }
+                    })
+                }
+
             })
         })
 
-        // if (databaseBlock) {   
-        //     databaseBlock.map((db) => {
-
-        //         if (db.fio) {
-        //             count_fio2++               
-        //         }else {
-        //             count_fio2;
-        //         } 
-        //         count_title++;                
-
-        //         //для второго отчета
-        //         const obj2 = {
-        //             date: db.date,
-        //             title: db.spec,
-        //             title2: db.title,
-        //             count_fio: count_fio,
-        //             count_title: count_title,
-        //         }
-        //         arr_count2.push(obj2) 
-
-        //         //сохранение массива в 2-х элементный массив
-        //         if (i % 2 == 0) {
-        //             arr_all2[0] = arr_count2
-        //         } else {
-        //             arr_all2[1] = arr_count2 
-        //         }
-        //     })
-        // }
+        
 
 
 
