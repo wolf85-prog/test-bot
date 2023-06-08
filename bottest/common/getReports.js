@@ -22,7 +22,7 @@ module.exports = async function getReports(project, bot) {
     let i = 0;
     let j = 0;
     let databaseBlock;
-    let arr_count, arr_count2;
+    let arr_count, arr_count2, arr_date;
     let arr_all = [];
     let arr_all2 = [];
 
@@ -36,6 +36,7 @@ module.exports = async function getReports(project, bot) {
         minutCount++  // a day has passed
         arr_count = []
         arr_count2 = [] 
+        arr_date = []
 
         //1)получить блок и бд
         if (project.projectId) {
@@ -62,6 +63,7 @@ module.exports = async function getReports(project, bot) {
                                 count_fio;
                             } 
                             count_title++
+                            arr_date.push(db.date)
                         }               
                     })
                     //для второго отчета
@@ -111,7 +113,7 @@ module.exports = async function getReports(project, bot) {
         });
 
         //получить дату из Основного состава проекта в ноушена
-        let project_date = arr_count[0].date;
+        let project_date = arr_date[0];
 
         const d = new Date(project_date);
         const year = d.getFullYear();
