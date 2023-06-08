@@ -97,9 +97,14 @@ module.exports = async function getReports(project, bot) {
         let project_name;
         
         const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
-        console.log("res: ", res)
-        //project_name = res?.properties.Name.title[0]?.plain_text;
-        project_name = project.name
+        .then((response) => response.json())
+        .then((data) => {
+            if (data) {
+                project_name = data?.properties.Name.title[0]?.plain_text;
+            }  else {
+                project_name = project.name
+            }                             
+        });
 
         //получить дату из Основного состава проекта в ноушена
         let project_date = arr_count[0].date;
@@ -124,12 +129,27 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
             //получить менеджера проекта из ноушена
             let project_manager;
             const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
-            project_manager = res?.properties.Manager.relation[0]?.id;
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    project_manager = data?.properties.Manager.relation[0]?.id;
+                }  else {
+                    project_manager = '';
+                }                             
+            });
 
             //получить TelegramID менеджера проекта из ноушена
             let chatId_manager;
             const chat = await fetch(`${botApiUrl}/managers/${project_manager}`)
-            chatId_manager = data
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    console.log("Manager TelegramId: ", data)
+                    chatId_manager = data
+                } else {
+                    console.log("Manager TelegramId не найден!")
+                }                             
+            });
 
             await bot.sendMessage(chatId_manager, text)  
         }// end if
