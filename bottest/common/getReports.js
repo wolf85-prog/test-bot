@@ -53,6 +53,7 @@ module.exports = async function getReports(project, bot) {
                 count_title = 0;
 
                 if (databaseBlock) {   
+                    j = 0
                     databaseBlock.map((db) => {
                         if (spec.name === db.spec) {
                             if (db.fio) {
@@ -62,27 +63,27 @@ module.exports = async function getReports(project, bot) {
                             } 
                             count_title++
                         }               
-
-                        //для второго отчета
-                        if (count_title > 0) {
-                            const obj = {
-                                date: db.date,
-                                title: db.spec,
-                                title2: db.title,
-                                count_fio: count_fio,
-                                count_title: count_title,
-                            }
-                            arr_count.push(obj) 
+                    })
+                    //для второго отчета
+                    if (count_title > 0) {
+                        const obj = {
+                            date: db.date,
+                            title: db.spec,
+                            title2: db.title,
+                            count_fio: count_fio,
+                            count_title: count_title,
                         }
+                        arr_count.push(obj) 
+                    }
                         
 
-                        //сохранение массива в 2-х элементный массив
-                        if (i % 2 == 0) {
-                            arr_all[0] = arr_count
-                        } else {
-                            arr_all[1] = arr_count 
-                        }
-                    })
+                    //сохранение массива в 2-х элементный массив
+                    if (i % 2 == 0) {
+                        arr_all[0] = arr_count
+                    } else {
+                        arr_all[1] = arr_count 
+                    }
+                    
                 } else {
                     console.log("База данных не найдена! Проект ID: " + project.name)
                     j++ //счетчик ошибок доступа к БД ноушена

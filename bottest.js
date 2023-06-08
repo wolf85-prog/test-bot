@@ -57,7 +57,7 @@ bottest.on('message', async (msg) => {
     const text = msg.text ? msg.text : '';
     const messageId = msg.message_id;
 
-    console.log("msg: ", msg)
+    //console.log("msg: ", msg)
     //console.log("text: ", text)
 
     try {
@@ -91,11 +91,8 @@ bottest.on('message', async (msg) => {
         // startreports {id проекта}
         if(text.startsWith('/startreports')) {
             const project = text.split(' ');
-            //console.log(project[1])
 
             const project2 = await Project.findOne({ where:{ id: project[1] } })   
-            
-            console.log("project2: ", project2)
                     
             //начать получать отчеты
             getReports(project2, bottest)
