@@ -67,9 +67,9 @@ module.exports = async function getReports(project, bot) {
                     //для второго отчета
                     if (count_title > 0) {
                         const obj = {
-                            date: db.date,
-                            title: db.spec,
-                            title2: db.title,
+                            //date: db.date,
+                            title: spec.name,
+                            title2: specObject.icon,
                             count_fio: count_fio,
                             count_title: count_title,
                         }
