@@ -1,5 +1,5 @@
-
-const specData = [
+module.exports = {   
+ specData: [
     {
         id: 1,
         name: 'SOUND',
@@ -136,6 +136,8 @@ const specData = [
             {id: 6, name: 'Активности \/ аттракционы',},
         ]
     },
-];
+]
 
-export default specData;
+}
+
+//export default { specData };

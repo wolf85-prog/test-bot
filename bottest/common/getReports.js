@@ -8,7 +8,7 @@ const getDatabaseId = require('./getDatabaseId')
 const webAppUrl = process.env.WEB_APP_URL;
 const botApiUrl = process.env.REACT_APP_API_URL;
 
-const specData = require('./../data/specData');
+const {specData} = require('./../data/specData');
 
 
 //fetch api
