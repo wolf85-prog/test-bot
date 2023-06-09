@@ -35,6 +35,7 @@ module.exports = async function getReports(project, bot) {
     // повторить с интервалом 1 минуту
     let timerId = setInterval(async() => {
         minutCount++  // a day has passed
+        arr_count = [] 
         arr_count2 = [] 
         allDate = []
 
@@ -77,14 +78,14 @@ module.exports = async function getReports(project, bot) {
                                 count_fio;
                             } 
                             count_title++
-                            //date_db = db.date
+                            date_db = db.date
                         }          
                     })
 
                     //для второго отчета
                     if (count_title > 0) {
                         const obj = {
-                            //date: date_db,
+                            date: date_db,
                             title: spec.name,
                             title2: specObject.icon,
                             count_fio: count_fio,
