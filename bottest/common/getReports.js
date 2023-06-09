@@ -133,20 +133,11 @@ module.exports = async function getReports(project, bot) {
             }                             
         });
 
-        //получить дату из Основного состава проекта в ноушена
-        let project_date = dates[0];
-
-        const d = new Date(project_date);
-        const month = String(d.getMonth()+1).padStart(2, "0");
-        const day = String(d.getDate()).padStart(2, "0");
-        const chas = d.getHours();
-        const minut = String(d.getMinutes()).padStart(2, "0");
 
         let isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
 
         if (!isEqual) {
-                  
-            
+                      
             //получить менеджера проекта из ноушена
             let project_manager;
             const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
@@ -174,29 +165,23 @@ module.exports = async function getReports(project, bot) {
 
 
             sortedDates.forEach((date, i)=> {
-                //arr_count.map((item)=> {
-                    //if (date === item.date) {
-                    const arr_copy = [...arr_count].filter((item)=> date === item.date)
+                const arr_copy = [...arr_count].filter((item)=> date === item.date)
 
-                    const d = new Date(date.split('+')[0]);
-                    const month = String(d.getMonth()+1).padStart(2, "0");
-                    const day = String(d.getDate()).padStart(2, "0");
-                    const chas = d.getHours();
-                    const minut = String(d.getMinutes()).padStart(2, "0");
+                const d = new Date(date.split('+')[0]);
+                const month = String(d.getMonth()+1).padStart(2, "0");
+                const day = String(d.getDate()).padStart(2, "0");
+                const chas = d.getHours();
+                const minut = String(d.getMinutes()).padStart(2, "0");
 
-                    const text = `Запрос на специалистов: 
+                const text = `Запрос на специалистов: 
                             
 ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
-${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`   
-                        
+${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
 
-                        setTimeout(async()=> {
-                            await bot.sendMessage(chatId_manager, text) 
-                        
-                        }, 1000 * ++i)
-                    //}
-                //})     
+                setTimeout(async()=> {
+                    await bot.sendMessage(chatId_manager, text)                         
+                }, 1000 * ++i)   
             })
              
         }// end if
