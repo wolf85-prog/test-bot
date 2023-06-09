@@ -43,7 +43,7 @@ module.exports = async function getReports(project, bot) {
             const blockId = await getBlocks(project.projectId);
             console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
             databaseBlock = await getDatabaseId(blockId); 
-            console.log("databaseBlock: ", databaseBlock)
+            //console.log("databaseBlock: ", databaseBlock)
         }
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
@@ -121,7 +121,7 @@ module.exports = async function getReports(project, bot) {
         });
 
         //получить дату из Основного состава проекта в ноушена
-        let project_date = allDate[0];
+        let project_date = dates[0];
 
         const d = new Date(project_date);
         const year = d.getFullYear();
