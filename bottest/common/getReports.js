@@ -66,6 +66,7 @@ module.exports = async function getReports(project, bot) {
                             arr_date.push(db.date)
                         }               
                     })
+
                     //для второго отчета
                     if (count_title > 0) {
                         const obj = {
@@ -76,6 +77,8 @@ module.exports = async function getReports(project, bot) {
                             count_title: count_title,
                         }
                         arr_count.push(obj) 
+
+                        console.log(arr_date)
                     }
                         
 
