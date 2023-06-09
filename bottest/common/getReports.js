@@ -34,7 +34,6 @@ module.exports = async function getReports(project, bot) {
     // повторить с интервалом 1 минуту
     let timerId = setInterval(async() => {
         minutCount++  // a day has passed
-        arr_count = []
         arr_count2 = [] 
         allDate = []
 
@@ -62,6 +61,8 @@ module.exports = async function getReports(project, bot) {
 
     //2) проверить массив специалистов из ноушен (2-й отчет)
     sortedDates.map((date)=> {
+        arr_count = []
+        
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
                 //console.log(spec.name)
