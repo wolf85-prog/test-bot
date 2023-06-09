@@ -100,12 +100,11 @@ module.exports = async function getReports(project, bot) {
             })
         })// map spec end
 
-        //console.log(allDate)
+        //получить уникальные даты из Основного состава по возрастанию
         const allDateCopy = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
         const dates = [...allDateCopy].reverse().map(element => {
-            return element;
-          });
-        console.log(dates)
+            return element;    
+        });
 
         //получить название проекта из ноушена
         let project_name;
@@ -124,7 +123,6 @@ module.exports = async function getReports(project, bot) {
         let project_date = dates[0];
 
         const d = new Date(project_date);
-        const year = d.getFullYear();
         const month = String(d.getMonth()+1).padStart(2, "0");
         const day = String(d.getDate()).padStart(2, "0");
         const chas = d.getHours();
@@ -165,7 +163,20 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 }                             
             });
 
-            await bot.sendMessage(chatId_manager, text)  
+            dates.map(async (date)=> {
+                const d = new Date(date);
+                const month = String(d.getMonth()+1).padStart(2, "0");
+                const day = String(d.getDate()).padStart(2, "0");
+                const chas = d.getHours();
+                const minut = String(d.getMinutes()).padStart(2, "0");
+
+                const text = `Запрос на специалистов: 
+                    
+${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y`
+                await bot.sendMessage(chatId_manager, text) 
+
+            })
+             
         }// end if
 
         // сохранить отправленное боту сообщение пользователя в БД 
