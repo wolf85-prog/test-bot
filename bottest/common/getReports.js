@@ -62,6 +62,7 @@ module.exports = async function getReports(project, bot) {
 
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
+    sortedDates.map((date1)=> {   
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
                 //console.log(spec.name)
@@ -71,15 +72,17 @@ module.exports = async function getReports(project, bot) {
                 if (databaseBlock) {   
                     j = 0
                     databaseBlock.map((db) => {
-                        if (spec.name === db.spec) {
-                            if (db.fio) {
-                                count_fio++               
-                            }else {
-                                count_fio;
+                        if (db.date === date1) {
+                            if (spec.name === db.spec) {
+                                if (db.fio) {
+                                    count_fio++               
+                                }else {
+                                    count_fio;
+                                } 
+                                count_title++
+                                date_db = db.date
                             } 
-                            count_title++
-                            date_db = db.date
-                        }          
+                        }                              
                     })
 
                     //для второго отчета
@@ -93,8 +96,6 @@ module.exports = async function getReports(project, bot) {
                         }
                         arr_count.push(obj)        
                     }
-                     
-                    //console.log(arr_count)
 
                     //сохранение массива в 2-х элементный массив
                     if (i % 2 == 0) {
@@ -117,11 +118,7 @@ module.exports = async function getReports(project, bot) {
         })// map spec end
 
         console.log(arr_count)
-
-        sortedDates.map((date1, ind)=> {
-            //arr_count = []
-           // if (date1 === arr_all.)
-        })
+    })
 
         //получить название проекта из ноушена
         let project_name;
