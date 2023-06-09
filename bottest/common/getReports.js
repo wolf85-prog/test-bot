@@ -110,6 +110,8 @@ module.exports = async function getReports(project, bot) {
             return dateA-dateB  //сортировка по возрастающей дате  
         })
 
+        console.log(sortedDates)
+
         //получить название проекта из ноушена
         let project_name;
         
@@ -166,6 +168,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                     console.log("Manager TelegramId не найден!")
                 }                             
             });
+
 
             sortedDates.map(async (date)=> {
                 const d = new Date(date.split('+')[0]);
