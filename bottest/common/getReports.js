@@ -163,8 +163,8 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 }                             
             });
 
-            dates.map(async (date)=> {
-                const d = new Date(date);
+            dates.reverse().map(async (date)=> {
+                const d = new Date(date.split('+')[0]);
                 const month = String(d.getMonth()+1).padStart(2, "0");
                 const day = String(d.getDate()).padStart(2, "0");
                 const chas = d.getHours();
