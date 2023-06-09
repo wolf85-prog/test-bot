@@ -25,6 +25,7 @@ module.exports = async function getReports(project, bot) {
     let arr_count, arr_count2, allDate;
     let arr_all = [];
     let arr_all2 = [];
+    let date_db;
 
 
     // начало цикла Специалисты ----------------------------------------------------------------------
@@ -59,10 +60,7 @@ module.exports = async function getReports(project, bot) {
         })
 
 
-    //2) проверить массив специалистов из ноушен (2-й отчет)
-    sortedDates.map((date, ind)=> {
-        arr_count = []
-
+        //2) проверить массив специалистов из ноушен (2-й отчет)
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
                 //console.log(spec.name)
@@ -72,22 +70,21 @@ module.exports = async function getReports(project, bot) {
                 if (databaseBlock) {   
                     j = 0
                     databaseBlock.map((db) => {
-                        if (date === db.date) {
-                            if (spec.name === db.spec) {
-                                if (db.fio) {
-                                    count_fio++               
-                                }else {
-                                    count_fio;
-                                } 
-                                count_title++
-                            }   
-                        }            
+                        if (spec.name === db.spec) {
+                            if (db.fio) {
+                                count_fio++               
+                            }else {
+                                count_fio;
+                            } 
+                            count_title++
+                            date_db = db.date
+                        }          
                     })
 
                     //для второго отчета
                     if (count_title > 0) {
                         const obj = {
-                            date: date,
+                            date: date_db,
                             title: spec.name,
                             title2: specObject.icon,
                             count_fio: count_fio,
@@ -96,7 +93,7 @@ module.exports = async function getReports(project, bot) {
                         arr_count.push(obj)        
                     }
                      
-                    console.log(arr_count)
+                    //console.log(arr_count)
 
                     //сохранение массива в 2-х элементный массив
                     if (i % 2 == 0) {
@@ -118,8 +115,12 @@ module.exports = async function getReports(project, bot) {
             })
         })// map spec end
 
-        console.log(ind + ": " + arr_count)
-    })// map date end
+        console.log(arr_count)
+
+        sortedDates.map((date1, ind)=> {
+            //arr_count = []
+           // if (date1 === arr_all.)
+        })
 
         //получить название проекта из ноушена
         let project_name;
