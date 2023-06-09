@@ -101,7 +101,7 @@ module.exports = async function getReports(project, bot) {
         })// map spec end
 
         //получить уникальные даты из Основного состава по возрастанию
-        const allDateCopy = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
+        dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
         // const dates = [...allDateCopy].reverse().map(element => {
         //     return element;    
         // });
@@ -163,7 +163,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 }                             
             });
 
-            allDateCopy.map(async (date)=> {
+            dates.map(async (date)=> {
                 const d = new Date(date.split('+')[0]);
                 const month = String(d.getMonth()+1).padStart(2, "0");
                 const day = String(d.getDate()).padStart(2, "0");
