@@ -22,7 +22,7 @@ module.exports = async function getReports(project, bot) {
     let i = 0;
     let j = 0;
     let databaseBlock;
-    let arr_count, arr_count2, arr_date;
+    let arr_count, arr_count2, allDate;
     let arr_all = [];
     let arr_all2 = [];
 
@@ -118,7 +118,7 @@ module.exports = async function getReports(project, bot) {
         });
 
         //получить дату из Основного состава проекта в ноушена
-        let project_date = arr_date[0];
+        let project_date = allDate[0];
 
         const d = new Date(project_date);
         const year = d.getFullYear();
