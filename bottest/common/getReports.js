@@ -101,7 +101,10 @@ module.exports = async function getReports(project, bot) {
         })// map spec end
 
         //console.log(allDate)
-        const dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
+        const allDateCopy = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
+        const dates = [...allDateCopy].reverse().map(element => {
+            return element;
+          });
         console.log(dates)
 
         //получить название проекта из ноушена
