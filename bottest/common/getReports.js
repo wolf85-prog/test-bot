@@ -102,9 +102,9 @@ module.exports = async function getReports(project, bot) {
 
         //получить уникальные даты из Основного состава по возрастанию
         const allDateCopy = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
-        const dates = [...allDateCopy].reverse().map(element => {
-            return element;    
-        });
+        // const dates = [...allDateCopy].reverse().map(element => {
+        //     return element;    
+        // });
 
         //получить название проекта из ноушена
         let project_name;
@@ -163,7 +163,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 }                             
             });
 
-            dates.reverse().map(async (date)=> {
+            allDateCopy.map(async (date)=> {
                 const d = new Date(date.split('+')[0]);
                 const month = String(d.getMonth()+1).padStart(2, "0");
                 const day = String(d.getDate()).padStart(2, "0");
