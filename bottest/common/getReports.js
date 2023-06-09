@@ -60,9 +60,9 @@ module.exports = async function getReports(project, bot) {
 
 
     //2) проверить массив специалистов из ноушен (2-й отчет)
-    sortedDates.map((date)=> {
+    sortedDates.map((date, ind)=> {
         arr_count = []
-        
+
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
                 //console.log(spec.name)
@@ -117,6 +117,8 @@ module.exports = async function getReports(project, bot) {
 
             })
         })// map spec end
+
+        console.log(ind + ": " + arr_count)
     })// map date end
 
         //получить название проекта из ноушена
