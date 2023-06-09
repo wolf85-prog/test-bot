@@ -179,23 +179,29 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
 
 
             sortedDates.forEach((date, i)=> {
-                const d = new Date(date.split('+')[0]);
-                const month = String(d.getMonth()+1).padStart(2, "0");
-                const day = String(d.getDate()).padStart(2, "0");
-                const chas = d.getHours();
-                const minut = String(d.getMinutes()).padStart(2, "0");
+                arr_count.map((item)=> {
+                    if (date === item.date) {
+                        const d = new Date(date.split('+')[0]);
+                        const month = String(d.getMonth()+1).padStart(2, "0");
+                        const day = String(d.getDate()).padStart(2, "0");
+                        const chas = d.getHours();
+                        const minut = String(d.getMinutes()).padStart(2, "0");
 
-                const text = `Запрос на специалистов: 
-                    
-${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+                        const text = `Запрос на специалистов: 
+                            
+        ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
-${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`   
+        ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`   
+                        
+
+                        setTimeout(async()=> {
+                            await bot.sendMessage(chatId_manager, text) 
+                        
+                        }, 1000 * ++i)
+                    }
+                })
+
                 
-
-                setTimeout(async()=> {
-                    //await bot.sendMessage(chatId_manager, text) 
-                
-                }, 1000 * ++i)
 
             })
              
