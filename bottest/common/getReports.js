@@ -102,9 +102,6 @@ module.exports = async function getReports(project, bot) {
 
         //получить уникальные даты из Основного состава по возрастанию
         dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
-        // const dates = [...allDateCopy].reverse().map(element => {
-        //     return element;    
-        // });
         const sortedDates = [...dates].sort((a, b) => {       
             var dateA = new Date(a), dateB = new Date(b) 
             return dateA-dateB  //сортировка по возрастающей дате  
