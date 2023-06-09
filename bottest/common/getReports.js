@@ -36,7 +36,7 @@ module.exports = async function getReports(project, bot) {
         minutCount++  // a day has passed
         arr_count = []
         arr_count2 = [] 
-        arr_date = []
+        allDate = []
 
         //1)получить блок и бд
         if (project.projectId) {
@@ -63,7 +63,7 @@ module.exports = async function getReports(project, bot) {
                                 count_fio;
                             } 
                             count_title++
-                            arr_date.push(db.date)
+                            allDate.push(db.date)
                         }               
                     })
 
@@ -76,9 +76,7 @@ module.exports = async function getReports(project, bot) {
                             count_fio: count_fio,
                             count_title: count_title,
                         }
-                        arr_count.push(obj) 
-
-                        console.log(arr_date)
+                        arr_count.push(obj)        
                     }
                         
 
@@ -101,6 +99,10 @@ module.exports = async function getReports(project, bot) {
 
             })
         })// map spec end
+
+        //console.log(allDate)
+        const dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
+        console.log(dates)
 
         //получить название проекта из ноушена
         let project_name;
