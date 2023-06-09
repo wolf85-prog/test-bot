@@ -46,7 +46,22 @@ module.exports = async function getReports(project, bot) {
             //console.log("databaseBlock: ", databaseBlock)
         }
 
-        //2) проверить массив специалистов из ноушен (2-й отчет)
+        if (databaseBlock) {   
+            databaseBlock.map((db) => {
+                allDate.push(db.date)           
+            })
+        }
+
+        //получить уникальные даты из Основного состава по возрастанию
+        dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
+        const sortedDates = [...dates].sort((a, b) => {       
+            var dateA = new Date(a), dateB = new Date(b) 
+            return dateA-dateB  //сортировка по возрастающей дате  
+        })
+
+
+    //2) проверить массив специалистов из ноушен (2-й отчет)
+    sortedDates.map((date)=> {
         specData.map((specObject)=> {
             specObject.models.map((spec)=> {
                 //console.log(spec.name)
@@ -56,21 +71,22 @@ module.exports = async function getReports(project, bot) {
                 if (databaseBlock) {   
                     j = 0
                     databaseBlock.map((db) => {
-                        if (spec.name === db.spec) {
-                            if (db.fio) {
-                                count_fio++               
-                            }else {
-                                count_fio;
-                            } 
-                            count_title++
-                            allDate.push(db.date)
-                        }               
+                        if (date === db.date) {
+                            if (spec.name === db.spec) {
+                                if (db.fio) {
+                                    count_fio++               
+                                }else {
+                                    count_fio;
+                                } 
+                                count_title++
+                            }   
+                        }            
                     })
 
                     //для второго отчета
                     if (count_title > 0) {
                         const obj = {
-                            //date: db.date,
+                            date: date,
                             title: spec.name,
                             title2: specObject.icon,
                             count_fio: count_fio,
@@ -78,7 +94,8 @@ module.exports = async function getReports(project, bot) {
                         }
                         arr_count.push(obj)        
                     }
-                        
+                     
+                    console.log(arr_count)
 
                     //сохранение массива в 2-х элементный массив
                     if (i % 2 == 0) {
@@ -99,15 +116,7 @@ module.exports = async function getReports(project, bot) {
 
             })
         })// map spec end
-
-        //получить уникальные даты из Основного состава по возрастанию
-        dates = [...allDate].filter((el, ind) => ind === allDate.indexOf(el));
-        const sortedDates = [...dates].sort((a, b) => {       
-            var dateA = new Date(a), dateB = new Date(b) 
-            return dateA-dateB  //сортировка по возрастающей дате  
-        })
-
-        console.log(sortedDates)
+    })// map date end
 
         //получить название проекта из ноушена
         let project_name;
@@ -176,11 +185,14 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
 
                 const text = `Запрос на специалистов: 
                     
-${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y`
+${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+
+${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`   
                 
 
                 setTimeout(async()=> {
                     await bot.sendMessage(chatId_manager, text) 
+                
                 }, 1000 * ++i)
 
             })
