@@ -105,6 +105,10 @@ module.exports = async function getReports(project, bot) {
         // const dates = [...allDateCopy].reverse().map(element => {
         //     return element;    
         // });
+        const sortedDates = [...dates].sort((a, b) => {       
+            var dateA = new Date(a), dateB = new Date(b) 
+            return dateA-dateB  //сортировка по возрастающей дате  
+        })
 
         //получить название проекта из ноушена
         let project_name;
@@ -163,7 +167,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 }                             
             });
 
-            dates.map(async (date)=> {
+            sortedDates.map(async (date)=> {
                 const d = new Date(date.split('+')[0]);
                 const month = String(d.getMonth()+1).padStart(2, "0");
                 const day = String(d.getDate()).padStart(2, "0");
