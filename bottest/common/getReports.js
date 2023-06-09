@@ -195,7 +195,7 @@ ${arr_count.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + ite
                 
 
                 setTimeout(async()=> {
-                    await bot.sendMessage(chatId_manager, text) 
+                    //await bot.sendMessage(chatId_manager, text) 
                 
                 }, 1000 * ++i)
 
