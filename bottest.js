@@ -105,6 +105,13 @@ bottest.on('message', async (msg) => {
             const date = new Date();
             await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
         }
+
+        //остановить отчет проекта
+        if (text.startsWith('/stopreports')) {
+            const timerId = text.split(' ');
+            clearTimeout(timerId);
+        }
+        
 //----------------------------------------------------------------------------------------------------------------      
         
         //обработка сообщений    
