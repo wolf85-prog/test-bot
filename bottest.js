@@ -151,6 +151,11 @@ bottest.on('message', async (msg) => {
             await bottest.sendMessage(chatId, `Ваше фото получено!`)
         }
 
+        //обработка аудио сообщений
+        if (msg.voice) {
+            await bottest.sendMessage(chatId, `Ваше аудио-сообщение получено!`)
+        }
+
         //обработка контактов
         if (msg.contact) {
             await bottest.sendMessage(chatId, `Ваш контакт получен!`)
