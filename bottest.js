@@ -28,6 +28,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.resolve(__dirname, 'static')))
 app.use('/', router)
 
 const getReports = require('./bottest/common/getReports')
