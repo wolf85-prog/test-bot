@@ -8,6 +8,7 @@ const https = require('https');
 const fs = require('fs');
 const router = require('./bottest/routes/index')
 const {menuOptions, backOptions} = require('./options')
+const path = require('path')
 
 const token = process.env.TELEGRAM_API_TOKEN
 
