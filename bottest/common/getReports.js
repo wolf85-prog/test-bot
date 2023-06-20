@@ -131,6 +131,8 @@ module.exports = async function getReports(project, bot) {
             //сравнить два массива и узнать есть ли изменения
             isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
 
+            console.log("arr_count: ", arr_count)
+
             console.log("isEqual: ", isEqual)
 
             if (!isEqual) {
