@@ -177,10 +177,10 @@ module.exports = async function getReports(project, bot) {
             });
 
             //отправить сообщение по каждой дате
-            sortedDates.forEach((date, i)=> {
-                const arr_copy = [...arr_count].filter((item)=> date === item.date)
+            datesObj.forEach((date, i)=> {
+                const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
 
-                const d = new Date(date.split('+')[0]);
+                const d = new Date(date.date.split('+')[0]);
                 const month = String(d.getMonth()+1).padStart(2, "0");
                 const day = String(d.getDate()).padStart(2, "0");
                 const chas = d.getHours();
@@ -193,7 +193,10 @@ ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
 
                 setTimeout(async()=> {
-                    await bot.sendMessage(chatId_manager, text)                         
+                    if (date.report) {
+                        await bot.sendMessage(chatId_manager, text)  
+                    }
+                                           
                 }, 1000 * ++i)   
             })
              
