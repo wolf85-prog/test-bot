@@ -131,7 +131,7 @@ module.exports = async function getReports(project, bot) {
 
         })
 
-        //console.log("arr_count: ", arr_count)
+        console.log("arr_count: ", arr_count)
 
         datesObj.map((item, index) =>{
             //сохранение массива в 2-х элементный массив
