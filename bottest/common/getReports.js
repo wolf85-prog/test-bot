@@ -22,7 +22,7 @@ module.exports = async function getReports(project, bot) {
     let i = 0;
     let j = 0;
     let databaseBlock;
-    let arr_count, arr_count2, allDate;
+    let arr_count, arr_count1, arr_count2, allDate;
     let arr_all = [];
     let date_db;
 
@@ -35,7 +35,8 @@ module.exports = async function getReports(project, bot) {
     let timerId = setInterval(async() => {
         //console.log("Начало цикла отчетов. TimerId: ", timerId)
         minutCount++  // a day has passed
-        arr_count = [] 
+        arr_count = []
+        arr_count1 = [] 
         arr_count2 = [] 
         allDate = []
 
@@ -74,7 +75,7 @@ module.exports = async function getReports(project, bot) {
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
         datesObj.map((item, ind)=> {   
-            arr_count = []
+            arr_count2 = []
             specData.map((specObject)=> {
                 specObject.models.map((spec)=> {
                     //console.log(spec.name)
@@ -106,7 +107,7 @@ module.exports = async function getReports(project, bot) {
                                 count_fio: count_fio,
                                 count_title: count_title,
                             }
-                            arr_count.push(obj)        
+                            arr_count2.push(obj)        
                         }
 
                         //сохранение массива в 2-х элементный массив
@@ -130,10 +131,10 @@ module.exports = async function getReports(project, bot) {
                 })
             })// map spec end
 
-            //сравнить два массива и узнать есть ли изменения
-            //isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
+            arr_count.push(arr_count2)
 
-            console.log("arr_count: ", arr_count)
+            //сравнить два массива и узнать есть ли изменения
+            //isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);     
 
             //console.log("isEqual: ", isEqual)
 
@@ -142,7 +143,8 @@ module.exports = async function getReports(project, bot) {
             // }
 
         })
-     
+        
+        console.log("arr_count: ", arr_count)
 
         console.log(datesObj)
 
