@@ -70,8 +70,7 @@ module.exports = async function getReports(project, bot) {
             datesObj.push(obj)  
         })
 
-        //console.log(datesObj)
-
+        let isEqual
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
         datesObj.map((item)=> {   
@@ -129,31 +128,35 @@ module.exports = async function getReports(project, bot) {
                 })
             })// map spec end
 
-            item.report = false
+            //сравнить два массива и узнать есть ли изменения
+            isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
+
+            console.log("isEqual: ", isEqual)
+
+            // if (!isEqual) {
+            //     item.report = true
+            // }
         })
 
-        console.log(datesObj)
-
-        //получить название проекта из ноушена
-        let project_name;        
-        const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data) {
-                project_name = data?.properties.Name.title[0]?.plain_text;
-            }  else {
-                project_name = project.name
-            }                             
-        });
-
-        //сравнить два массива и узнать есть ли изменения
-        let isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
+        
 
         if (!isEqual) {
+
+            //получить название проекта из ноушена
+            let project_name;        
+            await fetch(`${botApiUrl}/project/${project.projectId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    project_name = data?.properties.Name.title[0]?.plain_text;
+                }  else {
+                    project_name = project.name
+                }                             
+            });
                       
             //получить менеджера проекта из ноушена
             let project_manager;
-            const res = await fetch(`${botApiUrl}/project/${project.projectId}`)
+            await fetch(`${botApiUrl}/project/${project.projectId}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data) {
