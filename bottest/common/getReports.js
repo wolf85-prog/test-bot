@@ -129,7 +129,7 @@ module.exports = async function getReports(project, bot) {
                 })
             })// map spec end
 
-            datesObj.report = true
+            item.report = true
         })
 
         console.log(datesObj)
