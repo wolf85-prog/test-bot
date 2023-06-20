@@ -133,14 +133,14 @@ module.exports = async function getReports(project, bot) {
 
             console.log("isEqual: ", isEqual)
 
-            // if (!isEqual) {
-            //     item.report = true
-            // }
+            if (!isEqual) {
+                item.report = true
+            }
         })
 
-        
+        //
 
-        if (!isEqual) {
+        //if (!isEqual) {
 
             //получить название проекта из ноушена
             let project_name;        
@@ -181,29 +181,30 @@ module.exports = async function getReports(project, bot) {
 
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
-                const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
 
-                const d = new Date(date.date.split('+')[0]);
-                const month = String(d.getMonth()+1).padStart(2, "0");
-                const day = String(d.getDate()).padStart(2, "0");
-                const chas = d.getHours();
-                const minut = String(d.getMinutes()).padStart(2, "0");
+                if (date.report) { 
+                    const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
 
-                const text = `Запрос на специалистов: 
-                            
-${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+                    const d = new Date(date.date.split('+')[0]);
+                    const month = String(d.getMonth()+1).padStart(2, "0");
+                    const day = String(d.getDate()).padStart(2, "0");
+                    const chas = d.getHours();
+                    const minut = String(d.getMinutes()).padStart(2, "0");
 
-${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
+                    const text = `Запрос на специалистов: 
+                                
+    ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
-                setTimeout(async()=> {
-                    if (date.report) {
+    ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
+
+                    setTimeout(async()=> {
                         await bot.sendMessage(chatId_manager, text)  
-                    }
-                                           
-                }, 1000 * ++i)   
+                                            
+                    }, 1000 * ++i)   
+                }
             })
              
-        }// end if
+        //}// end if
 
         // сохранить отправленное боту сообщение пользователя в БД 
     
