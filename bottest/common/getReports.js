@@ -60,6 +60,18 @@ module.exports = async function getReports(project, bot) {
             return dateA-dateB  //сортировка по возрастающей дате  
         })
 
+        const datesObj = []
+
+        sortedDates.map((item) =>{
+            const obj = {
+                date: item,
+                report: false,
+            }
+            datesObj.push(obj)  
+        })
+
+        console.log(datesObj)
+
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
         sortedDates.map((date1)=> {   
