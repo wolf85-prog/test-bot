@@ -138,7 +138,7 @@ module.exports = async function getReports(project, bot) {
             }
         })
 
-        //
+        console.log(datesObj)
 
         //if (!isEqual) {
 
@@ -181,8 +181,10 @@ module.exports = async function getReports(project, bot) {
 
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
+                console.log(date.date, date.report)
 
                 if (date.report) { 
+                    date.report = false
                     const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
 
                     const d = new Date(date.date.split('+')[0]);
@@ -193,9 +195,9 @@ module.exports = async function getReports(project, bot) {
 
                     const text = `Запрос на специалистов: 
                                 
-    ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
+${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
-    ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
+${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
 
                     setTimeout(async()=> {
                         await bot.sendMessage(chatId_manager, text)  
