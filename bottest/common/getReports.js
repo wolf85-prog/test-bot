@@ -74,6 +74,7 @@ module.exports = async function getReports(project, bot) {
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
         datesObj.map((item, ind)=> {   
+            arr_count = []
             specData.map((specObject)=> {
                 specObject.models.map((spec)=> {
                     //console.log(spec.name)
@@ -130,15 +131,15 @@ module.exports = async function getReports(project, bot) {
             })// map spec end
 
             //сравнить два массива и узнать есть ли изменения
-            isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
+            //isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);
 
-            //console.log("arr_count: ", arr_count)
+            console.log("arr_count: ", arr_count)
 
-            console.log("isEqual: ", isEqual)
+            //console.log("isEqual: ", isEqual)
 
-            if (!isEqual) {
-                datesObj[ind].report = true
-            }
+            // if (!isEqual) {
+            //     datesObj[ind].report = true
+            // }
 
         })
      
