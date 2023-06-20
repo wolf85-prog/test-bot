@@ -184,7 +184,8 @@ module.exports = async function getReports(project, bot) {
                 console.log(date.date, date.report)
 
                 if (date.report) { 
-                    date.report = false
+                    datesObj[i].report = false
+                    //date.report = false
                     const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
 
                     const d = new Date(date.date.split('+')[0]);
