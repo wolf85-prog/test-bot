@@ -70,11 +70,11 @@ module.exports = async function getReports(project, bot) {
             datesObj.push(obj)  
         })
 
-        console.log(datesObj)
+        //console.log(datesObj)
 
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
-        sortedDates.map((date1)=> {   
+        datesObj.map((item)=> {   
             specData.map((specObject)=> {
                 specObject.models.map((spec)=> {
                     //console.log(spec.name)
@@ -84,7 +84,7 @@ module.exports = async function getReports(project, bot) {
                     if (databaseBlock) {   
                         j = 0
                         databaseBlock.map((db) => {
-                            if (db.date === date1) {
+                            if (db.date === item.date) {
                                 if (spec.name === db.spec) {
                                     if (db.fio) {
                                         count_fio++               
@@ -128,7 +128,11 @@ module.exports = async function getReports(project, bot) {
 
                 })
             })// map spec end
+
+            datesObj.report = true
         })
+
+        console.log(datesObj)
 
         //получить название проекта из ноушена
         let project_name;        
