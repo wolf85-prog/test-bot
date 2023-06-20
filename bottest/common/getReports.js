@@ -131,7 +131,7 @@ module.exports = async function getReports(project, bot) {
 
         })
 
-        console.log("arr_count: ", arr_count)
+        //console.log("arr_count: ", arr_count)
 
         datesObj.map((item, index) =>{
             //сохранение массива в 2-х элементный массив
@@ -140,6 +140,9 @@ module.exports = async function getReports(project, bot) {
             } else {
                 arr_all[1] = arr_count[index] 
             }
+
+            console.log(arr_all[0])
+            console.log(arr_all[1])
 
             datesObj[index].report = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]); 
         })
