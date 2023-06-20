@@ -131,22 +131,42 @@ module.exports = async function getReports(project, bot) {
 
         })
 
-        console.log("arr_count: ", arr_count)
+        //console.log("arr_count: ", arr_count)
+
+        datesObj.map((item, index) =>{
+            //сохранение массива в 2-х элементный массив
+            if (i % 2 == 0) {
+                arr_all[index][0] = arr_count[index]
+            } else {
+                arr_all[index][1] = arr_count[index] 
+            }
+
+            datesObj[index].report = JSON.stringify(arr_all[index][0]) === JSON.stringify(arr_all[index][1]); 
+        })
 
         //сохранение массива в 2-х элементный массив
-        if (i % 2 == 0) {
-            arr_all[0] = arr_count
-        } else {
-            arr_all[1] = arr_count 
-        }
+        // if (i % 2 == 0) {
+        //     arr_all[0][0] = arr_count[0]
+        // } else {
+        //     arr_all[0][1] = arr_count[0] 
+        // }
+
+        // if (i % 2 == 0) {
+        //     arr_all[1][0] = arr_count[1]
+        // } else {
+        //     arr_all[1][1] = arr_count[1] 
+        // }
 
         //сравнить два массива и узнать есть ли изменения
-        isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);   
-        console.log(JSON.stringify(arr_all[0])) 
-        console.log(JSON.stringify(arr_all[1])) 
-        console.log("isEqual: ", isEqual)
+        //isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);   
 
-        //console.log(datesObj)
+        //isEqual1 = JSON.stringify(arr_all[0][0]) === JSON.stringify(arr_all[0][1]); 
+        //isEqual2 = JSON.stringify(arr_all[1][0]) === JSON.stringify(arr_all[1][1]);    
+
+        
+        //console.log("isEqual: ", isEqual)
+
+        console.log(datesObj)
 
         //if (!isEqual) {
 
@@ -189,7 +209,7 @@ module.exports = async function getReports(project, bot) {
 
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
-                console.log(date.date, date.report)
+                //console.log(date.date, date.report)
 
                 if (date.report) { 
                     datesObj[i].report = false
