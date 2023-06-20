@@ -141,8 +141,8 @@ module.exports = async function getReports(project, bot) {
                 arr_all[1] = arr_count[index] 
             }
 
-            console.log(arr_all[0])
-            console.log(arr_all[1])
+            console.log("arr_all[0]: ", arr_all[0])
+            console.log("rr_all[0]: ", arr_all[1])
 
             datesObj[index].report = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]); 
         })
