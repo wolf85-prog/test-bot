@@ -108,15 +108,7 @@ module.exports = async function getReports(project, bot) {
                                 count_title: count_title,
                             }
                             arr_count2.push(obj)        
-                        }
-
-                        //сохранение массива в 2-х элементный массив
-                        if (i % 2 == 0) {
-                            arr_all[0] = arr_count
-                        } else {
-                            arr_all[1] = arr_count 
-                        }
-                                    
+                        }                  
                         
                     } else {
                         console.log("База данных не найдена! Проект ID: " + project.name)
@@ -133,20 +125,26 @@ module.exports = async function getReports(project, bot) {
 
             arr_count.push(arr_count2)
 
-            //сравнить два массива и узнать есть ли изменения
-            //isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);     
-
-            //console.log("isEqual: ", isEqual)
-
             // if (!isEqual) {
             //     datesObj[ind].report = true
             // }
 
         })
-        
+
         console.log("arr_count: ", arr_count)
 
-        console.log(datesObj)
+        //сохранение массива в 2-х элементный массив
+        if (i % 2 == 0) {
+            arr_all[0] = arr_count
+        } else {
+            arr_all[1] = arr_count 
+        }
+
+        //сравнить два массива и узнать есть ли изменения
+        isEqual = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]);   
+        console.log("isEqual: ", isEqual)
+
+        //console.log(datesObj)
 
         //if (!isEqual) {
 
