@@ -144,7 +144,7 @@ module.exports = async function getReports(project, bot) {
                 arr_all[1] = arr_count[index] 
             }
 
-            all[index] = index
+            all.push(arr_all)
 
             //console.log("arr_all[0]: ", arr_all[0])
             //console.log("rr_all[0]: ", arr_all[1])
