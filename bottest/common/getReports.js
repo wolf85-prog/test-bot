@@ -183,12 +183,15 @@ module.exports = async function getReports(project, bot) {
                 }                             
             });
 
+            console.log("arr_all: ", arr_all)
+
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
 
                 if (!date.consilience) { 
                     datesObj[i].consilience = true
                     const arr_copy = [...arr_all].filter((item)=> date.date === item.date)
+                    console.log("arr_copy: ", arr_copy)
 
                     const d = new Date(date.date.split('+')[0]);
                     const month = String(d.getMonth()+1).padStart(2, "0");
