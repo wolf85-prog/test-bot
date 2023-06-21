@@ -127,10 +127,6 @@ module.exports = async function getReports(project, bot) {
 
             arr_count.push(arr_count2)
 
-            // if (!isEqual) {
-            //     datesObj[ind].report = true
-            // }
-
         })
 
         //console.log("arr_count: ", arr_count)
@@ -146,14 +142,14 @@ module.exports = async function getReports(project, bot) {
                 all[1] = arr_all
             }
 
-            console.log("all_1: ", all[0])
-            console.log("all_2: ", all[1])
+            //console.log("all_1: ", all[0])
+            //console.log("all_2: ", all[1])
 
-            datesObj[index].report = JSON.stringify(all[0]) === JSON.stringify(all[1]); 
+            //datesObj[index].report = JSON.stringify(all[0]) === JSON.stringify(all[1]); 
         })
 
 
-        //console.log(arr_all)
+        console.log(arr_all)
 
         //сохранение массива в 2-х элементный массив
         // if (i % 2 == 0) {
