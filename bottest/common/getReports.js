@@ -68,12 +68,10 @@ module.exports = async function getReports(project, bot) {
         sortedDates.map((item) =>{
             const obj = {
                 date: item,
-                report: false,
+                consilience: false,
             }
             datesObj.push(obj)  
         })
-
-        let isEqual
 
         //2) проверить массив специалистов из ноушен (2-й отчет)
         datesObj.map((item, ind)=> {   
@@ -129,13 +127,8 @@ module.exports = async function getReports(project, bot) {
 
         })
 
-        //console.log("arr_count: ", arr_count)
-
         datesObj.map((item, index) =>{
-
             arr_all.push(arr_count[index])
-
-            //datesObj[index].report = all[0] === all[1]; 
         })
 
         //сохранение массива в 2-х элементный массив
@@ -145,11 +138,8 @@ module.exports = async function getReports(project, bot) {
             all[1] = arr_all
         }
 
-       // console.log("all[0]: ", all[0][1])
-       // console.log("all[1]: ", all[1] ? all[1][1] : '')
-
         datesObj.map((item, index) =>{
-            datesObj[index].report = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
+            datesObj[index].consilience = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
         })
 
         console.log(datesObj)
@@ -195,12 +185,10 @@ module.exports = async function getReports(project, bot) {
 
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
-                //console.log(date.date, date.report)
 
-                if (date.report) { 
-                    datesObj[i].report = false
-                    //date.report = false
-                    const arr_copy = [...arr_count].filter((item)=> date.date === item.date)
+                if (!date.consilience) { 
+                    datesObj[i].consilience = true
+                    const arr_copy = [...arr_all].filter((item)=> date.date === item.date)
 
                     const d = new Date(date.date.split('+')[0]);
                     const month = String(d.getMonth()+1).padStart(2, "0");
