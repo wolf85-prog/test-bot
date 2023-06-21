@@ -24,6 +24,7 @@ module.exports = async function getReports(project, bot) {
     let databaseBlock;
     let arr_count, arr_count1, arr_count2, allDate;
     let arr_all = [];
+    let all = [];
     let date_db;
 
 
@@ -39,6 +40,7 @@ module.exports = async function getReports(project, bot) {
         arr_count1 = [] 
         arr_count2 = [] 
         allDate = []
+        all = []
 
         //1)получить блок и бд
         if (project.projectId) {
@@ -134,6 +136,7 @@ module.exports = async function getReports(project, bot) {
         //console.log("arr_count: ", arr_count)
 
         datesObj.map((item, index) =>{
+
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
                 arr_all[0] = arr_count[index]
@@ -141,11 +144,15 @@ module.exports = async function getReports(project, bot) {
                 arr_all[1] = arr_count[index] 
             }
 
-            console.log("arr_all[0]: ", arr_all[0])
-            console.log("rr_all[0]: ", arr_all[1])
+            all[index] = index
+
+            //console.log("arr_all[0]: ", arr_all[0])
+            //console.log("rr_all[0]: ", arr_all[1])
 
             datesObj[index].report = JSON.stringify(arr_all[0]) === JSON.stringify(arr_all[1]); 
         })
+
+        console.log(all)
 
         //сохранение массива в 2-х элементный массив
         // if (i % 2 == 0) {
