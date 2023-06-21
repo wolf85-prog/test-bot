@@ -142,7 +142,7 @@ module.exports = async function getReports(project, bot) {
             datesObj[index].consilience = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
         })
 
-        console.log(datesObj)
+        //console.log(datesObj)
 
         //if (!isEqual) {
 
@@ -183,7 +183,7 @@ module.exports = async function getReports(project, bot) {
                 }                             
             });
 
-            console.log("arr_all: ", arr_all)
+            //console.log("arr_all: ", arr_all)
 
             //отправить сообщение по каждой дате
             datesObj.forEach((date, i)=> {
@@ -191,7 +191,7 @@ module.exports = async function getReports(project, bot) {
                 if (!date.consilience) { 
                     datesObj[i].consilience = true
                     const arr_copy = arr_all[i] //[...arr_all[i]].filter((item)=> date.date === item.date)
-                    console.log("arr_copy: ", arr_copy)
+                    //console.log("arr_copy: ", arr_copy)
 
                     const d = new Date(date.date.split('+')[0]);
                     const month = String(d.getMonth()+1).padStart(2, "0");
