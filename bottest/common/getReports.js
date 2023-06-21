@@ -146,7 +146,7 @@ module.exports = async function getReports(project, bot) {
         }
 
         console.log("all[0]: ", all[0][0])
-        console.log("all[1]: ", all[1][0])
+        console.log("all[1]: ", all[1][0] ? all[1][0] : '')
 
 
         //console.log(arr_all)
