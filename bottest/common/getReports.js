@@ -40,7 +40,7 @@ module.exports = async function getReports(project, bot) {
         arr_count1 = [] 
         arr_count2 = [] 
         allDate = []
-        all = []
+        arr_all = []
 
         //1)получить блок и бд
         if (project.projectId) {
@@ -142,8 +142,8 @@ module.exports = async function getReports(project, bot) {
                 all[1] = arr_all
             }
 
-            //console.log("all_1: ", all[0])
-            //console.log("all_2: ", all[1])
+            console.log("all_1: ", all[0][index])
+            console.log("all_2: ", all[1][index])
 
             //datesObj[index].report = JSON.stringify(all[0]) === JSON.stringify(all[1]); 
         })
