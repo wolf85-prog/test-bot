@@ -149,7 +149,7 @@ module.exports = async function getReports(project, bot) {
        // console.log("all[1]: ", all[1] ? all[1][1] : '')
 
         datesObj.map((item, index) =>{
-            datesObj[index].report = all[0][index] === all[1][index]; 
+            datesObj[index].report = (all[0] ? all[0][index] : '') === (all[1] ? all[1][index] : ''); 
         })
 
         console.log(datesObj)
