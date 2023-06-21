@@ -130,20 +130,23 @@ module.exports = async function getReports(project, bot) {
         })
 
         //console.log("arr_count: ", arr_count)
-
+        let test_1 = [] 
+        let test_2 = []
         datesObj.map((item, index) =>{
 
             arr_all.push(arr_count[index])
 
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
-                all[0] = arr_all
+                //all[0] = arr_all
+                test_1[index] = arr_all
             } else {
-                all[1] = arr_all
+                // all[1] = arr_all
+                test_2[index] = arr_all
             }
 
-            console.log("all_1: ", all[0][index])
-            console.log("all_2: ", all[1][index])
+            console.log("test_1: ", test_1[index])
+            console.log("test_2: ", test_2[index])
 
             //datesObj[index].report = JSON.stringify(all[0]) === JSON.stringify(all[1]); 
         })
