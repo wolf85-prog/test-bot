@@ -137,15 +137,15 @@ module.exports = async function getReports(project, bot) {
 
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
-                all[0] = ['a', 'b'] //arr_all
+                all[0] = JSON.stringify(arr_all)
             } else {
-                all[1] = ['aa', 'b'] //arr_all
+                all[1] = JSON.stringify(arr_all)
             }
 
             console.log("all[0]: ", all[0])
             console.log("all[1]: ", all[1])
 
-            //datesObj[index].report = JSON.stringify(all[0]) === JSON.stringify(all[1]); 
+            datesObj[index].report = all[0] === all[1]; 
         })
 
 
