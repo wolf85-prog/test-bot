@@ -153,7 +153,7 @@ module.exports = async function getReports(project, bot) {
         })
 
 
-        console.log(arr_all)
+        //console.log(arr_all)
 
         //сохранение массива в 2-х элементный массив
         // if (i % 2 == 0) {
