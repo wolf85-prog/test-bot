@@ -26,6 +26,7 @@ module.exports = async function getReports(project, bot) {
     let arr_all = [];
     let all = [];
     let date_db;
+    let test_1, test_2;
 
 
     // начало цикла Специалисты ----------------------------------------------------------------------
@@ -130,8 +131,8 @@ module.exports = async function getReports(project, bot) {
         })
 
         //console.log("arr_count: ", arr_count)
-        let test_1 = [] 
-        let test_2 = []
+        test_1 = [] 
+        test_2 = []
         datesObj.map((item, index) =>{
 
             arr_all.push(arr_count[index])
