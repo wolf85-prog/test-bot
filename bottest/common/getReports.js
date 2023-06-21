@@ -190,7 +190,7 @@ module.exports = async function getReports(project, bot) {
 
                 if (!date.consilience) { 
                     datesObj[i].consilience = true
-                    const arr_copy = [...arr_all].filter((item)=> date.date === item.date)
+                    const arr_copy = arr_all[i] //[...arr_all[i]].filter((item)=> date.date === item.date)
                     console.log("arr_copy: ", arr_copy)
 
                     const d = new Date(date.date.split('+')[0]);
