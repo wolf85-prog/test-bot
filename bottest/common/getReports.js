@@ -133,13 +133,13 @@ module.exports = async function getReports(project, bot) {
 
         datesObj.map((item, index) =>{
 
-            arr_all.push(arr_count[index])
+            //arr_all.push(arr_count[index])
 
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
-                all[0] = JSON.stringify(arr_all)
+                all[0] = JSON.stringify(arr_count[index])
             } else {
-                all[1] = JSON.stringify(arr_all)
+                all[1] = JSON.stringify(arr_count[index])
             }
 
             console.log("all[0]: ", all[0])
