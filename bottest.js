@@ -33,11 +33,12 @@ app.use(express.static(path.resolve(__dirname, 'static')))
 app.use('/', router)
 
 const getReports = require('./bottest/common/getReports')
+const getReportsTest = require("./bottest/common/getReportsTest");
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
 //const Project = require('./bottest/models/Project')
-const {UserBot, Message, Conversation, Project, Report} = require('./bottest/models/models')
+const {UserBot, Message, Conversation, Project, Report} = require('./bottest/models/models');
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
