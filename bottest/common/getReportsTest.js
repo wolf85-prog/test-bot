@@ -3,7 +3,7 @@ const sequelize = require('../connections/db')
 const {Project} = require('../models/models')
 const getBlocks = require('./getBlocks')
 const getDatabaseId = require('./getDatabaseId')
-const sendMyMessage = require('./sendMyMessage')
+//const sendMyMessage = require('./sendMyMessage')
 // web-приложение
 const webAppUrl = process.env.WEB_APP_URL;
 const botApiUrl = process.env.REACT_APP_API_URL
