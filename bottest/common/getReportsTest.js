@@ -13,7 +13,7 @@ const chatTelegramId = process.env.CHAT_ID
 const {specData} = require('../data/specData');
 
 //socket.io
-const {io} = require("socket.io-client")
+//const {io} = require("socket.io-client")
 
 //fetch api
 const fetch = require('node-fetch');
