@@ -49,7 +49,18 @@ async function getProjects3() {
             database_id: databaseId
         });
 
-        const responseResults = response.results.map((page) => {
+        //const d = new Date(date.date.split('+')[0]);
+        const d2 = new Date()
+        // console.log("Текущая дата: ", new Date())
+        // console.log("Дата: ", d)
+
+        // if(d > d2) {
+        //     console.log('первая дата больше текущей');
+        // } else {
+        //     console.log('текущая дата больше или даты равны');
+        // }
+
+        const responseResults = response.results.filter((page) => page.properties.datestart >= d2).map((page) => {
             
             return {
                 id: page.id,
