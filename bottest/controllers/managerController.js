@@ -4,8 +4,23 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 const databaseCompanyId = process.env.NOTION_DATABASE_COMPANY_ID
 
-//получить id менеджера по его TelegramID
+
+//получить TelegramID менеджера по его id
 async function getManagerId(id) {
+    try {
+        const manager = await notion.pages.retrieve({
+            page_id: id,
+        });
+
+        return manager.properties.TelegramID.rich_text[0]?.plain_text; 
+        
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
+//получить id менеджера по его TelegramID
+async function getManagerChatId(id) {
     try {
         const response = await notion.databases.query({
             database_id: databaseManagerId, 
@@ -21,9 +36,9 @@ async function getManagerId(id) {
         console.log("----------------Открытие приложения--------------------")
         console.log("-------------------------------------------------------")
         console.log("TelegramID: ", id)
-        console.log("ManagerId: ", response.results[0].id)
+        console.log("ManagerId: ", response.results[0]?.id)
 
-        return response.results[0].id; 
+        return response.results[0]?.id; 
         
     } catch (error) {
         console.error(error.message)
@@ -227,19 +242,19 @@ async function createManager(id, firstname, lastname) {
                         }
                     ]
                 },
-                "Должность": {
-                    "type": "select",
-                    "select": {
-                        "id": "e2c4b173-3d60-467f-9597-81a2f8248437",
-                        "name": "Менеджер",
-                        "color": "yellow"
-                    }
-                },
+                // "Должность": {
+                //     "type": "select",
+                //     "select": {
+                //         "id": "e2c4b173-3d60-467f-9597-81a2f8248437",
+                //         "name": "Менеджер",
+                //         "color": "blue"
+                //     }
+                // },
                 "Заказчики": {
                     "type": "relation",
                     "relation": [
                         {
-                            "id": "b27565fe-ce91-4457-983e-5e40c1bcbceb"
+                            "id": "2061b358-0e23-4574-a69a-854a3e5dff00"
                         }
                     ],
                 },
@@ -271,6 +286,17 @@ class ManagerController {
     async managersId(req, res) {
         const id = req.params.id; // получаем id
         const manager = await getManagerId(id);
+        if(manager){
+            res.json(manager);
+        }
+        else{
+            res.json({});
+        }
+    }
+
+    async managersChatId(req, res) {
+        const id = req.params.id; // получаем id
+        const manager = await getManagerChatId(id);
         if(manager){
             res.json(manager);
         }
@@ -337,9 +363,9 @@ class ManagerController {
         try {
             const managers = await createManager(id, firstname, lastname);
             res.status(200).json(managers);
-        } catch (err) {
-            console.log(err)
-            res.status(500).json(err);
+        } catch (error) {
+            console.error(error.message)
+            res.status(500).json(error);
         }
     }
 }
