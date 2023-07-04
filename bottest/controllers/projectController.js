@@ -51,16 +51,16 @@ async function getProjects3() {
 
         //const d = new Date(date.date.split('+')[0]);
         const d2 = new Date()
-        // console.log("Текущая дата: ", new Date())
-        // console.log("Дата: ", d)
+        console.log("Текущая дата: ", new Date())
+        console.log("Дата: ", d)
 
-        // if(d > d2) {
-        //     console.log('первая дата больше текущей');
-        // } else {
-        //     console.log('текущая дата больше или даты равны');
-        // }
+        if(d > d2) {
+            console.log('первая дата больше текущей');
+        } else {
+            console.log('текущая дата больше или даты равны');
+        }
 
-        const responseResults = response.results.filter((page) => page.properties.datestart >= d2).map((page) => {
+        const responseResults = response.results.filter((page) => page.properties.Date.date.start >= d2).map((page) => {
             
             return {
                 id: page.id,
