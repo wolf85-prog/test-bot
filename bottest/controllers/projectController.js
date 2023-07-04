@@ -63,8 +63,7 @@ async function getProjects3() {
         const responseResults = response.results.map((page) => {
             //console.log(page.properties.Date.date.start)
             //console.log(d2)
-            if (page.properties.Date.date.start >= d2) {
-                console.log('true')
+            if (page.properties.Date.date.start <= d2) {
                 return {
                     id: page.id,
                     name: page.properties.Name.title[0]?.plain_text,
