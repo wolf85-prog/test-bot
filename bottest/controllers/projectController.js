@@ -60,8 +60,7 @@ async function getProjects3() {
         //     console.log('текущая дата больше или даты равны');
         // }
 
-        const responseResults = response.results.filter((page) => page.properties.Date.date.start >= d2).map((page) => {
-            console.log(page.properties.Date.date.start)
+        const responseResults = response.results.map((page) => {
             return {
                 id: page.id,
                 name: page.properties.Name.title[0]?.plain_text,
