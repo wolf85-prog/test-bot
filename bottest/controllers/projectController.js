@@ -60,18 +60,14 @@ async function getProjects3() {
         //     console.log('текущая дата больше или даты равны');
         // }
 
-        const responseResults = response.results.map((page) => {
-            if (page.properties.Date.date.start >= d2) {
-               return {
-                    id: page.id,
-                    name: page.properties.Name.title[0]?.plain_text,
-                    datestart: page.properties.Date.date.start,
-                    crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
-                }; 
-            } else {
-                return null
-            }
+        const responseResults = response.results.filter((page) => page.properties.Date.date.start !== null).map((page) => {
             
+            return {
+                id: page.id,
+                name: page.properties.Name.title[0]?.plain_text,
+                datestart: page.properties.Date.date.start,
+                crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
+            };
         });
 
         return responseResults;
