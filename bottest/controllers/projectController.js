@@ -61,16 +61,15 @@ async function getProjects3() {
         // }
 
         const responseResults = response.results.map((page) => {
-            console.log(new Date(page.properties.Date.date.start))
-            console.log(d2)
-            //if (page.properties.Date.date.start.getTime() > d2.getTime()) {
+            const d1 = new Date(page.properties.Date.date.start)
+            if (d1 > d2) {
                 return {
                     id: page.id,
                     name: page.properties.Name.title[0]?.plain_text,
                     datestart: page.properties.Date.date.start,
                     crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
                 };
-            //}
+            }
             
         });
 
