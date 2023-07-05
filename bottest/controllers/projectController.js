@@ -61,8 +61,8 @@ async function getProjects3() {
         // }
 
         const responseResults = response.results.map((page) => {
-            //console.log(page.properties.Date.date.start)
-            //console.log(d2)
+            console.log(new Date(page.properties.Date.date.start))
+            console.log(d2)
             //if (page.properties.Date.date.start.getTime() > d2.getTime()) {
                 return {
                     id: page.id,
