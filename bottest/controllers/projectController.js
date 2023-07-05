@@ -49,16 +49,9 @@ async function getProjects3() {
             database_id: databaseId
         });
 
+
         //const d = new Date(date.date.split('+')[0]);
         const d2 = new Date()
-        // console.log("Текущая дата: ", new Date())
-        // console.log("Дата: ", d)
-
-        // if(d > d2) {
-        //     console.log('первая дата больше текущей');
-        // } else {
-        //     console.log('текущая дата больше или даты равны');
-        // }
 
         const responseResults = response.results.map((page) => {
             const d1 = new Date(page.properties.Date.date.start)
@@ -70,7 +63,6 @@ async function getProjects3() {
                     crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
                 };
             }
-            
         });
 
         return responseResults;
