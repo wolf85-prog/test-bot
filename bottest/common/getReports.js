@@ -131,16 +131,21 @@ module.exports = async function getReports(project, bot) {
             arr_all.push(arr_count[index])
         })
 
-        //сохранение массива в 2-х элементный массив
-        if (i % 2 == 0) {
-            all[0] = arr_all
-        } else {
-            all[1] = arr_all
-        }
+        console.log("arr_all: ", arr_all)
 
+        if (arr_all.length > 0 ) {
+            //сохранение массива в 2-х элементный массив
+            if (i % 2 == 0) {
+                all[0] = arr_all
+            } else {
+                all[1] = arr_all
+            }
+        }   
+  
         datesObj.map((item, index) =>{
             datesObj[index].consilience = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
-        })
+        }) 
+        
 
         //console.log(datesObj)
 
