@@ -53,16 +53,16 @@ async function getProjects3() {
         //const d = new Date(date.date.split('+')[0]);
         const d2 = new Date()
 
-        const responseResults = response.results.map((page) => {
-            const d1 = new Date(page.properties.Date.date.start)
-            if (d1 > d2) {
+        const responseResults = response.results.filter((page) => new Date(page.properties.Date.date.start) > d2).map((page) => {
+            //const d1 = new Date(page.properties.Date.date.start)
+            //if (d1 > d2) {
                 return {
                     id: page.id,
                     name: page.properties.Name.title[0]?.plain_text,
                     datestart: page.properties.Date.date.start,
                     crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
                 };
-            }
+            //}
         });
 
         return responseResults;
