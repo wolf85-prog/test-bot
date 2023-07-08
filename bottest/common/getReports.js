@@ -133,7 +133,9 @@ module.exports = async function getReports(project, bot) {
 
         console.log("arr_all: ", arr_all)
 
+        //пропустить пустые массивы
         if (arr_all.length > 0 ) {
+
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
                 all[0] = arr_all
@@ -194,8 +196,8 @@ module.exports = async function getReports(project, bot) {
             datesObj.forEach((date, i)=> {
                 const d = new Date(date.date.split('+')[0]);
                 const d2 = new Date()
-                console.log("Текущая дата: ", new Date())
-                console.log("Дата: ", d)
+                //console.log("Текущая дата: ", new Date())
+                //console.log("Дата: ", d)
 
                 if(d > d2) {
                     console.log('первая дата больше текущей');
