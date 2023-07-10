@@ -131,7 +131,7 @@ module.exports = async function getReports(project, bot) {
             arr_all.push(arr_count[index])
         })
 
-        console.log("arr_all: ", arr_all)
+        console.log("datesObj: ", datesObj)
 
         //пропустить пустые массивы
         if (arr_all.length > 0 ) {
