@@ -68,7 +68,7 @@ module.exports = async function getReports(project, bot) {
         sortedDates.map((item) =>{
             const obj = {
                 date: item,
-                consilience: false,
+                consilience: true,
             }
             datesObj.push(obj)  
         })
