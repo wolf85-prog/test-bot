@@ -199,11 +199,13 @@ module.exports = async function getReports(project, bot) {
                 //console.log("Текущая дата: ", new Date())
                 //console.log("Дата: ", d)
 
-                if(d > d2) {
-                    console.log('первая дата больше текущей');
-                } else {
-                    console.log('текущая дата больше или даты равны');
-                }
+                // if(d > d2) {
+                //     console.log('первая дата больше текущей');
+                // } else {
+                //     console.log('текущая дата больше или даты равны');
+                // }
+
+                console.log(date.consilience)
 
                 if (!date.consilience) { 
                     datesObj[i].consilience = true
