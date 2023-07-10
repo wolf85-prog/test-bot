@@ -131,11 +131,9 @@ module.exports = async function getReports(project, bot) {
             arr_all.push(arr_count[index])
         })
 
-        console.log("datesObj: ", datesObj)
 
         //пропустить пустые массивы
         if (arr_all.length > 0 ) {
-
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
                 all[0] = arr_all
