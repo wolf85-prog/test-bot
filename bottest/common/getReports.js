@@ -145,9 +145,12 @@ module.exports = async function getReports(project, bot) {
         }   
   
         datesObj.map((item, index) =>{
-            console.log(all[0] ? "all0: " + all[0][index] : '')
-            console.log(all[1] ? "all1: " + all[1][index] : '')
-            datesObj[index].consilience = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
+            //console.log(all[0] ? "all0: " + all[0][index] : '')
+            //console.log(all[1] ? "all1: " + all[1][index] : '')
+            if (all[1] && all[0]) {
+               datesObj[index].consilience = JSON.stringify(all[0][index]) === JSON.stringify(all[1][index]);  
+            }
+            
         }) 
         
 
