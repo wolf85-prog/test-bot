@@ -151,8 +151,6 @@ module.exports = async function getReports(project, bot) {
         }) 
         
 
-        //console.log(datesObj)
-
         //if (!isEqual) {
 
             //получить название проекта из ноушена
