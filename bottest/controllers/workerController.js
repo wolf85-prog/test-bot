@@ -59,7 +59,9 @@ async function getWorkerChatId(id) {
             database_id: databaseWorkerId, 
             "filter": {
                 "property": "Telegram",
-                "number": id,
+                "number": {
+                    "equals": id
+                },
             }
         });
 
