@@ -13,13 +13,13 @@ async function getWorkers() {
         const responseResults = response.results.map((page) => {
             return {
                id: page.id,
-               title: '',
-
+               fio: page.properties.Name.title[0]?.plain_text,
+               tgId: page.properties.Telegram.number
             };
         });
 
         //console.log(responseResults);
-        return response;
+        return responseResults;
     } catch (error) {
         console.error(error.message)
     }
