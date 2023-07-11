@@ -16,6 +16,7 @@ async function getWorkers() {
         results = [...data.results]
 
         while(data.has_more) {
+            console.log("has more: true")
             data = await notion.databases.query({
                 database_id: databaseWorkerId,
                 start_cursor: data.next_cursor,
