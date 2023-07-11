@@ -66,5 +66,6 @@ router.get("/address", addressController.address);
 //get WORKERS
 router.get("/workers", workerController.workers);
 router.get("/workers2", workerController.workers2);
+router.get("/workers/chat/:id", workerController.workersChatId);
 
 module.exports = router
