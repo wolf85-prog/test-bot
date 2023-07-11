@@ -7,36 +7,19 @@ const databaseWorkerId = process.env.NOTION_DATABASE_WORKERS_ID
 async function getWorkers() {
     try {
 
-        let results = []
-
-        let data = await notion.databases.query({
+        const response = await notion.databases.query({
             database_id: databaseWorkerId
         });
 
-        results = [...data.results]
+        const responseResults = response.results.map((page) => {
+            return {
+               id: page.id,
+               fio: page.properties.Name.title[0]?.plain_text,
+               tgId: page.properties.Telegram.number
+            };
+        });
 
-        //console.log(results)
-
-        return results
-
-        // while(data.has_more) {
-        //     data = await notion.databases.query({
-        //         database_id: databaseWorkerId,
-        //         start_cursor: data.next_cursor,
-        //     }); 
-
-        //     results = [...results, ...data.results];
-        // }
-
-        // const managers = results.map((manager) => {
-        //     return {
-        //         id: page.id,
-        //         fio: page.properties.Name.title[0]?.plain_text,
-        //         tgId: page.properties.Telegram.number
-        //     };
-        // });
-
-        //return managers;
+        return responseResults;
     } catch (error) {
         console.error(error.message)
     }
