@@ -60,7 +60,7 @@ async function getWorkerChatId(id) {
             "filter": {
                 "property": "Telegram",
                 "number": {
-                    "equals": id
+                    "equals": parseInt(id)
                 },
             }
         });
