@@ -68,7 +68,7 @@ module.exports = async function getReports(project, bot) {
         sortedDates.map((item) =>{
             const obj = {
                 date: item,
-                consilience: false,
+                consilience: true,
             }
             datesObj.push(obj)  
         })
@@ -131,11 +131,9 @@ module.exports = async function getReports(project, bot) {
             arr_all.push(arr_count[index])
         })
 
-        console.log("arr_all: ", arr_all)
 
         //пропустить пустые массивы
         if (arr_all.length > 0 ) {
-
             //сохранение массива в 2-х элементный массив
             if (i % 2 == 0) {
                 all[0] = arr_all
@@ -145,11 +143,14 @@ module.exports = async function getReports(project, bot) {
         }   
   
         datesObj.map((item, index) =>{
-            datesObj[index].consilience = JSON.stringify(all[0] ? all[0][index] : '') === JSON.stringify(all[1] ? all[1][index] : ''); 
+            //console.log(all[0] ? "all0: " + all[0][index] : '')
+            //console.log(all[1] ? "all1: " + all[1][index] : '')
+            if (all[1] && all[0]) {
+               datesObj[index].consilience = JSON.stringify(all[0][index]) === JSON.stringify(all[1][index]);  
+            }
+            
         }) 
         
-
-        //console.log(datesObj)
 
         //if (!isEqual) {
 
@@ -199,11 +200,13 @@ module.exports = async function getReports(project, bot) {
                 //console.log("Текущая дата: ", new Date())
                 //console.log("Дата: ", d)
 
-                if(d > d2) {
-                    console.log('первая дата больше текущей');
-                } else {
-                    console.log('текущая дата больше или даты равны');
-                }
+                // if(d > d2) {
+                //     console.log('первая дата больше текущей');
+                // } else {
+                //     console.log('текущая дата больше или даты равны');
+                // }
+
+                console.log(date.consilience)
 
                 if (!date.consilience) { 
                     datesObj[i].consilience = true

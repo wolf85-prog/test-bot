@@ -33,7 +33,6 @@ app.use(express.static(path.resolve(__dirname, 'static')))
 app.use('/', router)
 
 const getReports = require('./bottest/common/getReports')
-const getReportsTest = require("./bottest/common/getReportsTest");
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
