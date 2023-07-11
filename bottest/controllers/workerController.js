@@ -15,24 +15,28 @@ async function getWorkers() {
 
         results = [...data.results]
 
-        while(data.has_more) {
-            data = await notion.databases.query({
-                database_id: databaseWorkerId,
-                start_cursor: data.next_cursor,
-            }); 
+        //console.log(results)
 
-            results = [...results, ...data.results];
-        }
+        return results
 
-        const managers = results.map((manager) => {
-            return {
-                id: page.id,
-                fio: page.properties.Name.title[0]?.plain_text,
-                tgId: page.properties.Telegram.number
-            };
-        });
+        // while(data.has_more) {
+        //     data = await notion.databases.query({
+        //         database_id: databaseWorkerId,
+        //         start_cursor: data.next_cursor,
+        //     }); 
 
-        return managers;
+        //     results = [...results, ...data.results];
+        // }
+
+        // const managers = results.map((manager) => {
+        //     return {
+        //         id: page.id,
+        //         fio: page.properties.Name.title[0]?.plain_text,
+        //         tgId: page.properties.Telegram.number
+        //     };
+        // });
+
+        //return managers;
     } catch (error) {
         console.error(error.message)
     }
