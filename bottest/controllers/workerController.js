@@ -25,19 +25,15 @@ async function getWorkers() {
             results = [...results, ...data.results];
         }
 
-        const response = await notion.databases.query({
-            database_id: databaseWorkerId
-        });
-
-        const responseResults = response.results.map((page) => {
+        const workers = results.map((page) => {
             return {
-               id: page.id,
-               fio: page.properties.Name.title[0]?.plain_text,
-               tgId: page.properties.Telegram.number,
+                id: page.id,
+                fio: page.properties.Name.title[0]?.plain_text,
+                tgId: page.properties.Telegram.number,
             };
         });
 
-        return results;
+        return workers;
     } catch (error) {
         console.error(error.message)
     }
