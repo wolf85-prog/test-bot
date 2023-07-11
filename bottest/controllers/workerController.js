@@ -15,7 +15,9 @@ async function getWorkers() {
             return {
                id: page.id,
                fio: page.properties.Name.title[0]?.plain_text,
-               tgId: page.properties.Telegram.number
+               tgId: page.properties.Telegram.number,
+               next_cursor: page.next_cursor,
+               has_more: page.has_more
             };
         });
 
