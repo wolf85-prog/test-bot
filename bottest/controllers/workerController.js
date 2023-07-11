@@ -7,6 +7,23 @@ const databaseWorkerId = process.env.NOTION_DATABASE_WORKERS_ID
 async function getWorkers() {
     try {
 
+        let results = []
+
+        let data = await notion.databases.query({
+            database_id: databaseWorkerId
+        });
+
+        results = [...data.results]
+
+        while(data.has_more) {
+            data = await notion.databases.query({
+                database_id: databaseWorkerId,
+                start_cursor: data.next_cursor,
+            }); 
+
+            results = [...results, ...data.results];
+        }
+
         const response = await notion.databases.query({
             database_id: databaseWorkerId
         });
@@ -16,12 +33,10 @@ async function getWorkers() {
                id: page.id,
                fio: page.properties.Name.title[0]?.plain_text,
                tgId: page.properties.Telegram.number,
-               next_cursor: page.next_cursor,
-               has_more: page.has_more
             };
         });
 
-        return responseResults;
+        return results;
     } catch (error) {
         console.error(error.message)
     }
