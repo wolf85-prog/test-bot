@@ -88,7 +88,7 @@ async function getProjectsId(managerId) {
                     },
                     {
                         "property": "Date",
-                        "date": {
+                        "created_time": {
                             "after": "2023-05-31"
                         }
                     }
