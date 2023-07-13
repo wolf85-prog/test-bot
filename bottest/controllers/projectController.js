@@ -87,7 +87,11 @@ async function getProjectsId(managerId) {
                         },
                     },
                     {
-                        "property": "Date",
+                        // "property": "Date",
+                        // "date": {
+                        //     "after": "2023-05-31"
+                        // }
+                        "timestamp": "created_time",
                         "created_time": {
                             "after": "2023-05-31"
                         }
