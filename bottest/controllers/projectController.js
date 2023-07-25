@@ -11,17 +11,17 @@ async function getProjects() {
 
         const responseResults = response.results.map((page) => {
             return {
-               id: page.id,
-               title: page.properties.Name.title[0]?.plain_text,
-               time: page.properties.Date.date,
-               time_start: page.properties.Date.date.start,
-               time_created: page.created_time,
-               geo: '',//page.properties.Address.rollup.array,
-               teh: page.properties.TechClient.rich_text,
-               status_id: page.properties.Status.select,
-               manager: page.properties.Manager.relation[0]?.id,
-               company: page.properties.Company.relation[0]?.id,
-               worklist:'',
+                id: page.id,
+                title: page.properties.Name.title[0]?.plain_text,
+                time: page.properties["Дата"].date,
+                time_start: page.properties["Дата"].date.start,
+                time_created: page.created_time,
+                geo: '', //page.properties.Address.rollup.array,
+                teh: page.properties["Тех. задание"].rich_text,
+                status_id: page.properties["Статус проекта"].select,
+                manager: page.properties["Менеджер"].relation[0]?.id,
+                company: page.properties["Компания"].relation[0]?.id,
+                worklist:'',
             };
         });
 
@@ -49,20 +49,15 @@ async function getProjects3() {
             database_id: databaseId
         });
 
-
-        //const d = new Date(date.date.split('+')[0]);
         const d2 = new Date()
 
-        const responseResults = response.results.filter((page) => new Date(page.properties.Date.date.start) > d2).map((page) => {
-            //const d1 = new Date(page.properties.Date.date.start)
-            //if (d1 > d2) {
+        const responseResults = response.results.filter((page) => new Date(page.properties["Дата"].date.start) > d2).map((page) => {
                 return {
                     id: page.id,
                     name: page.properties.Name.title[0]?.plain_text,
-                    datestart: page.properties.Date.date.start,
+                    datestart: page.properties["Дата"].date.start,
                     crmID: page.properties.Crm_ID.rich_text[0]?.plain_text               
                 };
-            //}
         });
 
         return responseResults;
@@ -81,7 +76,7 @@ async function getProjectsId(managerId) {
             "filter": {
                 "and": [
                     {
-                        "property": "Manager",
+                        "property": "Менеджер",
                         "relation": {
                             "contains": managerId
                         },
@@ -109,17 +104,17 @@ async function getProjectsId(managerId) {
 
         const responseResults = response.results.map((page) => {
             return {
-               id: page.id,
-               title: page.properties.Name.title[0]?.plain_text,
-               time: page.properties.Date.date,
-               time_start: page.properties.Date.date.start,
-               time_created: page.created_time,
-               geo: '', //page.properties.Address.rollup.array,
-               teh: page.properties.TechClient.rich_text,
-               status_id: page.properties.Status.select,
-               manager: page.properties.Manager.relation[0]?.id,
-               company: page.properties.Company.relation[0]?.id,
-               worklist:'',
+                id: page.id,
+                title: page.properties.Name.title[0]?.plain_text,
+                time: page.properties["Дата"].date,
+                time_start: page.properties["Дата"].date.start,
+                time_created: page.created_time,
+                geo: '', //page.properties.Address.rollup.array,
+                teh: page.properties["Тех. задание"].rich_text,
+                status_id: page.properties["Статус проекта"].select,
+                manager: page.properties["Менеджер"].relation[0]?.id,
+                company: page.properties["Компания"].relation[0]?.id,
+                worklist:'',
             };
         });
 
