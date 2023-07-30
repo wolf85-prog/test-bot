@@ -107,14 +107,10 @@ bottest.on('message', async (msg) => {
             
 
             if (poster) {
-                bottest.sendPhoto({
+                await bottest.sendDocument({
                     chatId: msg.chat.id,
-                    caption: 'Test caption',
                     photo: poster
-                  }, function(err, msg) {
-                    console.log(err);
-                    console.log(msg);
-                  });
+                  })
             } else {
                console.error(error);
             }
