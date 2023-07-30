@@ -109,7 +109,7 @@ bottest.on('message', async (msg) => {
             if (poster) {
                 await bottest.sendDocument({
                     chatId: msg.chat.id,
-                    photo: poster
+                    document: poster
                   })
             } else {
                console.error(error);
