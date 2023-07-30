@@ -106,8 +106,14 @@ bottest.on('message', async (msg) => {
             const poster = 'https://proj.uley.team:5000/uploads/2023-07-21T13:52:04.628Z.jpg'
             
 
+            if (poster) {
+                console.log(poster);
+                await bottest.sendPhoto(msg.chat.id, poster);
+            } else {
+               console.error(error);
+            }
             //отправка файла заказчику
-            await bottest.sendPhoto({chatId: msg.chat.id, photo: poster})
+            //await bottest.sendPhoto(msg.chat.id, poster)
         }
 
         //получить дату с текущим месяцем
