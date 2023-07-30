@@ -104,8 +104,10 @@ bottest.on('message', async (msg) => {
         // startreports {id проекта}
         if(text.startsWith('/startposter')) {
             const poster = 'https://proj.uley.team:5000/uploads/2023-07-21T13:52:04.628Z.jpg'
+            
+
             //отправка файла заказчику
-            await bottest.sendPhoto(chatId, poster)
+            await bottest.sendPhoto({chatId: msg.chat.id, photo: poster})
         }
 
         //получить дату с текущим месяцем
