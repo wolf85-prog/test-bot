@@ -107,7 +107,7 @@ bottest.on('message', async (msg) => {
             
 
             if (poster) {
-                bot.sendPhoto({
+                bottest.sendPhoto({
                     chatId: msg.chat.id,
                     caption: 'Test caption',
                     photo: poster
