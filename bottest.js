@@ -103,7 +103,8 @@ bottest.on('message', async (msg) => {
 
         // startreports {id проекта}
         if(text.startsWith('/startposter')) {
-            const poster = 'https://proj.uley.team:5000/uploads/pre/2023-07-24T08:00:36.366Z.pdf'
+            //const poster = 'https://proj.uley.team:5000/uploads/pre/2023-07-24T08:00:36.366Z.pdf'
+            const poster = 'AgACAgIAAxkBAAIE_mTH85gAAdFG-dnhCKYJOvGnoRPT4AACg84xG8bCQUqWwWWWheWdigEAAwIAA3kAAy8E'
             
 
             // if (poster) {
@@ -116,7 +117,7 @@ bottest.on('message', async (msg) => {
             // }
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
-            bottest.sendPhoto(chatId, poster, {caption: "I'm a cool bot!"});
+            await bottest.sendPhoto(chatId, poster, {caption: "I'm a cool bot!"});
         }
 
         //получить дату с текущим месяцем
