@@ -103,7 +103,7 @@ bottest.on('message', async (msg) => {
 
         // startreports {id проекта}
         if(text.startsWith('/startposter')) {
-            const poster = 'https://proj.uley.team:5000/uploads/pre/2023-07-24T08:00:36.366Z.pdf'
+            const poster = 'https://proj.uley.team:5000/images/pencil.png'
             //const poster = 'AgACAgIAAxkBAAIE_mTH85gAAdFG-dnhCKYJOvGnoRPT4AACg84xG8bCQUqWwWWWheWdigEAAwIAA3kAAy8E'
             
 
@@ -117,7 +117,7 @@ bottest.on('message', async (msg) => {
             // }
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
-            await bottest.sendDocument(chatId, poster, {
+            await bottest.sendPhoto(chatId, poster, {
                 reply_markup: ({
                     inline_keyboard:[
                         [{text: 'Подтвердить', callback_data:'Информация'}]
