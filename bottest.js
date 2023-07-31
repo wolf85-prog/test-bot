@@ -59,7 +59,7 @@ bottest.on('message', async (msg) => {
     const text = msg.text ? msg.text : '';
     const messageId = msg.message_id;
 
-    //console.log("msg: ", msg)
+    console.log("msg: ", msg)
     //console.log("text: ", text)
 
     try {
@@ -106,16 +106,17 @@ bottest.on('message', async (msg) => {
             const poster = 'https://proj.uley.team:5000/uploads/pre/2023-07-24T08:00:36.366Z.pdf'
             
 
-            if (poster) {
-                await bottest.sendDocument({
-                    chatId: msg.chat.id,
-                    doc: poster
-                  })
-            } else {
-               console.error(error);
-            }
+            // if (poster) {
+            //     await bottest.sendDocument({
+            //         chatId: msg.chat.id,
+            //         doc: poster
+            //       })
+            // } else {
+            //    console.error(error);
+            // }
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
+            bottest.sendPhoto(chatId, poster, {caption: "I'm a cool bot!"});
         }
 
         //получить дату с текущим месяцем
