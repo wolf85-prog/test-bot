@@ -117,13 +117,16 @@ bottest.on('message', async (msg) => {
             // }
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
-            await bottest.sendPhoto(chatId, poster, {
-                reply_markup: ({
-                    inline_keyboard:[
-                        [{text: 'Подтвердить', callback_data:'Информация'}]
-                    ]
-                })
-            });
+            
+            // await bottest.sendPhoto(chatId, poster, {
+            //     reply_markup: ({
+            //         inline_keyboard:[
+            //             [{text: 'Подтвердить', callback_data:'Информация'}]
+            //         ]
+            //     })
+            // });
+
+            await bottest.sendMessage(chatId, "Привет!")
         }
 
         //получить дату с текущим месяцем
