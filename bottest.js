@@ -105,7 +105,7 @@ bottest.on('message', async (msg) => {
         if(text.startsWith('/startposter')) {
             //const poster = 'https://proj.uley.team:5000/images/pencil.png'
             //const poster = 'AgACAgIAAxkBAAIE_mTH85gAAdFG-dnhCKYJOvGnoRPT4AACg84xG8bCQUqWwWWWheWdigEAAwIAA3kAAy8E'
-            const poster = '/home/serg/admin/telegram-bot-amin-panel/server/images/pencil.png'
+            const poster = '/admin/telegram-bot-amin-panel/server/images/pencil.png'
 
             // if (poster) {
             //     await bottest.sendDocument({
