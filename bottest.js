@@ -21,6 +21,7 @@ const databaseAddressId = process.env.NOTION_DATABASE_ADDRESS_ID
 const databaseWorkersId = process.env.NOTION_DATABASE_WORKERS_ID
 const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 
+const host = process.env.REACT_APP_API_URL
 const chatTelegramId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
 
@@ -103,7 +104,7 @@ bottest.on('message', async (msg) => {
 
         // startreports {id проекта}
         if(text.startsWith('/startposter')) {
-            const poster = 'https://proj.uley.team/files/pre/2023-04-05T10:43:25.626Z.png'
+            const poster = host + '/files/pre/2023-04-05T10:43:25.626Z.png'
             //const poster = 'AgACAgIAAxkBAAIE_mTH85gAAdFG-dnhCKYJOvGnoRPT4AACg84xG8bCQUqWwWWWheWdigEAAwIAA3kAAy8E'
             //const poster = '/admin/telegram-bot-amin-panel/server/images/pencil.png'
             //const poster = 'https://s1.1zoom.ru/big0/52/Love_Sunrises_and_sunsets_Fingers_Hands_Heart_Sun_532758_1280x897.jpg'
