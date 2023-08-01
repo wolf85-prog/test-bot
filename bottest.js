@@ -97,11 +97,15 @@ bottest.on('message', async (msg) => {
         if (text === '/addtable') {
             const projectId = 'dbd0cc0d-6c66-4df7-9df8-f46e60b68fad';
             const block1 = await getBlocks(projectId)
-            console.log(block1)
+            console.log(block1.results[0].id)
+            
             const block2 = await getBlocks(block1.results[0].id)
-            const block3 = await getBlocks(block2.results[0].id)
-            const block_id = await getBlocks(block3.results[0].id) //'d6f8609e-4eeb-4410-a2e0-9bdc37fd0818'; 
-            await addDate(block_id);
+            console.log(block2.results[0].id)
+            
+            //const block3 = await getBlocks(block2.results[0].id)
+
+            //const block_id = await getBlocks(block3.results[0].id) //'d6f8609e-4eeb-4410-a2e0-9bdc37fd0818'; 
+            //await addDate(block_id);
         }
 
         // startreports {id проекта}
