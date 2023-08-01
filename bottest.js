@@ -96,7 +96,7 @@ bottest.on('message', async (msg) => {
         // команда Добавить галочку в таблицу Предварительная смета
         if (text === '/addtable') {
             const projectId = 'dbd0cc0d-6c66-4df7-9df8-f46e60b68fad';
-            const block1 = getBlocks(projectId)
+            const block1 = await getBlocks(projectId)
             console.log(block1)
             //const block2 = getBlocks(block1.results[0].id)
             //const block3 = getBlocks(block2.results[0].id)
