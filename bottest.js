@@ -102,10 +102,10 @@ bottest.on('message', async (msg) => {
             const block2 = await getBlocks(block1.results[0].id)
             console.log(block2.results[0].id)
             
-            //const block3 = await getBlocks(block2.results[0].id)
-
-            //const block_id = await getBlocks(block3.results[0].id) //'d6f8609e-4eeb-4410-a2e0-9bdc37fd0818'; 
-            //await addDate(block_id);
+            const block3 = await getBlocks(block2.results[0].id)
+            console.log(block3.results[0].id)
+ 
+            await addDate(block3.results[0].id);
         }
 
         // startreports {id проекта}
