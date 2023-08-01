@@ -94,8 +94,12 @@ bottest.on('message', async (msg) => {
 
         // команда Добавить галочку в таблицу Предварительная смета
         if (text === '/addtable') {
-            const project_id = 'd6f8609e-4eeb-4410-a2e0-9bdc37fd0818'; 
-            await addDate(project_id);
+            const projectId = 'dbd0cc0d-6c66-4df7-9df8-f46e60b68fad';
+            const block1 = getBlocks(projectId)
+            const block2 = getBlocks(block1.results[0].id)
+            const block3 = getBlocks(block2.results[0].id)
+            const block_id = getBlocks(block3.results[0].id) //'d6f8609e-4eeb-4410-a2e0-9bdc37fd0818'; 
+            await addDate(block_id);
         }
 
         // startreports {id проекта}
