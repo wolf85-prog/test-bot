@@ -36,6 +36,7 @@ app.use('/', router)
 const getBlocks= require('./bottest/common/getBlocks')
 const getReports = require('./bottest/common/getReports')
 const addDate= require('./bottest/common/addDate')
+const getProject = require("./bottest/common/getProject");
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
@@ -117,6 +118,11 @@ bottest.on('message', async (msg) => {
             //начать получать отчеты
             getReports(project2, bottest)
             
+        }
+        // startreports {id проекта}
+        if(text.startsWith('/getProject')) {
+            const crmId = await getProject('4412157e9f7c4241bff7db20203ad8c4')
+            console.log("crmId: ", crmId)
         }
 
         // startreports {id проекта}
