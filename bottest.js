@@ -33,6 +33,7 @@ app.use(cors());
 app.use(express.static(path.resolve(__dirname, 'static')))
 app.use('/', router)
 
+const getBlocks= require('./bottest/common/getBlocks')
 const getReports = require('./bottest/common/getReports')
 const addDate= require('./bottest/common/addDate')
 
