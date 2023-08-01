@@ -121,13 +121,19 @@ bottest.on('message', async (msg) => {
             // }
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
+
+            const fileOptions = {
+                // Explicitly specify the MIME type.
+                contentType: 'application/pdf',
+              };
             
             await bottest.sendPhoto(chatId, poster, {
                 reply_markup: ({
                     inline_keyboard:[
                         [{text: 'Подтвердить', callback_data:'Информация'}]
                     ]
-                })
+                }),
+                fileOptions
             });
         }
 
