@@ -106,7 +106,8 @@ bottest.on('message', async (msg) => {
             //const poster = 'https://proj.uley.team:5000/images/pencil.png'
             //const poster = 'AgACAgIAAxkBAAIE_mTH85gAAdFG-dnhCKYJOvGnoRPT4AACg84xG8bCQUqWwWWWheWdigEAAwIAA3kAAy8E'
             //const poster = '/admin/telegram-bot-amin-panel/server/images/pencil.png'
-            const poster = 'https://s1.1zoom.ru/big0/52/Love_Sunrises_and_sunsets_Fingers_Hands_Heart_Sun_532758_1280x897.jpg'
+            //const poster = 'https://s1.1zoom.ru/big0/52/Love_Sunrises_and_sunsets_Fingers_Hands_Heart_Sun_532758_1280x897.jpg'
+            const poster = 'http://proj.uley.team:5151/files/pre/test6_test6_customer.pdf'
 
             // if (poster) {
             //     await bottest.sendDocument({
@@ -119,15 +120,13 @@ bottest.on('message', async (msg) => {
             //отправка файла заказчику
             //await bottest.sendPhoto(msg.chat.id, poster)
             
-            await bottest.sendPhoto(chatId, poster, {
+            await bottest.sendDocument(chatId, poster, {
                 reply_markup: ({
                     inline_keyboard:[
                         [{text: 'Подтвердить', callback_data:'Информация'}]
                     ]
                 })
             });
-
-            //await bottest.sendMessage(chatId, "Привет!")
         }
 
         //получить дату с текущим месяцем
