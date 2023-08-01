@@ -34,6 +34,7 @@ app.use(express.static(path.resolve(__dirname, 'static')))
 app.use('/', router)
 
 const getReports = require('./bottest/common/getReports')
+const addDate= require('./bottest/common/addDate')
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
@@ -89,6 +90,12 @@ bottest.on('message', async (msg) => {
         if (text === '/addpretendents') {
             const project_id = 'e9fcd9a3-726f-4ae7-bc01-a9d2c84a3e0e'; 
             await newDatabase5(project_id);
+        }
+
+        // команда Добавить галочку в таблицу Предварительная смета
+        if (text === '/addtable') {
+            const project_id = 'dbd0cc0d-6c66-4df7-9df8-f46e60b68fad'; 
+            await addDate(project_id);
         }
 
         // startreports {id проекта}
