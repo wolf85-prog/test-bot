@@ -109,7 +109,7 @@ bottest.on('message', async (msg) => {
             //const poster = 'https://s1.1zoom.ru/big0/52/Love_Sunrises_and_sunsets_Fingers_Hands_Heart_Sun_532758_1280x897.jpg'
             //const poster = 'http://proj.uley.team:5151/files/pre/test6_test6_customer.pdf'
 
-            const poster = __dirname + '/pencil.png';
+            const poster = __dirname + '/../pencil.png';
 
             // if (poster) {
             //     await bottest.sendDocument({
