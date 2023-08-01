@@ -10,94 +10,14 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 //send data to notion
 module.exports = async function addDate(blockId) {
     try {
-        const response = await notion.pages.create({
-            parent: { database_id: blockId },
-            children: [              
-                {
-                    "object": "block",
-                    "type": "column_list",
-                    "column_list": {
-                      "children": [
-                        {
-                          "object": "block",
-                          "type": "column",
-                          "column": {
-                            "children": [
-                                {
-                                    "object": "block",
-                                    "type": "to_do",
-                                    "to_do": {
-                                      "rich_text": [{
-                                        "type": "text",
-                                        "text": {
-                                          "content": "Предварительная смета",
-                                          "link": null
-                                        }
-                                      }],
-                                      "checked": true,
-                                      "color": "green",
-                                    }
-                                },
-                                {
-                                    "object": "block",
-                                    "type": "to_do",
-                                    "to_do": {
-                                      "rich_text": [{
-                                        "type": "text",
-                                        "text": {
-                                          "content": "Постер",
-                                          "link": null
-                                        }
-                                      }],
-                                      "checked": false,
-                                      "color": "purple",
-                                    }
-                                },
-                            ]
-                          }
-                        },
-                        {
-                          "object": "block",
-                          "type": "column",
-                          "column": {
-                            "children": [
-                                {
-                                    "object": "block",
-                                    "type": "to_do",
-                                    "to_do": {
-                                      "rich_text": [{
-                                        "type": "text",
-                                        "text": {
-                                          "content": "Калькулятор",
-                                          "link": null
-                                        }
-                                      }],
-                                      "checked": false,
-                                      "color": "blue",
-                                    }
-                                },
-                                {
-                                    "object": "block",
-                                    "type": "to_do",
-                                    "to_do": {
-                                      "rich_text": [{
-                                        "type": "text",
-                                        "text": {
-                                          "content": "Финальная смета",
-                                          "link": null
-                                        }
-                                      }],
-                                      "checked": false,
-                                      "color": "pink",
-                                    }
-                                },
-                            ]
-                          }
-                        }
-                    ]
-                    }
-                },
-            ]
+        const response = await notion.blocks.update({
+            "block_id": blockId,
+            "to_do": {
+                "text": [{ 
+                  "text": { "content": "Предварительная смета" } 
+                  }],
+                "checked": true
+              }
         })
         //console.log(response)
         console.log("Смета обновлена!") //+ JSON.stringify(response))
