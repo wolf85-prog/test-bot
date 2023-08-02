@@ -131,16 +131,21 @@ bottest.on('message', async (msg) => {
             //const poster = `${host}/files/${crmId}/pre/${crmId}_${chatId}_customer.pdf`
 
             console.log("poster: ", poster)
+
+            const fileOptions = {
+                // Explicitly specify the MIME type.
+                contentType: 'application/pdf',
+            };
             
             if (poster) {
                 console.log("Отправляю постер...")
-                await bottest.sendDocument(chatId, poster, {
+                await bottest.sendPhoto(chatId, poster, {
                     reply_markup: ({
                         inline_keyboard:[
                             [{text: 'Подтвердить', callback_data:'/smeta ' + '12132424'}]
                         ]
-                    })//,
-                    //fileOptions
+                    }),
+                    fileOptions
                 });
                 
             } else {
