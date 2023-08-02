@@ -134,7 +134,7 @@ bottest.on('message', async (msg) => {
             
             if (poster) {
                 console.log("Отправляю постер...")
-                await bot.sendPhoto(chatId, poster, {
+                await bottest.sendPhoto(chatId, poster, {
                     reply_markup: ({
                         inline_keyboard:[
                             [{text: 'Подтвердить', callback_data:'/smeta ' + '12132424'}]
