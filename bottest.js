@@ -148,8 +148,8 @@ bottest.on('message', async (msg) => {
                         inline_keyboard:[
                             [{text: 'Подтвердить', callback_data:'/smeta '}]
                         ]
-                    }),
-                    fileOptions
+                    })//,
+                    //fileOptions
                 });
                 
             } else {
