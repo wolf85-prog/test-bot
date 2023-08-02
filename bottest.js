@@ -130,7 +130,10 @@ bottest.on('message', async (msg) => {
             const poster = 'https://proj.uley.team/files/1370/pre/1370_805436270_customer.pdf'
             //const poster = `${host}/files/${crmId}/pre/${crmId}_${chatId}_customer.pdf`
 
-            console.log("poster: ", poster)
+            //console.log("poster: ", poster)
+
+            //const message = bot.send_document(...)
+            //file_id = message.document.file_id
 
             const fileOptions = {
                 // Explicitly specify the MIME type.
@@ -142,7 +145,7 @@ bottest.on('message', async (msg) => {
                 await bottest.sendPhoto(chatId, poster, {
                     reply_markup: ({
                         inline_keyboard:[
-                            [{text: 'Подтвердить', callback_data:'/smeta ' + '12132424'}]
+                            [{text: 'Подтвердить', callback_data:'/smeta '}]
                         ]
                     }),
                     fileOptions
