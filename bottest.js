@@ -127,7 +127,7 @@ bottest.on('message', async (msg) => {
 
         // startreports {id проекта}
         if(text.startsWith('/startposter')) {
-            const poster = 'https://proj.uley.team/files/1370/pre/1370_805436270_customer.pdf'
+            const poster = 'https://proj.uley.team//files//1370//pre//1370_805436270_customer.pdf'
             //const poster = `${host}/files/${crmId}/pre/${crmId}_${chatId}_customer.pdf`
 
             //console.log("poster: ", poster)
