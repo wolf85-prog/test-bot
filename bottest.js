@@ -322,7 +322,7 @@ const start = async () => {
 
             //запуск оповещения (2-х часовая готовность)
             console.log("запуск оповещения (2-х часовая готовность)")
-            cron.schedule('*/5 * * * * *',()=>{
+            var task = cron.schedule('*/5 * * * * *',()=>{
                 console.log('Running a task every 5 Seconds')
             }, {
                 scheduled: true,
