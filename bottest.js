@@ -25,6 +25,9 @@ const host = process.env.REACT_APP_API_URL
 const chatTelegramId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
 
+//планировщик
+var cron = require('node-cron');
+
 const bottest = new TelegramBot(token, {polling: true});
 const app = express();
 
@@ -316,6 +319,17 @@ const start = async () => {
         
         httpsServer.listen(PORT, () => {
             console.log('HTTPS Server BotTest running on port ' + PORT);
+
+            //запуск оповещения (2-х часовая готовность)
+            console.log("запуск оповещения (2-х часовая готовность)")
+            cron.schedule('*/5 * * * * *',()=>{
+                console.log('Running a task every 5 Seconds')
+            }, {
+                scheduled: true,
+                timezone: "Europe/Moscow"
+            });
+
+            task.start();
         });
 
     } catch (error) {
