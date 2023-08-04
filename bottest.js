@@ -321,21 +321,13 @@ const start = async () => {
             console.log('HTTPS Server BotTest running on port ' + PORT);
 
             //запуск оповещения (2-х часовая готовность)
-            console.log("запуск оповещения (2-х часовая готовность)")
-            cron.schedule('*/1 15 04 8 *',()=>{
-                console.log('then at 2023-08-04 15:01:00')
-            }, {
-                scheduled: true,
-                timezone: "Europe/Moscow"
-            });
-
-            // var task = cron.schedule('* * * * *', () =>  {
-            //     console.log('stopped task');
+            // console.log("запуск оповещения (2-х часовая готовность)")
+            // cron.schedule('*/1 15 04 8 *',()=>{
+            //     console.log('then at 2023-08-04 15:01:00')
             // }, {
-            //     scheduled: false
+            //     scheduled: true,
+            //     timezone: "Europe/Moscow"
             // });
-              
-            // task.start();
 
         });
 
