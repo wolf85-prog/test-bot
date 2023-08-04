@@ -27,7 +27,7 @@ const chatGiaId = process.env.GIA_CHAT_ID
 
 //планировщик
 var cron = require('node-cron');
-var task
+var task1, task2
 
 const bottest = new TelegramBot(token, {polling: true});
 const app = express();
@@ -167,7 +167,8 @@ bottest.on('message', async (msg) => {
             // текущая дата
             //const date = new Date();
             //await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
-            task.stop();
+            task1.stop();
+            task2.stop();
             
             var date = new Date('2023-08-03T17:43');
             var timeDiff = date.getTime() - 7200000;
@@ -347,9 +348,13 @@ const start = async () => {
             //     timezone: "Europe/Moscow"
             // });/ 
 
-            task = cron.schedule('* * * * * *', () =>  {
-                console.log('will execute every second until stopped');
+            task1 = cron.schedule('10 16 04 08 *', () =>  {
+                console.log('Задача 1 в 2023-08-04 16:10:00');
               });
+
+            task2 = cron.schedule('12 16 04 08 *', () =>  {
+                console.log('Задача 2 2023-08-04 16:12:00');
+            });
 
         });
 
