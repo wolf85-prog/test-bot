@@ -329,7 +329,7 @@ const start = async () => {
                 timezone: "Europe/Moscow"
             });
 
-            task.start();
+            //task.start();
         });
 
     } catch (error) {
