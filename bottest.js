@@ -170,10 +170,19 @@ bottest.on('message', async (msg) => {
             
             var date = new Date('2023-08-03T17:43');
             var timeDiff = date.getTime() - 7200000;
+            var timeDiff2 = date.getTime() - 3600000;
+            var timeDiff3 = date.getTime() - 1800000;
+            var timeDiff4 = date.getTime() - 900000;
             const date2 = new Date(timeDiff)
+            const date3 = new Date(timeDiff2)
+            const date4 = new Date(timeDiff3)
+            const date5 = new Date(timeDiff4)
 
             console.log("Дата и время: ", date);  
             console.log("Дата и время (за 2 часа): ", date2); 
+            console.log("Дата и время (за 1 час): ", date3); 
+            console.log("Дата и время (за 30 минут): ", date4); 
+            console.log("Дата и время (за 15 минут): ", date5); 
         }
 
         //остановить отчет проекта
