@@ -329,6 +329,14 @@ const start = async () => {
             //     timezone: "Europe/Moscow"
             // });
 
+            var task = cron.schedule('* * * * *', () =>  {
+                console.log('stopped task');
+            }, {
+                scheduled: false
+            });
+              
+            task.start();
+
         });
 
     } catch (error) {
