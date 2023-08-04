@@ -322,20 +322,20 @@ const start = async () => {
 
             //запуск оповещения (2-х часовая готовность)
             console.log("запуск оповещения (2-х часовая готовность)")
-            // cron.schedule('*/5 * * * * *',()=>{
-            //     console.log('Running a task every 5 Seconds')
-            // }, {
-            //     scheduled: true,
-            //     timezone: "Europe/Moscow"
-            // });
-
-            var task = cron.schedule('* * * * *', () =>  {
-                console.log('stopped task');
+            cron.schedule('45 14 04 08 *',()=>{
+                console.log('at 2023-08-04 14:45:00')
             }, {
-                scheduled: false
+                scheduled: true,
+                timezone: "Europe/Moscow"
             });
+
+            // var task = cron.schedule('* * * * *', () =>  {
+            //     console.log('stopped task');
+            // }, {
+            //     scheduled: false
+            // });
               
-            task.start();
+            // task.start();
 
         });
 
