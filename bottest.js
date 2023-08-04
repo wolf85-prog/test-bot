@@ -66,7 +66,7 @@ bottest.on('message', async (msg) => {
     const text = msg.text ? msg.text : '';
     const messageId = msg.message_id;
 
-    console.log("msg: ", msg)
+    //console.log("msg: ", msg)
     //console.log("text: ", text)
 
     try {
@@ -169,7 +169,7 @@ bottest.on('message', async (msg) => {
         
             
             var date = new Date('2023-08-03T17:43');
-            var timeDiff = date.getTime() - 720000000;
+            var timeDiff = date.getTime() - 7200000;
             const date2 = new Date(timeDiff)
 
             console.log("Дата и время: ", date);  
