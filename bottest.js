@@ -164,8 +164,14 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             // текущая дата
-            const date = new Date();
-            await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
+            //const date = new Date();
+            //await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
+        
+            
+            var date = new Date('2023-08-03T17:43');
+            var timeDiff = date.getTime() - 720000000;
+            console.log("Дата и время: ", date);  
+            console.log("Дата и время (за 2 часа): ", timeDiff); 
         }
 
         //остановить отчет проекта
