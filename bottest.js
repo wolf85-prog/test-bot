@@ -168,7 +168,9 @@ bottest.on('message', async (msg) => {
             //const date = new Date();
             //await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
             task1.stop();
+            console.log("Задача 1 остановлена!"); 
             task2.stop();
+            console.log("Задача 2 остановлена!"); 
             
             var date = new Date('2023-08-03T17:43');
             var timeDiff = date.getTime() - 7200000;
