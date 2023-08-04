@@ -348,12 +348,18 @@ const start = async () => {
             //     timezone: "Europe/Moscow"
             // });/ 
 
-            task1 = cron.schedule('10 16 04 08 *', () =>  {
-                console.log('Задача 1 в 2023-08-04 16:10:00');
-              });
+            task1 = cron.schedule('17 16 04 08 *', () =>  {
+                console.log('Задача 1 в 2023-08-04 16:17:00');
+              }, {
+                scheduled: true,
+                timezone: "Europe/Moscow"
+            });
 
-            task2 = cron.schedule('12 16 04 08 *', () =>  {
-                console.log('Задача 2 2023-08-04 16:12:00');
+            task2 = cron.schedule('18 16 04 08 *', () =>  {
+                console.log('Задача 2 2023-08-04 16:18:00');
+            }, {
+                    scheduled: true,
+                    timezone: "Europe/Moscow"
             });
 
         });
