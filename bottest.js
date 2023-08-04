@@ -323,7 +323,7 @@ const start = async () => {
             //запуск оповещения (2-х часовая готовность)
             console.log("запуск оповещения (2-х часовая готовность)")
             cron.schedule('45 14 04 08 *',()=>{
-                console.log('at 2023-08-04 14:45:00')
+                console.log('at 2023-08-04 14:42:00')
             }, {
                 scheduled: true,
                 timezone: "Europe/Moscow"
