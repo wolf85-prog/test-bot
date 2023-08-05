@@ -167,12 +167,12 @@ bottest.on('message', async (msg) => {
             // текущая дата
             //const date = new Date();
             //await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
-            task1.stop();
-            console.log("Задача 1 остановлена!"); 
-            task2.stop();
-            console.log("Задача 2 остановлена!"); 
+           // task1.stop();
+           // console.log("Задача 1 остановлена!"); 
+            //task2.stop();
+            //console.log("Задача 2 остановлена!"); 
             
-            var date = new Date('2023-08-03T17:43');
+            var date = new Date('2023-08-05T14:10');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -187,6 +187,11 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 1 час): ", date3); 
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
+
+            const day = date2.getDay();
+            const month = date2.getMonth()
+            const chas = date2.getHours() 
+            const min = date2.getMinutes() 
         }
 
         //остановить отчет проекта
@@ -196,8 +201,9 @@ bottest.on('message', async (msg) => {
         }
 
         if (text.startsWith('/starttask')) {
-            cron.schedule('17 16 04 08 *', () =>  {
-                console.log('Задача 1 в 2023-08-04 16:17:00');
+           // `${min} ${chas} ${day} ${month} *`
+            cron.schedule('8 14 05 08 *', () =>  {
+                console.log('Задача 1 в 2023-08-05 14:08:00');
               }, {
                 scheduled: true,
                 timezone: "Europe/Moscow"
