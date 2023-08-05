@@ -172,7 +172,7 @@ bottest.on('message', async (msg) => {
             //task2.stop();
             //console.log("Задача 2 остановлена!"); 
             
-            var date = new Date('2023-08-05T16:29');
+            var date = new Date('2023-08-05T16:34');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -188,16 +188,19 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
-            console.log("1: ", date2.getDay()); 
-            console.log("2: ", date2.getMonth()); 
+            // const day = '5' //date2.getDay();
+            // const month = '8' //date2.getMonth()
+            // const chas = '14' //date2.getHours() 
+            // const min = '29' //date2.getMinutes() 
 
-            const day = '5' //date2.getDay();
-            const month = '8' //date2.getMonth()
-            const chas = '14' //date2.getHours() 
-            const min = '29' //date2.getMinutes() 
+            const month = String(d.getMonth()+1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            const chas = d.getHours();
+            const min = String(d.getMinutes()).padStart(2, "0");
 
             cron.schedule(`${min} ${chas} ${day} ${month} *`, () =>  {
-                console.log('Задача 1 в 2023-08-05 14:29:00');
+                console.log('Задача 1 в 2023-08-05 14:34:00');
+                console.log(`${min} ${chas} ${day} ${month} *`);
               }, {
                 scheduled: true,
                 timezone: "Europe/Moscow"
