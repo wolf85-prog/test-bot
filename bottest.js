@@ -172,7 +172,7 @@ bottest.on('message', async (msg) => {
             //task2.stop();
             //console.log("Задача 2 остановлена!"); 
             
-            var date = new Date('2023-08-05T16:15');
+            var date = new Date('2023-08-05T16:17');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -193,8 +193,8 @@ bottest.on('message', async (msg) => {
             const chas = date2.getHours() 
             const min = date2.getMinutes() 
 
-            cron.schedule(`15 14 05 08 *`, () =>  {
-                console.log('Задача 1 в 2023-08-05 14:15:00');
+            cron.schedule(`17 14 05 08 *`, () =>  {
+                console.log('Задача 1 в 2023-08-05 14:17:00');
               }, {
                 scheduled: true,
                 timezone: "Europe/Moscow"
