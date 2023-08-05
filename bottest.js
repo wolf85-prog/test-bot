@@ -188,7 +188,10 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
-            const day = date2.getDay().toString();
+            console.log("1: ", date2.getDay()); 
+            console.log("2: ", date2.getMonth()); 
+
+            const day = '5' //date2.getDay();
             const month = '8' //date2.getMonth()
             const chas = '14' //date2.getHours() 
             const min = '24' //date2.getMinutes() 
