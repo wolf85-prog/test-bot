@@ -222,7 +222,7 @@ bottest.on('message', async (msg) => {
 
 
             const timeoutObj1 = setTimeout(async() => {
-                const data = 'СТАРТ - Задача 1 в ' + d + ' запущена!';
+                const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
                 await bottest.sendMessage(chatId, data) 
