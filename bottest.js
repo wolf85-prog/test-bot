@@ -236,7 +236,7 @@ bottest.on('message', async (msg) => {
             // }
             // tasks.push(obj2)
 
-            //clearTimeout(tasks[0]);
+            clearTimeout(tasks[0]);
 
             tasks[0] = setTimeout(async() => {
                 const data = 'СТАРТ - Задача 2 в ' + date + ' запущена!';
