@@ -196,11 +196,19 @@ bottest.on('message', async (msg) => {
             //task2.stop();
             //console.log("Задача 2 остановлена!"); 
             
-            var date = new Date('2023-08-05T16:35');
+            var date = new Date('2023-08-15T15:38');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
             var timeDiff4 = date.getTime() - 900000;
+            var timeDiff5 = d.getTime();
+
+            const milliseconds = timeDiff - Date.now(); //120 минут
+            const milliseconds2 = timeDiff2 - Date.now(); //60 минут
+            const milliseconds3 = timeDiff3 - Date.now(); //30 минут
+            const milliseconds4 = timeDiff4 - Date.now(); //15 минут
+            const milliseconds5 = timeDiff5 - Date.now(); //0 минут
+
             const date2 = new Date(timeDiff)
             const date3 = new Date(timeDiff2)
             const date4 = new Date(timeDiff3)
@@ -212,23 +220,14 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
-            // const day = '5' //date2.getDay();
-            // const month = '8' //date2.getMonth()
-            // const chas = '14' //date2.getHours() 
-            // const min = '29' //date2.getMinutes() 
 
-            const month = String(date2.getMonth()+1).padStart(2, "0");
-            const day = String(date2.getDate()).padStart(2, "0");
-            const chas = date2.getHours();
-            const min = String(date2.getMinutes()).padStart(2, "0");
+            const timeoutObj1 = setTimeout(async() => {
+                const data = 'СТАРТ - Задача 1 в ' + d + ' запущена!';
+                
+                //отправить сообщение в админку
+                await bottest.sendMessage(chatId, data) 
 
-            cron.schedule(`${min} ${chas} ${day} ${month} *`, () =>  {
-                console.log('Задача 1 в 2023-08-05 14:35:00');
-                console.log(`${min} ${chas} ${day} ${month} *`);
-              }, {
-                scheduled: true,
-                timezone: "Europe/Moscow"
-            });
+            }, milliseconds) 
         }
 
         //остановить отчет проекта
