@@ -196,7 +196,7 @@ bottest.on('message', async (msg) => {
             //task2.stop();
             //console.log("Задача 2 остановлена!"); 
             
-            var date = new Date('2023-08-15T15:38');
+            var date = new Date('2023-08-15T18:38');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -227,7 +227,11 @@ bottest.on('message', async (msg) => {
                 //отправить сообщение в админку
                 await bottest.sendMessage(chatId, data) 
 
-            }, milliseconds) 
+            }, milliseconds2) 
+
+            console.log("timeoutObj1: ", timeoutObj1)
+
+            //await bottest.sendMessage(chatId, timeoutObj1) 
         }
 
         //остановить отчет проекта
