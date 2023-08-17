@@ -201,7 +201,7 @@ bottest.on('message', async (msg) => {
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
             var timeDiff4 = date.getTime() - 900000;
-            var timeDiff5 = d.getTime();
+            var timeDiff5 = date.getTime();
 
             const milliseconds = timeDiff - Date.now(); //120 минут
             const milliseconds2 = timeDiff2 - Date.now(); //60 минут
