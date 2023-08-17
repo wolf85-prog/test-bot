@@ -188,16 +188,17 @@ bottest.on('message', async (msg) => {
             }
         }
 
+        tasks[0] = setTimeout(async() => {
+            const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
+            
+            //отправить сообщение в админку
+            await bottest.sendMessage(chatId, data) 
+
+        }, 4000) 
+
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
-            // текущая дата
-            //const date = new Date();
-            //await bottest.sendMessage(chatId, date.getFullYear() + "-0" + ((date.getMonth())+1) + "-01T00:00:00.000")
-           // task1.stop();
-           // console.log("Задача 1 остановлена!"); 
-            //task2.stop();
-            //console.log("Задача 2 остановлена!"); 
             
             var date = new Date('2023-08-15T18:38');
             var timeDiff = date.getTime() - 7200000;
@@ -223,36 +224,37 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
-            const obj = {
-                task: '',
-                project: 1
-            }
-            tasks.push(obj)
+            // const obj = {
+            //     task: '',
+            //     project: 1
+            // }
+            // tasks.push(obj)
 
-            const obj2 = {
-                task: '',
-                project: 2
-            }
-            tasks.push(obj2)
+            // const obj2 = {
+            //     task: '',
+            //     project: 2
+            // }
+            // tasks.push(obj2)
 
+            //clearTimeout(tasks[0]);
 
-            tasks[0].task = setTimeout(async() => {
-                const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
+            tasks[0] = setTimeout(async() => {
+                const data = 'СТАРТ - Задача 2 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
                 await bottest.sendMessage(chatId, data) 
 
-            }, 2000) 
+            }, 8000) 
 
-            tasks[1].task = setTimeout(async() => {
-                const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
+            // tasks[1].task = setTimeout(async() => {
+            //     const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
-                //отправить сообщение в админку
-                await bottest.sendMessage(chatId, data) 
+            //     //отправить сообщение в админку
+            //     await bottest.sendMessage(chatId, data) 
 
-            }, 4000) 
+            // }, 4000) 
 
-            clearTimeout(tasks[1].task);
+            //clearTimeout(tasks[1].task);
 
             //console.log("timeoutObj1: ", timeoutObj1)
 
