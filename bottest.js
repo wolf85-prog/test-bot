@@ -30,6 +30,8 @@ const botApiUrl = process.env.REACT_APP_API_URL;
 var cron = require('node-cron');
 var task1, task2
 
+let tasks = []
+
 const bottest = new TelegramBot(token, {polling: true});
 const app = express();
 
@@ -186,6 +188,7 @@ bottest.on('message', async (msg) => {
             }
         }
 
+
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             // текущая дата
@@ -220,16 +223,38 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
+            const obj = {
+                task: '',
+                project: 1
+            }
+            tasks.push(obj)
 
-            const timeoutObj1 = setTimeout(async() => {
+            const obj2 = {
+                task: '',
+                project: 2
+            }
+            tasks.push(obj2)
+
+
+            tasks[0].task = setTimeout(async() => {
                 const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
                 await bottest.sendMessage(chatId, data) 
 
-            }, milliseconds2) 
+            }, 2000) 
 
-            console.log("timeoutObj1: ", timeoutObj1)
+            tasks[1].task = setTimeout(async() => {
+                const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
+                
+                //отправить сообщение в админку
+                await bottest.sendMessage(chatId, data) 
+
+            }, 4000) 
+
+            clearTimeout(tasks[1].task);
+
+            //console.log("timeoutObj1: ", timeoutObj1)
 
             //await bottest.sendMessage(chatId, timeoutObj1) 
         }
