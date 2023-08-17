@@ -24,6 +24,7 @@ const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 const host = process.env.REACT_APP_API_URL
 const chatTelegramId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
+const botApiUrl = process.env.REACT_APP_API_URL;
 
 //планировщик
 var cron = require('node-cron');
@@ -125,8 +126,31 @@ bottest.on('message', async (msg) => {
         }
         // startreports {id проекта}
         if(text.startsWith('/getProject')) {
-            const crmId = await getProject('4412157e9f7c4241bff7db20203ad8c4')
-            console.log("crmId: ", crmId)
+            const project = text.split(' ');
+            const project2 = await Project.findOne({ where:{ id: project[1] } }) 
+
+            let project_name;  
+            let project_status; 
+            let project_manager;
+
+            await fetch(`${botApiUrl}/project/${project2.projectId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data) {
+                    project_name = data?.properties.Name.title[0]?.plain_text;
+                    project_status = data?.properties["Статус проекта"].select.name
+                    project_manager = data?.properties["Менеджер"].relation[0]?.id;
+                }  else {
+                    project_name = '';
+                    project_manager = '';
+                }                             
+            });
+
+            await bottest.sendMessage(chatId, project_name) 
+            await bottest.sendMessage(chatId, project_status)  
+            await bottest.sendMessage(chatId, project_manager)   
+                                    
+
         }
 
         // startreports {id проекта}
