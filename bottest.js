@@ -191,6 +191,7 @@ bottest.on('message', async (msg) => {
             let task1;
             var date = new Date('2023-08-18T19:20');
             var d = new Date();
+            var d2 = d.getTime() + 10800000
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -221,7 +222,7 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4, diffInDays4); 
             console.log("Дата и время (за 15 минут): ", date5, diffInDays5); 
             console.log("Дата и время (за 0 минут): ", diffInDays); 
-            console.log("Текущее Дата и время: ", d); 
+            console.log("Текущее Дата и время: ", d2); 
 
             //clearTimeout(tasks1);
 
