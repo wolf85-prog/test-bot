@@ -239,18 +239,21 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         
                         await bot.sendMessage(chatId_manager, "Статус проекта: " + project_status)  
 
+                        console.log("Задача: ", task1)
+
                         if (task1) {
                             clearTimeout(JSON.parse(task1));    
                             console.log("Задача удалена!")  
                             task1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 2: 120 - минутная готовность')  
     
-                            }, 40000)                      
+                            }, 10000)                      
                         } else {
+                            console.log("!!!!Планирую запуск сообщения...!!!!")
                             task1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
     
-                            }, 40000) 
+                            }, 50000) 
                         }        
                     }
                 }
