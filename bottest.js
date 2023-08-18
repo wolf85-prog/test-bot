@@ -192,6 +192,7 @@ bottest.on('message', async (msg) => {
             var date = new Date('2023-08-18T20:15');
             var d = new Date();
             var d2 = d.getTime() + 10800000
+            
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -199,23 +200,18 @@ bottest.on('message', async (msg) => {
             var timeDiff5 = date.getTime();
     
 
-            const milliseconds = (timeDiff - d.getTime())/60; //120 минут
-            const milliseconds2 = (timeDiff2 - d.getTime())/60; //60 минут
-            const milliseconds3 = (timeDiff3 - d.getTime())/60; //30 минут
-            const milliseconds4 = (timeDiff4 - d.getTime())/60; //15 минут
-            const milliseconds5 = (timeDiff5 - d.getTime())/60; //0 минут
-
             const date2 = new Date(timeDiff)
             const date3 = new Date(timeDiff2)
             const date4 = new Date(timeDiff3)
             const date5 = new Date(timeDiff4)
             const date_tek = new Date(d2)
 
-            const diffInDays = Math.floor((date - d) / (1000 * 60 ));
-            const diffInDays2 = Math.floor((date2 - date_tek));
-            const diffInDays3 = Math.floor((date3 - date_tek));
-            const diffInDays4 = Math.floor((date4 - date_tek));
-            const diffInDays5 = Math.floor((date5 - date_tek));
+            //const milliseconds = Math.floor((date - d));
+
+            const milliseconds = Math.floor((date2 - date_tek));
+            const milliseconds2 = Math.floor((date3 - date_tek));
+            const milliseconds3 = Math.floor((date4 - date_tek));
+            const milliseconds4 = Math.floor((date5 - date_tek));
 
             console.log("Дата и время: ", date);  
             console.log("Дата и время (за 2 часа): ", date2, diffInDays2); 
