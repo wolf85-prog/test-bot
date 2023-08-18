@@ -13,13 +13,13 @@ module.exports = async function getBlocks(blockId) {
         let count = 0;
         let res;
 
-        // const responseResults = response.results.map((block) => {
-        //     if (block.child_database?.title === "Основной состав"){
-        //        res = block.id 
-        //     }
-        // });  
+        const responseResults = response.results.map((block) => {
+            if (block.child_database?.title === "Основной состав"){
+               res = block.id 
+            }
+        });  
 
-        return response;
+        return res;
     } catch (error) {
         console.error(error.message)
     }
