@@ -230,7 +230,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         const task = await Task.findOne({ where:{ projectId: project.projectId } })
 
                         if (task) {
-                            clearTimeout(task.timer);                            
+                            clearTimeout(JSON.parse(task.timer));                            
                         } else {
                             const tasks1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
