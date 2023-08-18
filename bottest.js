@@ -48,7 +48,7 @@ const getProject = require("./bottest/common/getProject");
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
 //const Project = require('./bottest/models/Project')
-const {Project, Task} = require('./bottest/models/models');
+const {Project} = require('./bottest/models/models');
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -416,7 +416,7 @@ const start = async () => {
             console.log('HTTPS Server BotTest running on port ' + PORT);
 
             //очистить таблицу запланированных задач
-            await Task.truncate();
+            //await Task.truncate();
         });
 
     } catch (error) {

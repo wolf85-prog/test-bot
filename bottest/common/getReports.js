@@ -1,6 +1,6 @@
 require("dotenv").config();
 const sequelize = require('./../connections/db')
-const {Project, Task} = require('./../models/models')
+const {Project} = require('./../models/models')
 const getBlocks = require('./getBlocks')
 const getDatabaseId = require('./getDatabaseId')
 //const sendMyMessage = require('./sendMyMessage')
@@ -26,6 +26,7 @@ module.exports = async function getReports(project, bot) {
     let arr_all = [];
     let all = [];
     let date_db;
+    let task1
 
 
     // начало цикла Специалисты ----------------------------------------------------------------------
@@ -234,25 +235,19 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
 
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
-                        const task = await Task.findOne({ where:{ projectId: project.projectId } })
+                        //const task = await Task.findOne({ where:{ projectId: project.projectId } })
                         
                         await bot.sendMessage(chatId_manager, "Статус проекта: " + project_status)  
 
-                        if (task) {
-                            clearTimeout(JSON.parse(task.timer));                            
+                        if (task1) {
+                            clearTimeout(JSON.parse(task1));    
+                            console.log("Задача удалена!")                        
                         } else {
-                            const tasks1 = setTimeout(async() => {
+                            task1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
     
-                            }, 40000) 
+                            }, 100000) 
 
-                            console.log("tasks1: ", tasks1)
-
-                            await Task.create(
-                            {
-                                timer: tasks1, 
-                                projectId: project.projectId, 
-                            })
                         }        
                     }
                 }

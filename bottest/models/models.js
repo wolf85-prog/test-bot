@@ -60,11 +60,11 @@ const Report = sequelize.define('report', {
     delivered: {type: DataTypes.BOOLEAN}, //доставлено
 })
 
-const Task = sequelize.define('task', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    timer: {type: DataTypes.STRING},  //объект таймера
-    projectId: {type: DataTypes.STRING},
-})
+// const Task = sequelize.define('task', {
+//     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+//     timer: {type:DataTypes.ARRAY(DataTypes.STRING)},  //объект таймера
+//     projectId: {type: DataTypes.STRING},
+// })
 
 
 module.exports = {
@@ -74,5 +74,5 @@ module.exports = {
     Project, 
     Distribution,
     Report,
-    Task,
+    //Task,
 }
