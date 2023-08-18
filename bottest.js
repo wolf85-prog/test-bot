@@ -189,7 +189,7 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             let task1;
-            var date = new Date('2023-08-18T19:50');
+            var date = new Date('2023-08-18T19:53');
             var d = new Date();
             var d2 = d.getTime() + 10800000
             var timeDiff = date.getTime() - 7200000;
@@ -212,10 +212,10 @@ bottest.on('message', async (msg) => {
             const date_tek = new Date(d2)
 
             const diffInDays = Math.floor((date - d) / (1000 * 60 ));
-            const diffInDays2 = Math.floor((date2 - date_tek) / (1000));
-            const diffInDays3 = Math.floor((date3 - date_tek) / (1000));
-            const diffInDays4 = Math.floor((date4 - date_tek) / (1000));
-            const diffInDays5 = Math.floor((date5 - date_tek) / (1000));
+            const diffInDays2 = Math.floor((date2 - date_tek) / (1000 * 60 ));
+            const diffInDays3 = Math.floor((date3 - date_tek) / (1000 * 60 ));
+            const diffInDays4 = Math.floor((date4 - date_tek) / (1000 * 60 ));
+            const diffInDays5 = Math.floor((date5 - date_tek) / (1000 * 60 ));
 
             console.log("Дата и время: ", date);  
             console.log("Дата и время (за 2 часа): ", date2, diffInDays2); 
