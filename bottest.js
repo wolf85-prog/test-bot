@@ -188,14 +188,6 @@ bottest.on('message', async (msg) => {
             }
         }
 
-        tasks[0] = setTimeout(async() => {
-            const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
-            
-            //отправить сообщение в админку
-            await bottest.sendMessage(chatId, data) 
-
-        }, 4000) 
-
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {

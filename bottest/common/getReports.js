@@ -223,7 +223,9 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                     // setTimeout(async()=> {
                     //     await bot.sendMessage(chatId_manager, text)  
                                             
-                    // }, 1000 * ++i)   
+                    // }, 1000 * ++i) 
+                    
+                    console.log("Статус: ", project_status)
 
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
