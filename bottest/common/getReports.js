@@ -158,7 +158,7 @@ module.exports = async function getReports(project, bot) {
             let project_name;  
             let project_manager; 
             let project_status;  
-            
+
             console.log("ID: ", project.projectId)   
 
             await fetch(`${botApiUrl}/project/${project.projectId}`)
@@ -168,6 +168,8 @@ module.exports = async function getReports(project, bot) {
                     project_name = data?.properties.Name.title[0]?.plain_text;
                     project_status = data?.properties["Статус проекта"].select.name
                     project_manager = data?.properties["Менеджер"].relation[0]?.id;
+
+                    console.log("СТАТУС: ", project_status)
                 }  else {
                     project_name = project.name
                     project_manager = '';
