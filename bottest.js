@@ -200,6 +200,8 @@ bottest.on('message', async (msg) => {
             const diffInDays = Math.floor((date - d) / (1000 * 60 ));
             const diffInDays2 = Math.floor((date - timeDiff) / (1000 * 60 ));
             const diffInDays3 = Math.floor((date - timeDiff2) / (1000 * 60 ));
+            const diffInDays4 = Math.floor((date - timeDiff3) / (1000 * 60 ));
+            const diffInDays5 = Math.floor((date - timeDiff4) / (1000 * 60 ));
             
 
             const milliseconds = (timeDiff - d.getTime())/60; //120 минут
@@ -216,8 +218,8 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время: ", date);  
             console.log("Дата и время (за 2 часа): ", date2, diffInDays2); 
             console.log("Дата и время (за 1 час): ", date3, diffInDays3); 
-            console.log("Дата и время (за 30 минут): ", date4); 
-            console.log("Дата и время (за 15 минут): ", date5); 
+            console.log("Дата и время (за 30 минут): ", date4, diffInDays4); 
+            console.log("Дата и время (за 15 минут): ", date5, diffInDays5); 
             console.log("Дата и время (за 0 минут): ", diffInDays); 
 
             //clearTimeout(tasks1);
