@@ -60,6 +60,12 @@ const Report = sequelize.define('report', {
     delivered: {type: DataTypes.BOOLEAN}, //доставлено
 })
 
+const Task = sequelize.define('task', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    timer: {type: DataTypes.STRING},  //объект таймера
+    projectId: {type: DataTypes.STRING},
+})
+
 
 module.exports = {
     UserBot, 
@@ -68,4 +74,5 @@ module.exports = {
     Project, 
     Distribution,
     Report,
+    Task,
 }

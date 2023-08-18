@@ -48,7 +48,7 @@ const getProject = require("./bottest/common/getProject");
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
 //const Project = require('./bottest/models/Project')
-const {UserBot, Message, Conversation, Project, Report} = require('./bottest/models/models');
+const {Project, Task} = require('./bottest/models/models');
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -420,32 +420,11 @@ const start = async () => {
         await sequelize.authenticate()
         await sequelize.sync()
         
-        httpsServer.listen(PORT, () => {
+        httpsServer.listen(PORT, async() => {
             console.log('HTTPS Server BotTest running on port ' + PORT);
 
-            //запуск оповещения (2-х часовая готовность)
-            //console.log("запуск оповещения (2-х часовая готовность)")
-            // cron.schedule('*/1 15 04 8 *',()=>{
-            //     console.log('then at 2023-08-04 15:01:00')
-            // }, {
-            //     scheduled: true,
-            //     timezone: "Europe/Moscow"
-            // });/ 
-
-            // task1 = cron.schedule('17 16 04 08 *', () =>  {
-            //     console.log('Задача 1 в 2023-08-04 16:17:00');
-            //   }, {
-            //     scheduled: true,
-            //     timezone: "Europe/Moscow"
-            // });
-
-            // task2 = cron.schedule('18 16 04 08 *', () =>  {
-            //     console.log('Задача 2 2023-08-04 16:18:00');
-            // }, {
-            //         scheduled: true,
-            //         timezone: "Europe/Moscow"
-            // });
-
+            //очистить таблицу запланированных задач
+            await Task.truncate();
         });
 
     } catch (error) {

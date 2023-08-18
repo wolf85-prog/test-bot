@@ -1,6 +1,6 @@
 require("dotenv").config();
 const sequelize = require('./../connections/db')
-const {Project} = require('./../models/models')
+const {Project, Task} = require('./../models/models')
 const getBlocks = require('./getBlocks')
 const getDatabaseId = require('./getDatabaseId')
 //const sendMyMessage = require('./sendMyMessage')
@@ -155,25 +155,18 @@ module.exports = async function getReports(project, bot) {
         //if (!isEqual) {
 
             //получить название проекта из ноушена
-            let project_name;        
+            let project_name;  
+            let project_manager; 
+            let project_status;      
             await fetch(`${botApiUrl}/project/${project.projectId}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data) {
                     project_name = data?.properties.Name.title[0]?.plain_text;
-                }  else {
-                    project_name = project.name
-                }                             
-            });
-                      
-            //получить менеджера проекта из ноушена
-            let project_manager;
-            await fetch(`${botApiUrl}/project/${project.projectId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data) {
+                    project_status = data?.properties["Статус проекта"].select.name
                     project_manager = data?.properties.Manager.relation[0]?.id;
                 }  else {
+                    project_name = project.name
                     project_manager = '';
                 }                             
             });
@@ -194,7 +187,7 @@ module.exports = async function getReports(project, bot) {
             //console.log("arr_all: ", arr_all)
 
             //отправить сообщение по каждой дате
-            datesObj.forEach((date, i)=> {
+            datesObj.forEach(async (date, i)=> {
                 const d = new Date(date.date.split('+')[0]);
                 const d2 = new Date()
                 //console.log("Текущая дата: ", new Date())
@@ -227,10 +220,30 @@ ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
 ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
 
-                    setTimeout(async()=> {
-                        await bot.sendMessage(chatId_manager, text)  
+                    // setTimeout(async()=> {
+                    //     await bot.sendMessage(chatId_manager, text)  
                                             
-                    }, 1000 * ++i)   
+                    // }, 1000 * ++i)   
+
+                    //отправка напоминания
+                    if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
+                        const task = await Task.findOne({ where:{ projectId: project.projectId } })
+
+                        if (task) {
+                            clearTimeout(task.timer);                            
+                        } else {
+                            const tasks1 = setTimeout(async() => {
+                                await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
+    
+                            }, 40000) 
+
+                            await Task.create(
+                            {
+                                timer: JSON.stringify(tasks1), 
+                                projectId: project.projectId, 
+                            })
+                        }        
+                    }
                 }
             })
              
