@@ -189,7 +189,7 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             
-            var date = new Date('2023-08-15T18:38');
+            var date = new Date('2023-08-15T17:25');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
@@ -213,27 +213,16 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4); 
             console.log("Дата и время (за 15 минут): ", date5); 
 
-            // const obj = {
-            //     task: '',
-            //     project: 1
-            // }
-            // tasks.push(obj)
-
-            // const obj2 = {
-            //     task: '',
-            //     project: 2
-            // }
-            // tasks.push(obj2)
 
             clearTimeout(tasks[0]);
 
             tasks[0] = setTimeout(async() => {
-                const data = 'СТАРТ - Задача 2 в ' + date + ' запущена!';
+                const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
                 await bottest.sendMessage(chatId, data) 
 
-            }, 8000) 
+            }, milliseconds) 
 
             // tasks[1].task = setTimeout(async() => {
             //     const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
