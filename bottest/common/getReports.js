@@ -246,9 +246,11 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
     
                             }, 40000) 
 
+                            console.log("tasks1: ", tasks1)
+
                             await Task.create(
                             {
-                                timer: JSON.stringify(tasks1), 
+                                timer: tasks1, 
                                 projectId: project.projectId, 
                             })
                         }        
