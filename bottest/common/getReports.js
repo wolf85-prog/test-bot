@@ -276,6 +276,17 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                     var timeDiff4 = d.getTime() - 900000; //15 минут
                     var timeDiff5 = d.getTime();          //0 минут
 
+                    const date2 = new Date(timeDiff)
+                    const date3 = new Date(timeDiff2)
+                    const date4 = new Date(timeDiff3)
+                    const date5 = new Date(timeDiff4)
+                    
+                    console.log("Дата и время (за 2 часа): ", date2); 
+                    console.log("Дата и время (за 1 час): ", date3); 
+                    console.log("Дата и время (за 30 минут): ", date4); 
+                    console.log("Дата и время (за 15 минут): ", date5); 
+                    console.log("Дата и время (за 0 минут): ", date);  
+
                     const milliseconds = timeDiff - Date.now(); //120 минут
                     const milliseconds2 = timeDiff2 - Date.now(); //60 минут
                     const milliseconds3 = timeDiff3 - Date.now(); //30 минут
