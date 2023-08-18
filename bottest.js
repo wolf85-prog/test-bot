@@ -212,10 +212,10 @@ bottest.on('message', async (msg) => {
             const date_tek = new Date(d2)
 
             const diffInDays = Math.floor((date - d) / (1000 * 60 ));
-            const diffInDays2 = Math.floor((date2 - date_tek) / (1000 * 60 ));
-            const diffInDays3 = Math.floor((date3 - date_tek) / (1000 * 60 ));
-            const diffInDays4 = Math.floor((date4 - date_tek) / (1000 * 60 ));
-            const diffInDays5 = Math.floor((date5 - date_tek) / (1000 * 60 ));
+            const diffInDays2 = Math.floor((date2 - date_tek));
+            const diffInDays3 = Math.floor((date3 - date_tek));
+            const diffInDays4 = Math.floor((date4 - date_tek));
+            const diffInDays5 = Math.floor((date5 - date_tek));
 
             console.log("Дата и время: ", date);  
             console.log("Дата и время (за 2 часа): ", date2, diffInDays2); 
