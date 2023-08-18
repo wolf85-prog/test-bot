@@ -208,11 +208,11 @@ bottest.on('message', async (msg) => {
             const date5 = new Date(timeDiff4)
 
             console.log("Дата и время: ", date);  
-            console.log("Дата и время (за 2 часа): ", date2, milliseconds); 
-            console.log("Дата и время (за 1 час): ", date3, milliseconds2); 
-            console.log("Дата и время (за 30 минут): ", date4, milliseconds3); 
-            console.log("Дата и время (за 15 минут): ", date5, milliseconds4); 
-            console.log("Дата и время (за 0 минут): ", milliseconds5); 
+            console.log("Дата и время (за 2 часа): ", date2, timeDiff, Date.now()); 
+            console.log("Дата и время (за 1 час): ", date3, timeDiff, Date.now()); 
+            console.log("Дата и время (за 30 минут): ", date4, timeDiff, Date.now()); 
+            console.log("Дата и время (за 15 минут): ", date5, timeDiff, Date.now()); 
+            console.log("Дата и время (за 0 минут): ", timeDiff, Date.now()); 
 
             //clearTimeout(tasks1);
 
