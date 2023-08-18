@@ -189,14 +189,18 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             let task1;
-            var date = new Date('2023-08-18T19:00');
+            var date = new Date('2023-08-18T19:20');
+            var d = new Date();
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
             var timeDiff4 = date.getTime() - 900000;
             var timeDiff5 = date.getTime();
 
-            var d = new Date();
+            const diffInDays = Math.floor((date - d) / (1000 * 60 * 60));
+            const diffInDays2 = Math.floor((date - timeDiff) / (1000 * 60 * 60));
+            const diffInDays3 = Math.floor((date - timeDiff2) / (1000 * 60 * 60));
+            
 
             const milliseconds = (timeDiff - d.getTime())/60; //120 минут
             const milliseconds2 = (timeDiff2 - d.getTime())/60; //60 минут
@@ -210,11 +214,11 @@ bottest.on('message', async (msg) => {
             const date5 = new Date(timeDiff4)
 
             console.log("Дата и время: ", date);  
-            console.log("Дата и время (за 2 часа): ", date2, milliseconds); 
-            console.log("Дата и время (за 1 час): ", date3, milliseconds2); 
-            console.log("Дата и время (за 30 минут): ", date4, milliseconds3); 
-            console.log("Дата и время (за 15 минут): ", date5, milliseconds4); 
-            console.log("Дата и время (за 0 минут): ", milliseconds5); 
+            console.log("Дата и время (за 2 часа): ", date2, diffInDays2); 
+            console.log("Дата и время (за 1 час): ", date3, diffInDays3); 
+            console.log("Дата и время (за 30 минут): ", date4); 
+            console.log("Дата и время (за 15 минут): ", date5); 
+            console.log("Дата и время (за 0 минут): ", diffInDays); 
 
             //clearTimeout(tasks1);
 
