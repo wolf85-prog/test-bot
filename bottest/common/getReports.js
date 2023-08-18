@@ -157,7 +157,10 @@ module.exports = async function getReports(project, bot) {
             //получить название проекта из ноушена
             let project_name;  
             let project_manager; 
-            let project_status;      
+            let project_status;  
+            
+            console.log("ID: ", project.projectId)   
+
             await fetch(`${botApiUrl}/project/${project.projectId}`)
             .then((response) => response.json())
             .then((data) => {
@@ -199,7 +202,7 @@ module.exports = async function getReports(project, bot) {
                 //     console.log('текущая дата больше или даты равны');
                 // }
 
-                console.log(date.consilience)
+                console.log("consilience: ", date.consilience)
 
                 if (!date.consilience) { 
                     datesObj[i].consilience = true
