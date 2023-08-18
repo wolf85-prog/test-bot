@@ -189,18 +189,18 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             let task1;
-            var date = new Date('2023-08-18T17:53');
+            var date = new Date('2023-08-18T18:06');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
             var timeDiff3 = date.getTime() - 1800000;
             var timeDiff4 = date.getTime() - 900000;
             var timeDiff5 = date.getTime();
 
-            const milliseconds = timeDiff - Date.now(); //120 минут
-            const milliseconds2 = timeDiff2 - Date.now(); //60 минут
-            const milliseconds3 = timeDiff3 - Date.now(); //30 минут
-            const milliseconds4 = timeDiff4 - Date.now(); //15 минут
-            const milliseconds5 = timeDiff5 - Date.now(); //0 минут
+            const milliseconds = (timeDiff - Date.now())/60; //120 минут
+            const milliseconds2 = (timeDiff2 - Date.now())/60; //60 минут
+            const milliseconds3 = (timeDiff3 - Date.now())/60; //30 минут
+            const milliseconds4 = (timeDiff4 - Date.now())/60; //15 минут
+            const milliseconds5 = (timeDiff5 - Date.now())/60; //0 минут
 
             const date2 = new Date(timeDiff)
             const date3 = new Date(timeDiff2)
@@ -223,7 +223,7 @@ bottest.on('message', async (msg) => {
                 await bottest.sendMessage(chatId, data) 
                 console.log(data)
 
-            }, 60000) 
+            }, milliseconds) 
 
             // tasks[1].task = setTimeout(async() => {
             //     const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
