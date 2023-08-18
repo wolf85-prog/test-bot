@@ -189,7 +189,7 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
             let task1;
-            var date = new Date('2023-08-18T19:20');
+            var date = new Date('2023-08-18T19:50');
             var d = new Date();
             var d2 = d.getTime() + 10800000
             var timeDiff = date.getTime() - 7200000;
