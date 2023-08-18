@@ -26,8 +26,54 @@ module.exports = async function getReports(project, bot) {
     let arr_all = [];
     let all = [];
     let date_db;
-    let task1
+    let task1, task2, task3, task4, task5
 
+    let status 
+
+    // await fetch(`${botApiUrl}/project/${project.projectId}`)
+    // .then((response) => response.json())
+    // .then((data) => {
+    //     if (data) {
+    //         status = data?.properties["Статус проекта"].select.name
+    //     }                              
+    // });
+
+    // //создаю оповещения
+    // const d = new Date('2023-08-18T14:30');
+
+    // var timeDiff = d.getTime() - 7200000; //120 минут
+    // var timeDiff2 = d.getTime() - 3600000;//60 минут
+    // var timeDiff3 = d.getTime() - 1800000;//30 минут
+    // var timeDiff4 = d.getTime() - 900000; //15 минут
+    // var timeDiff5 = d.getTime();          //0 минут
+
+    // const milliseconds = timeDiff - Date.now(); //120 минут
+    // const milliseconds2 = timeDiff2 - Date.now(); //60 минут
+    // const milliseconds3 = timeDiff3 - Date.now(); //30 минут
+    // const milliseconds4 = timeDiff4 - Date.now(); //15 минут
+    // const milliseconds5 = timeDiff5 - Date.now(); //0 минут
+
+    // console.log("!!!!Планирую запуск сообщения...!!!!")
+
+    // task1 = setTimeout(async() => {
+    //     await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')     
+    // }, milliseconds) 
+
+    // task2 = setTimeout(async() => {
+    //     await bot.sendMessage(chatId_manager, 'Задача 2: 60 - минутная готовность')     
+    // }, milliseconds2)
+
+    // task3 = setTimeout(async() => {
+    //     await bot.sendMessage(chatId_manager, 'Задача 3: 30 - минутная готовность')     
+    // }, milliseconds3)
+
+    // task4 = setTimeout(async() => {
+    //     await bot.sendMessage(chatId_manager, 'Задача 4: 15 - минутная готовность')     
+    // }, milliseconds4)
+
+    // task5 = setTimeout(async() => {
+    //     await bot.sendMessage(chatId_manager, 'Задача 5: 0 - минутная готовность')     
+    // }, milliseconds5)
 
     // начало цикла Специалисты ----------------------------------------------------------------------
     // 86400 секунд в дне
@@ -190,20 +236,11 @@ module.exports = async function getReports(project, bot) {
                 }                             
             });
 
-            //console.log("arr_all: ", arr_all)
 
             //отправить сообщение по каждой дате
             datesObj.forEach(async (date, i)=> {
                 const d = new Date(date.date.split('+')[0]);
                 const d2 = new Date()
-                //console.log("Текущая дата: ", new Date())
-                //console.log("Дата: ", d)
-
-                // if(d > d2) {
-                //     console.log('первая дата больше текущей');
-                // } else {
-                //     console.log('текущая дата больше или даты равны');
-                // }
 
                 console.log("consilience: ", date.consilience)
 
@@ -231,31 +268,72 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                                             
                     }, 1000 * ++i) 
                     
-                    //console.log("Статус: ", project_status)
+                    //создаю оповещения
+
+                    var timeDiff = d.getTime() - 7200000; //120 минут
+                    var timeDiff2 = d.getTime() - 3600000;//60 минут
+                    var timeDiff3 = d.getTime() - 1800000;//30 минут
+                    var timeDiff4 = d.getTime() - 900000; //15 минут
+                    var timeDiff5 = d.getTime();          //0 минут
+
+                    const milliseconds = timeDiff - Date.now(); //120 минут
+                    const milliseconds2 = timeDiff2 - Date.now(); //60 минут
+                    const milliseconds3 = timeDiff3 - Date.now(); //30 минут
+                    const milliseconds4 = timeDiff4 - Date.now(); //15 минут
+                    const milliseconds5 = timeDiff5 - Date.now(); //0 минут
 
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
-                        //const task = await Task.findOne({ where:{ projectId: project.projectId } })
-                        
-                        await bot.sendMessage(chatId_manager, "Статус проекта: " + project_status)  
-
-                        console.log("Задача: ", task1)
-
+                        //1
                         if (task1) {
                             clearTimeout(task1);    
-                            console.log("Задача удалена!")  
-                            task1 = setTimeout(async() => {
-                                await bot.sendMessage(chatId_manager, 'Задача 2: 120 - минутная готовность')  
-    
-                            }, 60000)                      
-                        } else {
-                            console.log("!!!!Планирую запуск сообщения...!!!!")
-                            task1 = setTimeout(async() => {
-                                await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
-    
-                            }, 120000) 
-                            console.log("Задача1: ", task1)
-                        }        
+                            console.log("Задача 1 удалена! " + project_name)                       
+                        } 
+                        console.log("!!!!Планирую запуск сообщения 1...!!!!")     
+                        task1 = setTimeout(async() => {
+                            await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
+                        }, milliseconds)   
+                        
+                        //2
+                        if (task2) {
+                            clearTimeout(task2);    
+                            console.log("Задача 2 удалена! " + project_name)                       
+                        } 
+                        console.log("!!!!Планирую запуск сообщения 2...!!!!")     
+                        task2 = setTimeout(async() => {
+                            await bot.sendMessage(chatId_manager, 'Задача 2: 60 - минутная готовность')  
+                        }, milliseconds2) 
+
+                        //3
+                        if (task3) {
+                            clearTimeout(task3);    
+                            console.log("Задача 3 удалена! " + project_name)                       
+                        } 
+                        console.log("!!!!Планирую запуск сообщения 3...!!!!")     
+                        task3 = setTimeout(async() => {
+                            await bot.sendMessage(chatId_manager, 'Задача 3: 30 - минутная готовность')  
+                        }, milliseconds3) 
+
+                        //4
+                        if (task4) {
+                            clearTimeout(task4);    
+                            console.log("Задача 4 удалена! " + project_name)                       
+                        } 
+                        console.log("!!!!Планирую запуск сообщения 4...!!!!")     
+                        task4 = setTimeout(async() => {
+                            await bot.sendMessage(chatId_manager, 'Задача 4: 15 - минутная готовность')  
+                        }, milliseconds4) 
+
+
+                        //5
+                        if (task5) {
+                            clearTimeout(task5);    
+                            console.log("Задача 5 удалена! " + project_name)                       
+                        } 
+                        console.log("!!!!Планирую запуск сообщения 5...!!!!")     
+                        task5 = setTimeout(async() => {
+                            await bot.sendMessage(chatId_manager, 'Задача 5: 0 - минутная готовность')  
+                        }, milliseconds5) 
                     }
                 }
             })

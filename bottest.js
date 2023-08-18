@@ -28,9 +28,6 @@ const botApiUrl = process.env.REACT_APP_API_URL;
 
 //планировщик
 var cron = require('node-cron');
-var task1, task2
-
-let tasks = []
 
 const bottest = new TelegramBot(token, {polling: true});
 const app = express();
