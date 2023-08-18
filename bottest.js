@@ -221,6 +221,7 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4, diffInDays4); 
             console.log("Дата и время (за 15 минут): ", date5, diffInDays5); 
             console.log("Дата и время (за 0 минут): ", diffInDays); 
+            console.log("Текущее Дата и время: ", d); 
 
             //clearTimeout(tasks1);
 
