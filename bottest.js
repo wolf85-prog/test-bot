@@ -196,11 +196,13 @@ bottest.on('message', async (msg) => {
             var timeDiff4 = date.getTime() - 900000;
             var timeDiff5 = date.getTime();
 
-            const milliseconds = (timeDiff - Date.now())/60; //120 минут
-            const milliseconds2 = (timeDiff2 - Date.now())/60; //60 минут
-            const milliseconds3 = (timeDiff3 - Date.now())/60; //30 минут
-            const milliseconds4 = (timeDiff4 - Date.now())/60; //15 минут
-            const milliseconds5 = (timeDiff5 - Date.now())/60; //0 минут
+            var d = new Date();
+
+            const milliseconds = (timeDiff - d.getTime())/60; //120 минут
+            const milliseconds2 = (timeDiff2 - d.getTime())/60; //60 минут
+            const milliseconds3 = (timeDiff3 - d.getTime())/60; //30 минут
+            const milliseconds4 = (timeDiff4 - d.getTime())/60; //15 минут
+            const milliseconds5 = (timeDiff5 - d.getTime())/60; //0 минут
 
             const date2 = new Date(timeDiff)
             const date3 = new Date(timeDiff2)
