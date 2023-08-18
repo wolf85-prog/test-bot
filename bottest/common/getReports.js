@@ -305,7 +305,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         } 
                         console.log("!!!!Планирую запуск сообщения 1...!!!!")     
                         task1 = setTimeout(async() => {
-                            await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
+                            await bottest.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
                         }, milliseconds) 
                         
                         console.log("task1", task1)
@@ -317,7 +317,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         } 
                         console.log("!!!!Планирую запуск сообщения 2...!!!!")     
                         task2 = setTimeout(async() => {
-                            await bot.sendMessage(chatId_manager, 'Задача 2: 60 - минутная готовность')  
+                            await bottest.sendMessage(chatId_manager, 'Задача 2: 60 - минутная готовность')  
                         }, milliseconds2) 
 
                         //3
@@ -327,7 +327,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         } 
                         console.log("!!!!Планирую запуск сообщения 3...!!!!")     
                         task3 = setTimeout(async() => {
-                            await bot.sendMessage(chatId_manager, 'Задача 3: 30 - минутная готовность')  
+                            await bottest.sendMessage(chatId_manager, 'Задача 3: 30 - минутная готовность')  
                         }, milliseconds3) 
 
                         //4
@@ -337,7 +337,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         } 
                         console.log("!!!!Планирую запуск сообщения 4...!!!!")     
                         task4 = setTimeout(async() => {
-                            await bot.sendMessage(chatId_manager, 'Задача 4: 15 - минутная готовность')  
+                            await bottest.sendMessage(chatId_manager, 'Задача 4: 15 - минутная готовность')  
                         }, milliseconds4) 
 
 
@@ -348,7 +348,7 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         } 
                         console.log("!!!!Планирую запуск сообщения 5...!!!!")     
                         task5 = setTimeout(async() => {
-                            await bot.sendMessage(chatId_manager, 'Задача 5: 0 - минутная готовность')  
+                            await bottest.sendMessage(chatId_manager, 'Задача 5: 0 - минутная готовность')  
                         }, milliseconds5) 
                     }
                 }

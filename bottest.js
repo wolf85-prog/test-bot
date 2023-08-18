@@ -188,7 +188,7 @@ bottest.on('message', async (msg) => {
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
-            
+            let task1;
             var date = new Date('2023-08-18T17:25');
             var timeDiff = date.getTime() - 7200000;
             var timeDiff2 = date.getTime() - 3600000;
@@ -214,9 +214,9 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 15 минут): ", date5); 
 
 
-            clearTimeout(tasks[0]);
+            //clearTimeout(tasks1);
 
-            tasks[0] = setTimeout(async() => {
+            task1 = setTimeout(async() => {
                 const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
