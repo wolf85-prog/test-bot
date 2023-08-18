@@ -209,6 +209,7 @@ bottest.on('message', async (msg) => {
             const date3 = new Date(timeDiff2)
             const date4 = new Date(timeDiff3)
             const date5 = new Date(timeDiff4)
+            const date_tek = new Date(d2)
 
             const diffInDays = Math.floor((date - d) / (1000 * 60 ));
             const diffInDays2 = Math.floor((date2 - d) / (1000 * 60 ));
@@ -222,7 +223,7 @@ bottest.on('message', async (msg) => {
             console.log("Дата и время (за 30 минут): ", date4, diffInDays4); 
             console.log("Дата и время (за 15 минут): ", date5, diffInDays5); 
             console.log("Дата и время (за 0 минут): ", diffInDays); 
-            console.log("Текущее Дата и время: ", d2); 
+            console.log("Текущее Дата и время: ", date_tek); 
 
             //clearTimeout(tasks1);
 
