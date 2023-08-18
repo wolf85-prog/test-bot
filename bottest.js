@@ -220,10 +220,10 @@ bottest.on('message', async (msg) => {
                 const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
-                //bottest.sendMessage(chatId, data) 
+                bottest.sendMessage(chatId, data) 
                 console.log(data)
 
-            }, milliseconds) 
+            }, 60000) 
 
             // tasks[1].task = setTimeout(async() => {
             //     const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
