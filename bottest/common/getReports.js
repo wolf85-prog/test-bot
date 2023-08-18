@@ -164,7 +164,7 @@ module.exports = async function getReports(project, bot) {
                 if (data) {
                     project_name = data?.properties.Name.title[0]?.plain_text;
                     project_status = data?.properties["Статус проекта"].select.name
-                    project_manager = data?.properties.Manager.relation[0]?.id;
+                    project_manager = data?.properties["Менеджер"].relation[0]?.id;
                 }  else {
                     project_name = project.name
                     project_manager = '';
