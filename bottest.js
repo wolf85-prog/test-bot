@@ -208,19 +208,19 @@ bottest.on('message', async (msg) => {
             const date5 = new Date(timeDiff4)
 
             console.log("Дата и время: ", date);  
-            console.log("Дата и время (за 2 часа): ", date2); 
-            console.log("Дата и время (за 1 час): ", date3); 
-            console.log("Дата и время (за 30 минут): ", date4); 
-            console.log("Дата и время (за 15 минут): ", date5); 
-
+            console.log("Дата и время (за 2 часа): ", date2, milliseconds); 
+            console.log("Дата и время (за 1 час): ", date3, milliseconds2); 
+            console.log("Дата и время (за 30 минут): ", date4, milliseconds3); 
+            console.log("Дата и время (за 15 минут): ", date5, milliseconds4); 
+            console.log("Дата и время (за 0 минут): ", milliseconds5); 
 
             //clearTimeout(tasks1);
 
-            task1 = setTimeout(() => {
+            task1 = setTimeout(async() => {
                 const data = 'СТАРТ - Задача 1 в ' + date + ' запущена!';
                 
                 //отправить сообщение в админку
-                bottest.sendMessage(chatId, data) 
+                await bottest.sendMessage(chatId, data) 
                 console.log(data)
 
             }, 60000) 
