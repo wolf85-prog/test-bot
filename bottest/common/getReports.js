@@ -245,19 +245,13 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                     console.log("Дата и время (за 15 минут): ", date5); 
                     console.log("Дата и время (за 0 минут): ", date);  
 
-                    // const milliseconds = (timeDiff - Date.now()-120000)/60; //120 минут
-                    // const milliseconds2 = (timeDiff2 - Date.now()-120000)/60; //60 минут
-                    // const milliseconds3 = (timeDiff3 - Date.now()-120000)/60; //30 минут
-                    // const milliseconds4 = (timeDiff4 - Date.now()-120000)/60; //15 минут
-                    // const milliseconds5 = (timeDiff5 - Date.now()-120000)/60; //0 минут
-
                     const milliseconds = Math.floor((date2 - dateNow)); //120 минут
                     const milliseconds2 = Math.floor((date3 - dateNow)); //60 минут
                     const milliseconds3 = Math.floor((date4 - dateNow)); //30 минут
                     const milliseconds4 = Math.floor((date5 - dateNow)); //15 минут
                     const milliseconds5 = Math.floor((date6 - dateNow)); //0 минут
 
-                    console.log("милисекунды", milliseconds, milliseconds2, milliseconds3, milliseconds4, milliseconds5)
+                    //console.log("милисекунды", milliseconds, milliseconds2, milliseconds3, milliseconds4, milliseconds5)
 
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
@@ -271,7 +265,6 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                             await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
                         }, milliseconds) 
                         
-                        console.log("task1", task1)
                         
                         //2
                         if (task2) {
