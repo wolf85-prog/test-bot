@@ -287,11 +287,11 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                     console.log("Дата и время (за 15 минут): ", date5); 
                     console.log("Дата и время (за 0 минут): ", date);  
 
-                    const milliseconds = timeDiff - Date.now(); //120 минут
-                    const milliseconds2 = timeDiff2 - Date.now(); //60 минут
-                    const milliseconds3 = timeDiff3 - Date.now(); //30 минут
-                    const milliseconds4 = timeDiff4 - Date.now(); //15 минут
-                    const milliseconds5 = timeDiff5 - Date.now(); //0 минут
+                    const milliseconds = (timeDiff - Date.now()-60000)/60; //120 минут
+                    const milliseconds2 = (timeDiff2 - Date.now()-60000)/60; //60 минут
+                    const milliseconds3 = (timeDiff3 - Date.now()-60000)/60; //30 минут
+                    const milliseconds4 = (timeDiff4 - Date.now()-60000)/60; //15 минут
+                    const milliseconds5 = (timeDiff5 - Date.now()-60000)/60; //0 минут
 
                     console.log("милисекунды", milliseconds)
 
