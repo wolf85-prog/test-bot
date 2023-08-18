@@ -293,9 +293,12 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                     const milliseconds4 = timeDiff4 - Date.now(); //15 минут
                     const milliseconds5 = timeDiff5 - Date.now(); //0 минут
 
+                    console.log("милисекунды", milliseconds)
+
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
                         //1
+                        console.log("task1", task1)
                         if (task1) {
                             clearTimeout(task1);    
                             console.log("Задача 1 удалена! " + project_name)                       
@@ -303,7 +306,9 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         console.log("!!!!Планирую запуск сообщения 1...!!!!")     
                         task1 = setTimeout(async() => {
                             await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
-                        }, milliseconds)   
+                        }, milliseconds) 
+                        
+                        console.log("task1", task1)
                         
                         //2
                         if (task2) {
