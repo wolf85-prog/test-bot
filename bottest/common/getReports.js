@@ -242,18 +242,19 @@ ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item
                         console.log("Задача: ", task1)
 
                         if (task1) {
-                            clearTimeout(JSON.parse(task1));    
+                            clearTimeout(task1);    
                             console.log("Задача удалена!")  
                             task1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 2: 120 - минутная готовность')  
     
-                            }, 10000)                      
+                            }, 60000)                      
                         } else {
                             console.log("!!!!Планирую запуск сообщения...!!!!")
                             task1 = setTimeout(async() => {
                                 await bot.sendMessage(chatId_manager, 'Задача 1: 120 - минутная готовность')  
     
-                            }, 50000) 
+                            }, 120000) 
+                            console.log("Задача1: ", task1)
                         }        
                     }
                 }
