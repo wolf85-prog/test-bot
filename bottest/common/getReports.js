@@ -159,7 +159,7 @@ module.exports = async function getReports(project, bot) {
             let project_manager; 
             let project_status;  
 
-            console.log("ID: ", project.projectId)   
+            //console.log("ID: ", project.projectId)   
 
             await fetch(`${botApiUrl}/project/${project.projectId}`)
             .then((response) => response.json())
@@ -169,7 +169,7 @@ module.exports = async function getReports(project, bot) {
                     project_status = data?.properties["Статус проекта"].select.name
                     project_manager = data?.properties["Менеджер"].relation[0]?.id;
 
-                    console.log("СТАТУС: ", project_status)
+                    //console.log("СТАТУС: ", project_status)
                 }  else {
                     project_name = project.name
                     project_manager = '';
@@ -182,7 +182,7 @@ module.exports = async function getReports(project, bot) {
             .then((response) => response.json())
             .then((data) => {
                 if (data) {
-                    console.log("Manager TelegramId: ", data)
+                    //console.log("Manager TelegramId: ", data)
                     chatId_manager = data
                 } else {
                     console.log("Manager TelegramId не найден!")
@@ -225,16 +225,18 @@ ${day}.${month} | ${chas}:${minut} | ${project_name} | U.L.E.Y
 
 ${arr_copy.map((item, index) =>'0' + (index+1) + '. '+ item.title + ' = ' + item.count_fio + '\/' + item.count_title + ' [' + item.title2 + ']').join('\n')}`                           
 
-                    // setTimeout(async()=> {
-                    //     await bot.sendMessage(chatId_manager, text)  
+                    setTimeout(async()=> {
+                        await bot.sendMessage(chatId_manager, project_status)  
                                             
-                    // }, 1000 * ++i) 
+                    }, 1000 * ++i) 
                     
-                    console.log("Статус: ", project_status)
+                    //console.log("Статус: ", project_status)
 
                     //отправка напоминания
                     if (project_status === 'Load' || project_status === 'Ready' || project_status === 'On Air') {
                         const task = await Task.findOne({ where:{ projectId: project.projectId } })
+                        
+                        await bot.sendMessage(chatId_manager, "Статус проекта: " + project_status)  
 
                         if (task) {
                             clearTimeout(JSON.parse(task.timer));                            
