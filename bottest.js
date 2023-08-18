@@ -197,9 +197,9 @@ bottest.on('message', async (msg) => {
             var timeDiff4 = date.getTime() - 900000;
             var timeDiff5 = date.getTime();
 
-            const diffInDays = Math.floor((date - d) / (1000 * 60 * 60));
-            const diffInDays2 = Math.floor((date - timeDiff) / (1000 * 60 * 60));
-            const diffInDays3 = Math.floor((date - timeDiff2) / (1000 * 60 * 60));
+            const diffInDays = Math.floor((date - d) / (1000 * 60 ));
+            const diffInDays2 = Math.floor((date - timeDiff) / (1000 * 60 ));
+            const diffInDays3 = Math.floor((date - timeDiff2) / (1000 * 60 ));
             
 
             const milliseconds = (timeDiff - d.getTime())/60; //120 минут
