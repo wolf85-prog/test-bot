@@ -47,6 +47,7 @@ const sequelize = require('./bottest/connections/db')
 //const Project = require('./bottest/models/Project')
 const {Project} = require('./bottest/models/models');
 const getAllProjects = require("./bottest/common/getAllProjects");
+const getDatabaseId = require("./bottest/common/getDatabaseId");
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -269,11 +270,14 @@ bottest.on('message', async (msg) => {
 
             const arrProjects = await getAllProjects()
 
-            console.log(JSON.stringify(arrProjects))
-
-            const blockId = await getBlocks(projectId);
-            console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
-            databaseBlock = await getDatabaseId(blockId); 
+            //console.log(JSON.stringify(arrProjects))
+            arrProjects.forEach(async(item)=> {
+                const blockId = await getBlocks(item.id);
+                databaseBlock = await getDatabaseId(blockId);
+                
+                console.log("Массив дат: ", JSON.stringify(databaseBlock))
+            })
+             
         }
 //----------------------------------------------------------------------------------------------------------------      
         
