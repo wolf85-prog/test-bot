@@ -283,14 +283,15 @@ bottest.on('message', async (msg) => {
                         const obj = {
                             id: page.id,
                             name: page.name,
-                            datestart: page.datestart,
-                            crmID: page.crmID
+                            // datestart: page.datestart,
+                            // crmID: page.crmID
                         }
                         nowPorjectsArr.push(obj)
                     }
                 })
             })
-             
+            
+            console.log(JSON.stringify(nowPorjectsArr))
         }
 //----------------------------------------------------------------------------------------------------------------      
         
