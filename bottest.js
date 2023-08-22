@@ -46,6 +46,7 @@ const getProject = require("./bottest/common/getProject");
 const sequelize = require('./bottest/connections/db')
 //const Project = require('./bottest/models/Project')
 const {Project} = require('./bottest/models/models');
+const getAllProjects = require("./bottest/common/getAllProjects");
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -263,6 +264,17 @@ bottest.on('message', async (msg) => {
             });
         }
         
+        //получить дату с текущим месяцем
+        if (text.startsWith('/getNewProjects')) {
+
+            const arrProjects = await getAllProjects()
+
+            console.log(JSON.stringify(arrProjects))
+
+            const blockId = await getBlocks(projectId);
+            console.log("i: " + i + " " +  new Date() + " Проект2: " + project.name) 
+            databaseBlock = await getDatabaseId(blockId); 
+        }
 //----------------------------------------------------------------------------------------------------------------      
         
         //обработка сообщений    
