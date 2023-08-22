@@ -267,7 +267,7 @@ bottest.on('message', async (msg) => {
         
         //получить дату с текущим месяцем
         if (text.startsWith('/getNewProjects')) {
-            let nowPorjectsArr = []
+            let nowProjectsArr = []
             const d = new Date()
             const arrProjects = await getAllProjects()
 
@@ -278,21 +278,22 @@ bottest.on('message', async (msg) => {
                     databaseBlock = await getDatabaseId(blockId);  
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
-                            if (main.date > d) {
-                                const obj = {
-                                    id: page.id,
-                                    name: page.name,
-                                    // datestart: page.datestart,
-                                    // crmID: page.crmID
-                                }
-                                nowPorjectsArr.push(obj)
-                            }
+                            console.log(main)
+                            // if (main.date > d) {
+                            //     const obj = {
+                            //         id: page.id,
+                            //         name: page.name,
+                            //         // datestart: page.datestart,
+                            //         // crmID: page.crmID
+                            //     }
+                            //     nowProjectsArr.push(obj)
+                            // }
                         })
                     }
                 }
             })
             
-            console.log(JSON.stringify(nowPorjectsArr))
+            //console.log(JSON.stringify(nowProjectsArr))
         }
 //----------------------------------------------------------------------------------------------------------------      
         
