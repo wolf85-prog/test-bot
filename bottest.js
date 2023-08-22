@@ -276,18 +276,19 @@ bottest.on('message', async (msg) => {
                 const blockId = await getBlocks(page.id);
                 if (blockId) { 
                     databaseBlock = await getDatabaseId(blockId);  
-
-                    databaseBlock.map((main) => {
-                        if (main.date > d) {
-                            const obj = {
-                                id: page.id,
-                                name: page.name,
-                                // datestart: page.datestart,
-                                // crmID: page.crmID
+                    if (databaseBlock) {
+                        databaseBlock.map((main) => {
+                            if (main.date > d) {
+                                const obj = {
+                                    id: page.id,
+                                    name: page.name,
+                                    // datestart: page.datestart,
+                                    // crmID: page.crmID
+                                }
+                                nowPorjectsArr.push(obj)
                             }
-                            nowPorjectsArr.push(obj)
-                        }
-                    })
+                        })
+                    }
                 }
             })
             
