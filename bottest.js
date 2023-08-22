@@ -274,21 +274,21 @@ bottest.on('message', async (msg) => {
             //console.log(JSON.stringify(arrProjects))
             arrProjects.forEach(async(page)=> {
                 const blockId = await getBlocks(page.id);
-                databaseBlock = await getDatabaseId(blockId);
-                
-                //console.log("Массив дат: ", JSON.stringify(databaseBlock))
+                if (blockId) { 
+                    databaseBlock = await getDatabaseId(blockId);  
 
-                databaseBlock.forEach((main) => {
-                    if (main.date > d) {
-                        const obj = {
-                            id: page.id,
-                            name: page.name,
-                            // datestart: page.datestart,
-                            // crmID: page.crmID
+                    databaseBlock.map((main) => {
+                        if (main.date > d) {
+                            const obj = {
+                                id: page.id,
+                                name: page.name,
+                                // datestart: page.datestart,
+                                // crmID: page.crmID
+                            }
+                            nowPorjectsArr.push(obj)
                         }
-                        nowPorjectsArr.push(obj)
-                    }
-                })
+                    })
+                }
             })
             
             console.log(JSON.stringify(nowPorjectsArr))
