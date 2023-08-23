@@ -287,7 +287,7 @@ bottest.on('message', async (msg) => {
                         //     date: project.date,
                         // }
                         // arr.push(obj)
-                        databaseBlock.map(item => console.log(item))
+                        databaseBlock.map(item => console.log(item.date))
                         
                     }
                 }
