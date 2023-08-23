@@ -268,6 +268,7 @@ bottest.on('message', async (msg) => {
         //получить дату с текущим месяцем
         if (text.startsWith('/getNewProjects')) {
             let nowProjectsArr = []
+            let obj
             const d = new Date()
             const arrProjects = await getAllProjects()
 
@@ -280,7 +281,7 @@ bottest.on('message', async (msg) => {
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
                             if (new Date(main.date) > d) {
-                                const obj = {
+                                obj = {
                                     id: page.id,
                                     name: page.name,
                                     date: main.date,
