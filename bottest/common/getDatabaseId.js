@@ -18,7 +18,7 @@ module.exports = async function getDatabaseId(baseId) {
             };
         });
 
-        return response;
+        return responseResults;
     } catch (error) {
         //console.error(error.message)
     }
