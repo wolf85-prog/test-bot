@@ -283,6 +283,7 @@ bottest.on('message', async (msg) => {
                                 const obj = {
                                     id: page.id,
                                     name: page.name,
+                                    date: main.date,
                                 }
                                 //nowProjectsArr.push(obj)
                                 console.log(obj)
