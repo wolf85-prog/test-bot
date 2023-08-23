@@ -307,7 +307,10 @@ bottest.on('message', async (msg) => {
             //     console.log(arr)
             })
 
-            console.log("arr: ", arr)
+            setTimeout(()=>{
+                console.log("arr: ", arr)
+            }, 5000)
+            
         }
 //----------------------------------------------------------------------------------------------------------------      
         
