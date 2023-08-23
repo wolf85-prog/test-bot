@@ -284,20 +284,20 @@ bottest.on('message', async (msg) => {
                         //console.log(project.date)
                         // databaseBlock.map((main) => {
                         //     if (new Date(main.date) > d) {
-                                const obj = {
-                                    id: page.id,
-                                    name: page.name,
-                                    date: project.date,
-                                }
-                        //         arr.push(obj)
-                        console.log(obj)
+                        const obj = {
+                            id: page.id,
+                            name: page.name,
+                            date: project.date,
+                        }
+                        arr.push(obj)
+                        console.log(arr)
                         //     }           
                         // })
                     }
                 }
             })
             
-            console.log(arr)
+            //console.log(arr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
