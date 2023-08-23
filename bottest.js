@@ -277,7 +277,7 @@ bottest.on('message', async (msg) => {
             arrProjects.forEach(async(page)=> {
                 const blockId = await getBlocks(page.id);
                     if (blockId) { 
-                        //console.log(blockId)
+                        console.log(blockId)
                         arr.push(blockId) 
             //         databaseBlock = await getDatabaseId(blockId);  
             //         //console.log(databaseBlock)
@@ -307,7 +307,7 @@ bottest.on('message', async (msg) => {
             //     console.log(arr)
             })
 
-            console.log(arr)
+            console.log("arr: ", arr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
