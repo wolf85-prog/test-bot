@@ -280,27 +280,28 @@ bottest.on('message', async (msg) => {
                     
                     if (databaseBlock && databaseBlock?.length !== 0) {
                         //console.log(databaseBlock)
-                        // let project = databaseBlock.find(item => new Date(item?.date) >= d)
-                        // const obj = {
-                        //     id: page.id,
-                        //     name: page.name,
-                        //     date: project.date,
-                        // }
-                        // arr.push(obj)
-                        databaseBlock.map(item => {
-                            //console.log(item.date)
-                            if (new Date(item.date) >= d) {
-                                const obj = {
-                                    id: page.id,
-                                    name: page.name,
-                                    date: item.date,
-                                }
-                                arr.push(obj) 
-                            }
-                        })
-                        console.log(arr)
+                        let project = databaseBlock?.find(item => new Date(item.date) >= d)
+                        const obj = {
+                            id: page.id,
+                            name: page.name,
+                            date: project.date,
+                        }
+                        arr.push(obj)
+                        // databaseBlock.map(item => {
+                        //     //console.log(item.date)
+                        //     if (new Date(item.date) >= d) {
+                        //         const obj = {
+                        //             id: page.id,
+                        //             name: page.name,
+                        //             date: item.date,
+                        //         }
+                        //         arr.push(obj) 
+                        //     }
+                        // })
+                        //console.log(arr)
                     }
                 }
+                console.log(arr)
             })
         }
 //----------------------------------------------------------------------------------------------------------------      
