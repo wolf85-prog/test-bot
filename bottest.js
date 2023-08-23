@@ -271,38 +271,40 @@ bottest.on('message', async (msg) => {
             const d = new Date()
             const arrProjects = await getAllProjects()
 
+            console.log(arrProjects)
+
             //console.log(JSON.stringify(arrProjects))
-            arrProjects.forEach(async(page)=> {
-                const blockId = await getBlocks(page.id);
-                if (blockId) { 
-                    //console.log(blockId)
-                    databaseBlock = await getDatabaseId(blockId);  
-                    console.log(databaseBlock)
-                    if (databaseBlock && databaseBlock?.length !== 0) {
-                        //console.log(databaseBlock)
-                        let project = databaseBlock.find(item => new Date(item.date) >= d)
-                        const obj = {
-                            id: page.id,
-                            name: page.name,
-                            date: project.date,
-                        }
-                        arr.push(obj)
-                        // databaseBlock.map(item => {
-                        //     //console.log(item.date)
-                        //     if (new Date(item.date) >= d) {
-                        //         const obj = {
-                        //             id: page.id,
-                        //             name: page.name,
-                        //             date: item.date,
-                        //         }
-                        //         arr.push(obj) 
-                        //     }
-                        // })
-                        //console.log(arr)
-                    }
-                }
-                console.log(arr)
-            })
+            // arrProjects.forEach(async(page)=> {
+            //     const blockId = await getBlocks(page.id);
+            //     if (blockId) { 
+            //         //console.log(blockId)
+            //         databaseBlock = await getDatabaseId(blockId);  
+            //         //console.log(databaseBlock)
+            //         if (databaseBlock && databaseBlock?.length !== 0) {
+            //             //console.log(databaseBlock)
+            //             let project = databaseBlock.find(item => new Date(item.date) >= d)
+            //             const obj = {
+            //                 id: page.id,
+            //                 name: page.name,
+            //                 date: project.date,
+            //             }
+            //             arr.push(obj)
+            //             // databaseBlock.map(item => {
+            //             //     //console.log(item.date)
+            //             //     if (new Date(item.date) >= d) {
+            //             //         const obj = {
+            //             //             id: page.id,
+            //             //             name: page.name,
+            //             //             date: item.date,
+            //             //         }
+            //             //         arr.push(obj) 
+            //             //     }
+            //             // })
+            //             //console.log(arr)
+            //         }
+            //     }
+            //     console.log(arr)
+            // })
         }
 //----------------------------------------------------------------------------------------------------------------      
         
