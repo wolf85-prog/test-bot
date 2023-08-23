@@ -20,6 +20,6 @@ module.exports = async function getDatabaseId(baseId) {
 
         return responseResults;
     } catch (error) {
-        console.error(error.message)
+        //console.error(error.message)
     }
 }
