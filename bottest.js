@@ -279,6 +279,9 @@ bottest.on('message', async (msg) => {
                     databaseBlock = await getDatabaseId(blockId);  
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
+                            main.map((obj)=>{
+                                console.log(obj)
+                            })
                             //console.log(main[0])
                             //if (main && main.date > d) {
                                 // const obj = {
@@ -289,7 +292,7 @@ bottest.on('message', async (msg) => {
                                 //console.log(main[0].date)
                             //}           
                         })
-                        console.log(databaseBlock)
+                        //console.log(databaseBlock)
                     }
                 }
             })
