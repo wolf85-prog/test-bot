@@ -282,7 +282,7 @@ bottest.on('message', async (msg) => {
                             // main.map((obj)=>{
                             //     console.log(obj)
                             // })
-                            console.log(main)
+                            console.log(main.date)
                             //if (main && main.date > d) {
                                 // const obj = {
                                 //     id: page.id,
