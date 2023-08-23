@@ -271,13 +271,13 @@ bottest.on('message', async (msg) => {
             const d = new Date()
             const arrProjects = await getAllProjects()
 
-            console.log(arrProjects)
+            console.log("Запускаю фильтрацию проектов...")
 
             //console.log(JSON.stringify(arrProjects))
             arrProjects.forEach(async(page)=> {
                 const blockId = await getBlocks(page.id);
                     if (blockId) { 
-                        console.log(blockId)
+                        //console.log(blockId)
                         arr.push(blockId) 
             //         databaseBlock = await getDatabaseId(blockId);  
             //         //console.log(databaseBlock)
