@@ -277,10 +277,10 @@ bottest.on('message', async (msg) => {
                 if (blockId) { 
                     //console.log(blockId)
                     databaseBlock = await getDatabaseId(blockId);  
-                    
+                    console.log(databaseBlock)
                     if (databaseBlock && databaseBlock?.length !== 0) {
                         //console.log(databaseBlock)
-                        let project = databaseBlock?.find(item => new Date(item.date) >= d)
+                        let project = databaseBlock.find(item => new Date(item.date) >= d)
                         const obj = {
                             id: page.id,
                             name: page.name,
@@ -301,7 +301,7 @@ bottest.on('message', async (msg) => {
                         //console.log(arr)
                     }
                 }
-                console.log(arr)
+                //console.log(arr)
             })
         }
 //----------------------------------------------------------------------------------------------------------------      
