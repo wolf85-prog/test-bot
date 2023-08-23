@@ -279,19 +279,13 @@ bottest.on('message', async (msg) => {
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
                             console.log(main)
-                            // const obj = {
-                            //     id: page.id,
-                            //     name: page.name,
-                            // }
-                            // main.map((item)=>{
-                            //     if (item.date > d) {
-                            //         const obj = {
-                            //             id: page.id,
-                            //             name: page.name,
-                            //         }
-                            //         nowProjectsArr.push(obj)
-                            //     }
-                            // })       
+                            if (main?.date > d) {
+                                const obj = {
+                                    id: main.id,
+                                    name: main.name,
+                                }
+                                nowProjectsArr.push(obj)
+                            }       
                             
                         })
                     }
