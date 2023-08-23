@@ -283,7 +283,7 @@ bottest.on('message', async (msg) => {
                             //     console.log(obj)
                             // })
                             //console.log(main.date)
-                            if (main.date > d) {
+                            if (new Date(main.date) > d) {
                                 // const obj = {
                                 //     id: page.id,
                                 //     name: page.name,
