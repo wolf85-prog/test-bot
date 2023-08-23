@@ -275,7 +275,7 @@ bottest.on('message', async (msg) => {
             arrProjects.forEach(async(page)=> {
                 const blockId = await getBlocks(page.id);
                 if (blockId) { 
-                    console.log(blockId)
+                    //console.log(blockId)
                     databaseBlock = await getDatabaseId(blockId);  
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
@@ -287,10 +287,9 @@ bottest.on('message', async (msg) => {
                                 // }
                                 //nowProjectsArr.push(obj)
                                 //console.log(main[0].date)
-                            //}       
-                            
+                            //}           
                         })
-                        
+                        console.log(databaseBlock)
                     }
                 }
             })
