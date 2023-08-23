@@ -279,10 +279,10 @@ bottest.on('message', async (msg) => {
                     databaseBlock = await getDatabaseId(blockId);  
                     if (databaseBlock) {
                         databaseBlock.map((main) => {
-                            main.map((obj)=>{
-                                console.log(obj)
-                            })
-                            //console.log(main[0])
+                            // main.map((obj)=>{
+                            //     console.log(obj)
+                            // })
+                            console.log(main)
                             //if (main && main.date > d) {
                                 // const obj = {
                                 //     id: page.id,
