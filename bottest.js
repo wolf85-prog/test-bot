@@ -274,10 +274,11 @@ bottest.on('message', async (msg) => {
             console.log(arrProjects)
 
             //console.log(JSON.stringify(arrProjects))
-            // arrProjects.forEach(async(page)=> {
-            //     const blockId = await getBlocks(page.id);
-            //     if (blockId) { 
-            //         //console.log(blockId)
+            arrProjects.forEach(async(page)=> {
+                const blockId = await getBlocks(page.id);
+                    if (blockId) { 
+                        //console.log(blockId)
+                        arr.push(blockId) 
             //         databaseBlock = await getDatabaseId(blockId);  
             //         //console.log(databaseBlock)
             //         if (databaseBlock && databaseBlock?.length !== 0) {
@@ -302,9 +303,11 @@ bottest.on('message', async (msg) => {
             //             // })
             //             //console.log(arr)
             //         }
-            //     }
+                    }
             //     console.log(arr)
-            // })
+            })
+
+            console.log(arr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
