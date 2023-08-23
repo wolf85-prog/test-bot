@@ -267,8 +267,7 @@ bottest.on('message', async (msg) => {
         
         //получить дату с текущим месяцем
         if (text.startsWith('/getNewProjects')) {
-            let nowProjectsArr = []
-            let obj
+            let arr = []
             const d = new Date()
             const arrProjects = await getAllProjects()
 
@@ -279,22 +278,25 @@ bottest.on('message', async (msg) => {
                     //console.log(blockId)
                     databaseBlock = await getDatabaseId(blockId);  
                     if (databaseBlock) {
-                        databaseBlock.map((main) => {
-                            if (new Date(main.date) > d) {
-                                obj = {
-                                    id: page.id,
-                                    name: page.name,
-                                    date: main.date,
-                                }
-                                nowProjectsArr.push(obj)
-                                //console.log(obj)
-                            }           
-                        })
+
+                        let project = databaseBlock.find(item => new Date(item.date) >= d)
+                        arr.push(project)
+                        // databaseBlock.map((main) => {
+                        //     if (new Date(main.date) > d) {
+                        //         const obj = {
+                        //             id: page.id,
+                        //             name: page.name,
+                        //             date: main.date,
+                        //         }
+                        //         arr.push(obj)
+                        //         //console.log(obj)
+                        //     }           
+                        // })
                     }
                 }
             })
             
-            console.log(nowProjectsArr)
+            console.log(arr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
