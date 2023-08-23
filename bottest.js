@@ -284,14 +284,15 @@ bottest.on('message', async (msg) => {
                                     id: page.id,
                                     name: page.name,
                                 }
-                                nowProjectsArr.push(obj)
+                                //nowProjectsArr.push(obj)
+                                console.log(obj)
                             }           
                         })
                     }
                 }
             })
             
-            console.log(nowProjectsArr)
+            //console.log(nowProjectsArr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
