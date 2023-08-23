@@ -280,7 +280,8 @@ bottest.on('message', async (msg) => {
                     if (databaseBlock) {
 
                         let project = databaseBlock.find(item => new Date(item.date) >= d)
-                        arr.push(project)
+                        //arr.push(project)
+                        console.log(project)
                         // databaseBlock.map((main) => {
                         //     if (new Date(main.date) > d) {
                         //         const obj = {
