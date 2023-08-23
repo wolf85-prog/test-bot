@@ -285,15 +285,15 @@ bottest.on('message', async (msg) => {
                                     name: page.name,
                                     date: main.date,
                                 }
-                                //nowProjectsArr.push(obj)
-                                console.log(obj)
+                                nowProjectsArr.push(obj)
+                                //console.log(obj)
                             }           
                         })
                     }
                 }
             })
             
-            //console.log(nowProjectsArr)
+            console.log(nowProjectsArr)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
