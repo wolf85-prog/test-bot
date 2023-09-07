@@ -9,6 +9,7 @@ const blockController = require('../controllers/blockController')
 const blockEquipmentController = require('../controllers/blockEquipmentController')
 const addressController = require('../controllers/addressController')
 const workerController = require('../controllers/workerController')
+const smetaController = require('../controllers/smetaController')
 
 router.get('/secret', secretController.secretInfo)
 
@@ -67,5 +68,9 @@ router.get("/address", addressController.address);
 router.get("/workers", workerController.workers);
 router.get("/workers2", workerController.workers2);
 router.get("/workers/chat/:id", workerController.workersChatId);
+
+//-----------------СМЕТЫ ВСЕХ ПРОЕКТОВ МИРА-------------------------
+//get SMETS
+router.get('/smeta', smetaController.smeta)
 
 module.exports = router
