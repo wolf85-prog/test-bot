@@ -18,7 +18,7 @@ async function getSmeta() {
             };
         });
 
-        return responseResults;
+        return response;
     } catch (error) {
         console.error(error.message)
     }
