@@ -72,5 +72,6 @@ router.get("/workers/chat/:id", workerController.workersChatId);
 //-----------------СМЕТЫ ВСЕХ ПРОЕКТОВ МИРА-------------------------
 //get SMETS
 router.get('/smeta', smetaController.smeta)
+router.get('/smeta/:id', smetaController.smetaId)
 
 module.exports = router

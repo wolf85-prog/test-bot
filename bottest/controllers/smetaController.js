@@ -24,11 +24,36 @@ async function getSmeta() {
     }
 }
 
+//получить id сметы (страницы)
+async function getSmetaId(id) {
+    try {
+        const response = await notion.databases.query({
+            database_id: databaseSmetaId, 
+            "filter": {
+                "property": "Проект",
+                "relation": {
+                    "contains": id
+                }
+            }
+        });
+        console.log("SmetaId: ", response.results[0].id)
+        return response.results[0].id;
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
 class SmetaController {
     
     async smeta(req, res) {
         const smeta = await getSmeta();
         res.json(smeta);
+    }
+
+    async smetaId(req, res) {
+        const id = req.params.id; // получаем id
+        const page = await getSmetaId(id);
+        res.json(page);
     }
 
 }
