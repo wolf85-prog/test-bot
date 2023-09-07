@@ -9,23 +9,16 @@ async function getSmeta() {
             database_id: databaseSmetaId
         });
 
-        // const responseResults = response.results.map((page) => {
-        //     return {
-        //        id: page.id,
-        //        title: page.properties.Name.title[0]?.plain_text,
-        //        time: page.properties["Дата"].date,
-        //        time_start: page.properties["Дата"].date.start,
-        //        time_created: page.created_time,
-        //        geo: '', //page.properties.Address.rollup.array,
-        //        teh: page.properties["Тех. задание"].rich_text,
-        //        status_id: page.properties["Статус проекта"].select,
-        //        manager: page.properties["Менеджер"].relation[0]?.id,
-        //        company: page.properties["Компания"].relation[0]?.id,
-        //        worklist:'',
-        //     };
-        // });
+        const responseResults = response.results.map((page) => {
+            return {
+               id: page.id,
+               project: page.properties["Проект"].relation[0]?.id,
+               final: page.properties["Финал. смета"].status.id,
+               pre: page.properties["Пред. смета"].status.id,
+            };
+        });
 
-        return response;
+        return responseResults;
     } catch (error) {
         console.error(error.message)
     }
