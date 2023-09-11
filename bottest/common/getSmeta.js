@@ -16,7 +16,7 @@ module.exports = async function getSmeta(projectId) {
                 }
             }
         });
-        console.log("SmetaId: ", response.results[0].id)
+        console.log("SmetaId: ", response)
         return response.results[0].id;
     } catch (error) {
         console.error(error.message)
