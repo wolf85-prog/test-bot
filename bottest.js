@@ -187,6 +187,15 @@ bottest.on('message', async (msg) => {
             }
         }
 
+        if (text.startsWith('/getProj')) {
+            const projectId = data.split(' ');
+            console.log("projectId: ", projectId[1])
+            console.log("Начинаю обрабатывать запрос подтверждения финальной сметы...")
+
+            const crmId = await getProject(projectId[1])
+            console.log(crmId)
+        }
+
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
