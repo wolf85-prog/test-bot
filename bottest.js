@@ -119,7 +119,6 @@ bottest.on('message', async (msg) => {
             const projectId = text.split(' ');
             //найти смету по свойству Проект
             const smetaId = await getSmeta(projectId[1])
-            console.log(smetaId)
         }
 
         // startreports {id проекта}
