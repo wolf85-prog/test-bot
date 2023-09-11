@@ -116,7 +116,7 @@ bottest.on('message', async (msg) => {
         }
 
         if (text === 'getSmeta') {
-            const projectId = data.split(' ');
+            const projectId = text.split(' ');
             //найти смету по свойству Проект
             const smetaId = await getSmeta(projectId[1])
             console.log(smetaId)
