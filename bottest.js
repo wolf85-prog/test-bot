@@ -49,6 +49,7 @@ const sequelize = require('./bottest/connections/db')
 const {Project} = require('./bottest/models/models');
 const getAllProjects = require("./bottest/common/getAllProjects");
 const getDatabaseId = require("./bottest/common/getDatabaseId");
+const updateSmetaFinal = require("./bottest/common/updateSmetaFinal");
 
 // Certificate
 const privateKey = fs.readFileSync('privkey.pem', 'utf8'); //fs.readFileSync('/etc/letsencrypt/live/proj.uley.team/privkey.pem', 'utf8');
@@ -120,6 +121,9 @@ bottest.on('message', async (msg) => {
             const projectId = text.split(' ');
             //найти смету по свойству Проект
             const smetaId = await getSmeta(projectId[1])
+
+            //изменить тег в таб. Сметы в поле Финал. смета на Подтверждена
+            await updateSmetaFinal(smetaId)
         }
 
         // startreports {id проекта}
