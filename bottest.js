@@ -192,8 +192,8 @@ bottest.on('message', async (msg) => {
             console.log("projectId: ", projectId[1])
             console.log("Начинаю обрабатывать запрос подтверждения финальной сметы...")
 
-            const crmId = await getProject(projectId[1])
-            console.log(crmId)
+            //const crmId = await getProject(projectId[1])
+            //console.log(crmId)
         }
 
 
