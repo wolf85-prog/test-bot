@@ -122,6 +122,15 @@ bottest.on('message', async (msg) => {
             //найти смету по свойству Проект
             const smetaId = await getSmeta(projectId[1])
 
+            const block1 = await getBlocks(projectId[1])
+            console.log("block1: ", block1.results[0].id) //первый объект (to do)
+            
+            const block2 = await getBlocks(block1.results[0].id)
+            console.log("block2: ", block2.results[1].id) //второй объект (калькулятор и финальная смета)
+            
+            const block3 = await getBlocks(block2.results[1].id)
+            console.log("checked: ", block3.results[1].to_do.checked) // второй объект (финальная смета)
+
             //изменить тег в таб. Сметы в поле Финал. смета на Подтверждена
             await updateSmetaFinal(smetaId)
         }
