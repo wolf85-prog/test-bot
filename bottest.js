@@ -104,13 +104,13 @@ bottest.on('message', async (msg) => {
         if (text === '/addtable') {
             const projectId = 'e04586a0-94ae-49fb-bb69-ea3cf250bc09';
             const block1 = await getBlocks(projectId)
-            console.log(block1.results[0].id)
+            console.log("block1: ", block1.results[0].id)
             
             const block2 = await getBlocks(block1.results[0].id)
-            console.log(block2.results[0].id)
+            console.log("block2: ", block2.results[0].id)
             
             const block3 = await getBlocks(block2.results[0].id)
-            console.log(block3.results[0].id)
+            console.log("block3: ", block3.results[0].id)
  
             await addDate(block3.results[0].id);
         }
