@@ -96,13 +96,13 @@ bottest.on('message', async (msg) => {
 
         // команда Добавить таблицу Претенденты
         if (text === '/addpretendents') {
-            const project_id = 'e9fcd9a3-726f-4ae7-bc01-a9d2c84a3e0e'; 
+            const project_id = 'e04586a0-94ae-49fb-bb69-ea3cf250bc09'; 
             await newDatabase5(project_id);
         }
 
         // команда Добавить галочку в таблицу Предварительная смета
         if (text === '/addtable') {
-            const projectId = 'dbd0cc0d-6c66-4df7-9df8-f46e60b68fad';
+            const projectId = 'e04586a0-94ae-49fb-bb69-ea3cf250bc09';
             const block1 = await getBlocks(projectId)
             console.log(block1.results[0].id)
             

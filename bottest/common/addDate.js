@@ -10,10 +10,10 @@ module.exports = async function addDate(blockId) {
             "block_id": blockId,
             "to_do": {
                 "text": [{ 
-                  "text": { "content": "Предварительная смета" } 
+                  "text": { "content": "Финальная смета" } 
                   }],
                 "checked": true
-              }
+            }
         })
         //console.log(response)
         console.log("Смета обновлена!") //+ JSON.stringify(response))
