@@ -95,7 +95,6 @@ bottest.on('message', async (msg) => {
             })
         } 
 
-
         // команда Добавить таблицу Претенденты
         if (text === '/addpretendents') {
             const project_id = 'e04586a0-94ae-49fb-bb69-ea3cf250bc09'; 
@@ -145,6 +144,7 @@ bottest.on('message', async (msg) => {
             getReports(project2, bottest)
             
         }
+
         // startreports {id проекта}
         if(text.startsWith('/getProject')) {
             const project = text.split(' ');
@@ -215,7 +215,6 @@ bottest.on('message', async (msg) => {
             const crmId = await getProject(projectId[1])
             console.log(crmId)
         }
-
 
         //получить дату с текущим месяцем
         if (text.startsWith('/getDate')) {
