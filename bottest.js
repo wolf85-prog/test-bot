@@ -842,9 +842,9 @@ const start = async () => {
 
 
             // начало цикла получение списка рассылок из планировщика         
-            // setInterval(async() => {              
-            //     getDistributionsPlan()
-            // }, 120000) //каждые 2 минуты);   
+            setInterval(async() => {              
+                getDistributionsPlan()
+            }, 120000) //каждые 2 минуты);   
         });
 
     } catch (error) {
