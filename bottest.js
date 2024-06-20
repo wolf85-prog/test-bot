@@ -36,6 +36,8 @@ const $host = axios.create({
 const {io} = require("socket.io-client")
 const socketUrl = process.env.SOCKET_APP_URL
 
+let tasks = []
+
 //планировщик
 var cron = require('node-cron');
 
@@ -840,9 +842,9 @@ const start = async () => {
 
 
             // начало цикла получение списка рассылок из планировщика         
-            setInterval(async() => {              
-                getDistributionsPlan()
-            }, 120000) //каждые 2 минуты);   
+            // setInterval(async() => {              
+            //     getDistributionsPlan()
+            // }, 120000) //каждые 2 минуты);   
         });
 
     } catch (error) {
