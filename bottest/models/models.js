@@ -51,6 +51,27 @@ const Distribution = sequelize.define('distribution', {
     delivered: {type: DataTypes.BOOLEAN}, //доставлено
 })
 
+const Distributionw = sequelize.define('distributionw', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}, 
+    text: {type: DataTypes.STRING}, //текст сообщения;
+    image: {type: DataTypes.STRING}, //ссылка на картинку;
+    project: {type: DataTypes.STRING}, //проект (название);
+    receivers: {type: DataTypes.STRING}, //массив получателей;
+    datestart: {type: DataTypes.STRING},  //дата начала рассылки
+    delivered: {type: DataTypes.BOOLEAN}, //доставлено
+    projectId: {type: DataTypes.STRING}, //проект (id);
+    count: {type: DataTypes.INTEGER}, 
+    date: {type: DataTypes.STRING},  //дата начала рассылки  
+    users: {type: DataTypes.TEXT},
+    button: {type: DataTypes.STRING}, //текст кнопки;
+    uuid: {type: DataTypes.STRING}, //индекс рассылки;
+    success: {type: DataTypes.INTEGER}, 
+    report: {type: DataTypes.TEXT},
+    editButton: {type: DataTypes.BOOLEAN}, //редактируемая кнопка
+    stavka: {type: DataTypes.BOOLEAN}, //альтернативная ставка кнопка
+    target: {type: DataTypes.STRING}, //ссылка;
+})
+
 const Report = sequelize.define('report', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}, 
     name: {type: DataTypes.STRING},  //название проекта
@@ -73,6 +94,7 @@ module.exports = {
     Conversation, 
     Project, 
     Distribution,
+    Distributionw,
     Report,
     //Task,
 }

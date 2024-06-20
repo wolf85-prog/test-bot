@@ -10,6 +10,7 @@ const blockEquipmentController = require('../controllers/blockEquipmentControlle
 const addressController = require('../controllers/addressController')
 const workerController = require('../controllers/workerController')
 const smetaController = require('../controllers/smetaController')
+const distributionController = require('../controllers/distributionController')
 
 router.get('/secret', secretController.secretInfo)
 
@@ -73,5 +74,8 @@ router.get("/workers/chat/:id", workerController.workersChatId);
 //get SMETS
 router.get('/smeta', smetaController.smeta)
 router.get('/smeta/:id', smetaController.smetaId)
+
+//-----------------Отправка рассылки из админки специалистам---------
+router.get('/distributionsw/send/:id', distributionController.sendDistribW)
 
 module.exports = router
