@@ -7,7 +7,7 @@ const { Op } = require('sequelize')
 //const fetch = require('node-fetch');
 const axios = require("axios");
 
-const token = process.env.TELEGRAM_API_TOKEN
+const token = process.env.TELEGRAM_API_TOKEN_WORK
 const chatAdminId = process.env.CHAT_ID
 
 const $host = axios.create({
