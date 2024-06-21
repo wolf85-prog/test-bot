@@ -58,7 +58,7 @@ const getSmeta = require("./bottest/common/getSmeta");
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
-const {Project, Distributionw} = require('./bottest/models/models');
+const {Plan, Project, Distributionw} = require('./bottest/models/models');
 const {Message, Conversation, Worker} = require('./bottest/models/workers')
 const getAllProjects = require("./bottest/common/getAllProjects");
 const getDatabaseId = require("./bottest/common/getDatabaseId");
