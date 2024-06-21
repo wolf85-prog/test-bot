@@ -26,6 +26,7 @@ const databaseManagerId = process.env.NOTION_DATABASE_MANAGER_ID
 
 const host = process.env.REACT_APP_API_URL
 const chatTelegramId = process.env.CHAT_ID
+const chatAdminId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
 const botApiUrl = process.env.REACT_APP_API_URL;
 
