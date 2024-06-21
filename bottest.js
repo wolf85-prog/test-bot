@@ -10,6 +10,7 @@ const router = require('./bottest/routes/index')
 const {menuOptions, backOptions} = require('./options')
 const path = require('path')
 const axios = require("axios");
+const { Op } = require('sequelize')
 
 const token = process.env.TELEGRAM_API_TOKEN
 const token2 = process.env.TELEGRAM_API_TOKEN_WORK
