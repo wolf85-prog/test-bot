@@ -22,7 +22,7 @@ class DistributionController {
 
     //send message
     async sendDistribW(req, res) {
-        const {id, type} = req.params  
+        const {id} = req.params  
         let arrUsers = []
         let countSuccess = 0
 
