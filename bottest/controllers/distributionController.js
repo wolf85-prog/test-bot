@@ -195,6 +195,14 @@ class DistributionController {
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendDocument?chat_id=${user}&document=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
                                 console.log("url_send_photo2: ", url_send_photo)
                             }
+                            else if (type === 3) { 
+                                url_send_photo = `https://api.telegram.org/bot${token}/sendAudio?chat_id=${user}&audio=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
+                                console.log("url_send_photo2: ", url_send_photo)
+                            }
+                            else if (type === 4) { 
+                                url_send_photo = `https://api.telegram.org/bot${token}/sendVideo?chat_id=${user}&video=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
+                                console.log("url_send_photo2: ", url_send_photo)
+                            }
                             else {
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendDocument?chat_id=${user}&document=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
                                 console.log("url_send_photo2: ", url_send_photo)

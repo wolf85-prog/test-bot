@@ -725,6 +725,14 @@ const getDistributionsPlan = async() => {
                                     url_send_photo = `https://api.telegram.org/bot${token2}/sendDocument?chat_id=${user}&document=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
                                     console.log("url_send_photo2: ", url_send_photo)
                                 }
+                                else if (item.type === 3) { 
+                                    url_send_photo = `https://api.telegram.org/bot${token2}/sendAudio?chat_id=${user}&audio=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
+                                    console.log("url_send_photo2: ", url_send_photo)
+                                }
+                                else if (item.type === 4) { 
+                                    url_send_photo = `https://api.telegram.org/bot${token2}/sendVideo?chat_id=${user}&video=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
+                                    console.log("url_send_photo2: ", url_send_photo)
+                                }
                                 else {
                                     url_send_photo = `https://api.telegram.org/bot${token2}/sendDocument?chat_id=${user}&document=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
                                     console.log("url_send_photo2: ", url_send_photo)
