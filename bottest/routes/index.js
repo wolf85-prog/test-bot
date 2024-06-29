@@ -76,7 +76,7 @@ router.get('/smeta', smetaController.smeta)
 router.get('/smeta/:id', smetaController.smetaId)
 
 //-----------------Отправка рассылки из админки специалистам---------
-//router.get('/distributionsw/send/:id/:type', distributionController.sendDistribW)
-router.get('/distributionsw/send/:id', distributionController.sendDistribW)
+router.get('/distributionsw/send/:id/:type', distributionController.sendDistribW)
+//router.get('/distributionsw/send/:id', distributionController.sendDistribW)
 
 module.exports = router
