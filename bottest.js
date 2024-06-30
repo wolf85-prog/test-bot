@@ -734,7 +734,7 @@ const getDistributionsPlan = async() => {
                                     console.log("url_send_photo2: ", url_send_photo)
                                 }
                                 else {
-                                    url_send_photo = `https://api.telegram.org/bot${token2}/sendDocument?chat_id=${user}&document=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
+                                    url_send_photo = `https://api.telegram.org/bot${token2}/sendPhoto?chat_id=${user}&photo=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
                                     console.log("url_send_photo2: ", url_send_photo)
                                 }
 

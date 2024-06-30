@@ -204,7 +204,7 @@ class DistributionController {
                                 console.log("url_send_photo2: ", url_send_photo)
                             }
                             else {
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendDocument?chat_id=${user}&document=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
+                                url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
                                 console.log("url_send_photo2: ", url_send_photo)
                             }
                           
