@@ -23,6 +23,7 @@ class DistributionController {
     //send message
     async sendDistribW(req, res) {
         const {id, type} = req.params  
+        console.log("id, type: ", id, type)
         let arrUsers = []
         let countSuccess = 0
 
