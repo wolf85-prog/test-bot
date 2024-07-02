@@ -833,6 +833,7 @@ const getDistributionsPlan = async() => {
 
 //отправить сообщение из админки workhub
 const addNewMessage2 = (userId, message, type, textButton, convId, messageId, isBot, socket) => {
+    socket.emit("addUser", userId)
       
     //отправить сообщение в админку
 	socket.emit("sendAdminSpec", { 

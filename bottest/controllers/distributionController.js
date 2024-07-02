@@ -282,7 +282,8 @@ class DistributionController {
                         await Message.create(message)
 
                         //сохранить в контексте
-                        if(!image) {                         
+                        if(!image) {  
+                            socket.emit("addUser", user)                       
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
                                 senderId: chatAdminId,
@@ -295,6 +296,7 @@ class DistributionController {
                                 isBot: true,
                             })
                         } else {
+                            socket.emit("addUser", user)
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
                                 senderId: chatAdminId,
