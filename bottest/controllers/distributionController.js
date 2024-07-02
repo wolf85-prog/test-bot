@@ -46,6 +46,9 @@ class DistributionController {
 
             //console.log("selected: ", selected)
 
+            // Подключаемся к серверу socket
+            let socket = io(socketUrl);
+
             selected.map(async (user, index) => {      
                 setTimeout(async()=> { 
                 
@@ -279,9 +282,8 @@ class DistributionController {
 
                         //сохранить в контексте
                         if(!image) {
-                            // Подключаемся к серверу socket
-                            let socket = io(socketUrl);
-                            socket.emit("addUser", user)
+                            
+                           // socket.emit("addUser", user)
                             
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
@@ -296,8 +298,8 @@ class DistributionController {
                             })
                         } else {
                             // Подключаемся к серверу socket
-                            let socket = io(socketUrl);
-                            socket.emit("addUser", user)
+                            // let socket = io(socketUrl);
+                            // socket.emit("addUser", user)
                             
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
