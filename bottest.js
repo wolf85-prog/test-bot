@@ -497,10 +497,6 @@ const getDistributionsPlan = async() => {
 
     //console.log("Запускаю планировщик задач...")
 
-    // Подключаемся к серверу socket
-    let socket = io(socketUrl);
-    //socket.emit("addUser", userId)
-
     //получить запланированные рассылки
     const distributions = await Distributionw.findAll({
         order: [
@@ -814,9 +810,9 @@ const getDistributionsPlan = async() => {
 
                         //сохранить в контексте
                         if(!item.image) {
-                            addNewMessage2(user, item.text, 'text', '', conversation_id, sendToTelegram.data?.result?.message_id, true, socket);
+                            addNewMessage2(user, item.text, 'text', '', conversation_id, sendToTelegram.data?.result?.message_id, true);
                         } else {
-                            addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
+                            addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true);
                         }
                     } // end if block  
                     
@@ -832,7 +828,10 @@ const getDistributionsPlan = async() => {
 }
 
 //отправить сообщение из админки workhub
-const addNewMessage2 = (userId, message, type, textButton, convId, messageId, isBot, socket) => {
+const addNewMessage2 = (userId, message, type, textButton, convId, messageId, isBot) => {
+
+    // Подключаемся к серверу socket
+    let socket = io(socketUrl);
     socket.emit("addUser", userId)
       
     //отправить сообщение в админку

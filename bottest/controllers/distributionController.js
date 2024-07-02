@@ -23,13 +23,9 @@ class DistributionController {
     //send message
     async sendDistribW(req, res) {
         const {id, type} = req.params  
-
+        console.log("id, type: ", id, type)
         let arrUsers = []
         let countSuccess = 0
-
-        // Подключаемся к серверу socket
-        let socket = io(socketUrl);
-        //socket.emit("addUser", user)
 
         try {
             let exist=await Distributionw.findOne( {where: {id: id}} )
@@ -282,8 +278,11 @@ class DistributionController {
                         await Message.create(message)
 
                         //сохранить в контексте
-                        if(!image) {  
-                            socket.emit("addUser", user)                       
+                        if(!image) {
+                            // Подключаемся к серверу socket
+                            let socket = io(socketUrl);
+                            socket.emit("addUser", user)
+                            
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
                                 senderId: chatAdminId,
@@ -296,7 +295,10 @@ class DistributionController {
                                 isBot: true,
                             })
                         } else {
+                            // Подключаемся к серверу socket
+                            let socket = io(socketUrl);
                             socket.emit("addUser", user)
+                            
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
                                 senderId: chatAdminId,
