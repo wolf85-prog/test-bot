@@ -315,7 +315,7 @@ class DistributionController {
                         }
                     }  
 
-                    if (ind === (objPlan.users.length-1)) {
+                    if (index === (selected.length-1)) {
                         //обновить бд рассылку
                         const newDistrib = await Distributionw.update(
                             { delivered: true,
