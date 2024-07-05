@@ -824,15 +824,15 @@ const getDistributionsPlan = async() => {
                 
                 })
 
-            }, milliseconds)
+                //обновить бд рассылку
+                // const newDistrib = await Distributionw.update(
+                //     { delivered: true,
+                //         report: JSON.stringify(arrUsers),  
+                //         success: countSuccess},
+                //     { where: {id: item.id} }
+                // )
 
-            //обновить бд рассылку
-            // const newDistrib = await Distributionw.update(
-            //     { delivered: true,
-            //         report: JSON.stringify(arrUsers),  
-            //         success: countSuccess},
-            //     { where: {id: item.id} }
-            // )
+            }, milliseconds)
 
             tasks.push(timerId)
         } 
