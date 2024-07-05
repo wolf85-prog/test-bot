@@ -712,12 +712,12 @@ const getDistributionsPlan = async() => {
 
 
                                         //обновить бд рассылку
-                                        const newDistrib = await Distributionw.update(
-                                            { delivered: true,
-                                                report: JSON.stringify(arrUsers),  
-                                                success: countSuccess},
-                                            { where: {id: item.id} }
-                                        )
+                                        // const newDistrib = await Distributionw.update(
+                                        //     { delivered: true,
+                                        //         report: JSON.stringify(arrUsers),  
+                                        //         success: countSuccess},
+                                        //     { where: {id: item.id} }
+                                        // )
                                     }
                                 } else {
                                     if (item.type === 1) {
@@ -766,12 +766,12 @@ const getDistributionsPlan = async() => {
 
 
                                         // //обновить бд рассылку
-                                        const newDistrib = await Distributionw.update(
-                                            { delivered: true,
-                                                report: JSON.stringify(arrUsers),  
-                                                success: countSuccess},
-                                            { where: {id: item.id} }
-                                        )
+                                        // const newDistrib = await Distributionw.update(
+                                        //     { delivered: true,
+                                        //         report: JSON.stringify(arrUsers),  
+                                        //         success: countSuccess},
+                                        //     { where: {id: item.id} }
+                                        // )
                                     }
                                 }
                             
@@ -820,15 +820,15 @@ const getDistributionsPlan = async() => {
                             }
                         } // end if block 
                         
-                        // if (ind === (objPlan.users.length-1)) {
-                        //     //обновить бд рассылку
-                        //     const newDistrib = await Distributionw.update(
-                        //         { delivered: true,
-                        //             report: JSON.stringify(arrUsers),  
-                        //             success: countSuccess},
-                        //         { where: {id: item.id} }
-                        //     )
-                        // }
+                        if (ind === objPlan.users.length) {
+                            //обновить бд рассылку
+                            const newDistrib = await Distributionw.update(
+                                { delivered: true,
+                                    report: JSON.stringify(arrUsers),  
+                                    success: countSuccess},
+                                { where: {id: item.id} }
+                            )
+                        }
                         
                     }, 1000 * ++ind) 
                 
