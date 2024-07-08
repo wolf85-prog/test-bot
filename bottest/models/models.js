@@ -94,6 +94,14 @@ const Plan = sequelize.define('plan', {
 //     projectId: {type: DataTypes.STRING},
 // })
 
+const SoundNotif = sequelize.define('soundnotifs', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}, 
+    name: {type: DataTypes.STRING},  //название проекта
+    text: {type: DataTypes.STRING}, //текст сообщения;
+    date: {type: DataTypes.STRING},  //дата отправки отчета
+    delivered: {type: DataTypes.BOOLEAN}, //доставлено
+})
+
 
 module.exports = {
     UserBot, 
@@ -104,5 +112,6 @@ module.exports = {
     Distributionw,
     Report,
     Plan,
+    SoundNotif,
     //Task,
 }

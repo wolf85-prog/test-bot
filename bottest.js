@@ -59,7 +59,7 @@ const getSmeta = require("./bottest/common/getSmeta");
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
-const {Plan, Project, Distributionw} = require('./bottest/models/models');
+const {Plan, Project, Distributionw, SoundNotif} = require('./bottest/models/models');
 const {Message, Conversation, Worker} = require('./bottest/models/workers')
 const getAllProjects = require("./bottest/common/getAllProjects");
 const getDatabaseId = require("./bottest/common/getDatabaseId");
@@ -337,6 +337,18 @@ bottest.on('message', async (msg) => {
                 console.log("arr: ", arr)
             }, 5000)
             
+        }
+
+        //удалить старые записи из таблицы SoundNotif
+        if (text === 'delnotif') {
+            const daysAgo30 = new Date(new Date().setDate(new Date().getDate() - 30));
+            const res = SoundNotif.destroy({
+                where: {
+                    createdAt: {
+                        [Op.lt]: daysAgo30
+                    }
+                }
+            })
         }
 //----------------------------------------------------------------------------------------------------------------      
         
