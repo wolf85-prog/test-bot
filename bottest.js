@@ -340,7 +340,7 @@ bottest.on('message', async (msg) => {
         }
 
         //удалить старые записи из таблицы SoundNotif
-        if (text === 'delnotif') {
+        if (text === '/delnotif') {
             const daysAgo30 = new Date(new Date().setDate(new Date().getDate() - 30));
             const res = SoundNotif.destroy({
                 where: {
@@ -349,6 +349,7 @@ bottest.on('message', async (msg) => {
                     }
                 }
             })
+            console.log(res)
         }
 //----------------------------------------------------------------------------------------------------------------      
         
