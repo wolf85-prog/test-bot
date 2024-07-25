@@ -12,6 +12,9 @@ const path = require('path')
 const axios = require("axios");
 const { Op } = require('sequelize')
 
+//мониторинг
+const statusMonitor = require('express-status-monitor');
+
 const token = process.env.TELEGRAM_API_TOKEN
 const token2 = process.env.TELEGRAM_API_TOKEN_WORK
 
@@ -46,6 +49,10 @@ var cron = require('node-cron');
 const bottest = new TelegramBot(token, {polling: true});
 const app = express();
 
+app.use(statusMonitor({
+    title: 'Бот рассылки',
+    theme: '../../../../../custom.css',
+})); // Enable Express Status Monitor middleware
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, 'static')))
