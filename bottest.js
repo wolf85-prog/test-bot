@@ -552,7 +552,7 @@ const getDistributionsPlan = async() => {
         const milliseconds = Math.floor(new Date(date1) - new Date(dateNow));       
         console.log("milliseconds: ", milliseconds)
 
-        console.log("Категория: ", item.receivers)
+        //console.log("Категория: ", item.receivers)
 
         if (milliseconds > 0) {          
             const objPlan = {
@@ -593,8 +593,9 @@ const getDistributionsPlan = async() => {
                             },
                         })
 
-                        const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item=> item.spec === item.receivers)
-
+                        const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.spec === item.receivers)
+                        console.log("userSpec: ", userSpec, item.receivers) 
+                               
                         if (userSpec) {
                             if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
                                 console.log("Блок: ", user)
