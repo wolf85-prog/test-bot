@@ -844,17 +844,17 @@ const getDistributionsPlan = async() => {
                                 } else {
                                     addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
                                 }
-                            } // end if block 
-                            
-                            if (ind === objPlan.users.length) {
-                                //обновить бд рассылку
-                                const newDistrib = await Distributionw.update(
-                                    { delivered: true,
-                                        report: JSON.stringify(arrUsers),  
-                                        success: countSuccess},
-                                    { where: {id: item.id} }
-                                )
-                            }
+                            } // end if block     
+                        }
+
+                        if (ind === objPlan.users.length) {
+                            //обновить бд рассылку
+                            const newDistrib = await Distributionw.update(
+                                { delivered: true,
+                                    report: JSON.stringify(arrUsers),  
+                                    success: countSuccess},
+                                { where: {id: item.id} }
+                            )
                         }
                         
                     }, 1000 * ++ind) 
