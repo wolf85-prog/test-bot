@@ -64,6 +64,8 @@ const addDate= require('./bottest/common/addDate')
 const getProject = require("./bottest/common/getProject");
 const getSmeta = require("./bottest/common/getSmeta");
 
+const categories = require("./bottest/data/categories")
+
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
 const {Plan, Project, Distributionw, SoundNotif} = require('./bottest/models/models');
@@ -593,8 +595,9 @@ const getDistributionsPlan = async() => {
                             },
                         })
 
-                        const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.spec === item.receivers)
-                        console.log("userSpec: ", userSpec, item.receivers) 
+                        const category = categories.find(cat=>cat.label === item.receivers) //категория по-русски
+                        const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.cat === category.name)
+                        console.log("userSpec: ", userSpec, category) 
                                
                         if (userSpec) {
                             if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
@@ -845,6 +848,8 @@ const getDistributionsPlan = async() => {
                                     addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
                                 }
                             } // end if block     
+                        } else {
+                            console.log("Сообщение не отправлено. Специальность не совпадает!")
                         }
 
                         if (ind === objPlan.users.length) {
