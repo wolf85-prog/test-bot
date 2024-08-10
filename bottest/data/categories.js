@@ -1,5 +1,5 @@
-
-const categories = [
+module.exports = {  
+  categories: [
     {
       label: 'Выбрать...',
       mame: '',
@@ -89,8 +89,6 @@ const categories = [
       label: 'Все',
       name: 'All',
       value: '17',
-    }, 
-    
-]
-
-export default categories;
+    },  
+  ]
+}
