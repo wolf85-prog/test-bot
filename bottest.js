@@ -64,7 +64,7 @@ const addDate= require('./bottest/common/addDate')
 const getProject = require("./bottest/common/getProject");
 const getSmeta = require("./bottest/common/getSmeta");
 
-const categories = require("./bottest/data/categories")
+const {categories} = require("./bottest/data/categories")
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
@@ -595,7 +595,7 @@ const getDistributionsPlan = async() => {
                             },
                         })
 
-                        const category = categories.find(cat=>cat.label === item.receivers) //категория по-русски
+                        const category = categories.find((cat)=>cat.label === item.receivers) //категория по-русски
                         const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.cat === category.name)
                         console.log("userSpec: ", userSpec, category) 
                                
