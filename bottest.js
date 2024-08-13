@@ -522,6 +522,11 @@ const getDistributionsPlan = async() => {
     // Подключаемся к серверу socket
     let socket = io(socketUrl);
 
+    socket.emit("sendNotif", {
+        task: 400,
+        processDistrib: true,
+    }) 
+
     //получить запланированные рассылки
     const distributions = await Distributionw.findAll({
         order: [
@@ -860,6 +865,23 @@ const getDistributionsPlan = async() => {
                                     success: countSuccess},
                                 { where: {id: item.id} }
                             )
+                        }
+
+                        if (ind === objPlan.users.length) {
+                            console.log("Рассылка завершена: i=", ind)
+                            socket.emit("sendNotif", {
+                                task: 400,
+                                processDistrib: false,
+                            })  
+                            socket.disconnect()                           
+                        } else {
+                            console.log("Идет рассылка...: i=", ind)                      
+                            setTimeout(()=> {
+                                socket.emit("sendNotif", {
+                                    task: 400,
+                                    processDistrib: true,
+                                })  
+                            }, 10000 * ind)
                         }
                         
                     }, 1000 * ++ind) 
