@@ -510,12 +510,12 @@ const getDistributionsPlan = async() => {
     const year = d.getFullYear();
 
     //удаление таймеров
-    console.log("Запускаю очистку задач...")
+    //console.log("Запускаю очистку задач...")
     //console.log("tasks: ", tasks)
-    tasks.forEach((tmp)=> {
-        clearTimeout(tmp)
+    //tasks.forEach((tmp)=> {
+        //clearTimeout(tmp)
         //console.log("Задача удалена! ")   
-    })
+    //})
 
     //console.log("Запускаю планировщик задач...")
 
@@ -604,7 +604,7 @@ const getDistributionsPlan = async() => {
                         const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.cat === category.name)
                         console.log("userSpec: ", userSpec, category) 
                                
-                        if (userSpec) {
+                        if (userSpec || item.receivers === 'Удаленные') {
                             if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
                                 console.log("Блок: ", user)
                             } else {
