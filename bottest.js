@@ -510,14 +510,13 @@ const getDistributionsPlan = async() => {
     const year = d.getFullYear();
 
     //удаление таймеров
-    //console.log("Запускаю очистку задач...")
+    console.log("Запускаю очистку задач...")
     //console.log("tasks: ", tasks)
-    //tasks.forEach((tmp)=> {
-        //clearTimeout(tmp)
-        //console.log("Задача удалена! ")   
-    //})
+    tasks.forEach((tmp)=> {
+        clearTimeout(tmp) 
+    })
 
-    //console.log("Запускаю планировщик задач...")
+    console.log("Запускаю планировщик задач...")
 
     // Подключаемся к серверу socket
     let socket = io(socketUrl);
@@ -604,7 +603,7 @@ const getDistributionsPlan = async() => {
                         const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.cat === category.name)
                         console.log("userSpec: ", userSpec, category) 
                                
-                        if (userSpec || item.receivers === 'Удаленные') {
+                        if (userSpec || item.receiver === 'Удаленные') {
                             if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
                                 console.log("Блок: ", user)
                             } else {
@@ -865,15 +864,13 @@ const getDistributionsPlan = async() => {
                                     success: countSuccess},
                                 { where: {id: item.id} }
                             )
-                        }
 
-                        if (ind === objPlan.users.length) {
                             console.log("Рассылка завершена: i=", ind)
                             socket.emit("sendNotif", {
                                 task: 400,
                                 processDistrib: false,
                             })  
-                            socket.disconnect()                           
+                            socket.disconnect() 
                         } else {
                             console.log("Идет рассылка...: i=", ind)                      
                             setTimeout(()=> {
