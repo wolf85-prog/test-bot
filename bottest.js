@@ -878,6 +878,13 @@ const getDistributionsPlan = async() => {
                                     task: 400,
                                     processDistrib: true,
                                 })  
+
+                                socket.emit("sendProcess", { 
+                                    process: "5",
+                                    data: true,
+                                    interval: "1",
+                                    time: "S",
+                                })
                             }, 1000 * ind)
                         }
                         
