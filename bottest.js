@@ -873,7 +873,7 @@ const getDistributionsPlan = async() => {
                             socket.disconnect() 
                         } else {
                             console.log("Идет рассылка...: i=", ind)                      
-                            setTimeout(()=> {
+                            //setTimeout(()=> {
                                 socket.emit("sendNotif", {
                                     task: 400,
                                     processDistrib: true,
@@ -885,7 +885,7 @@ const getDistributionsPlan = async() => {
                                     interval: "1",
                                     time: "S",
                                 })
-                            }, 1000 * ind)
+                            //}, 1000 * ind)
                         }
                         
                     }, 1000 * ++ind) 
