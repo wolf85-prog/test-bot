@@ -577,7 +577,7 @@ const getDistributionsPlan = async() => {
                
                 objPlan.users.map(async (user, ind) => {
                     setTimeout(async()=> { 
-                        console.log("Пользователю ID: " + user + " сообщение " + item.text + " отправлено!")
+                        console.log("Пользователю ID: " + user + " сообщение " + item.text + " отправлено!", ind)
 
                         //let conversationId = await getConversation(user)
                         let conversation_id  
@@ -878,7 +878,7 @@ const getDistributionsPlan = async() => {
                                     task: 400,
                                     processDistrib: true,
                                 })  
-                            }, 10000 * ind)
+                            }, 1000 * ind)
                         }
                         
                     }, 1000 * ++ind) 
