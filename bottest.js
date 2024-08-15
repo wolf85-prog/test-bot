@@ -521,11 +521,6 @@ const getDistributionsPlan = async() => {
     // Подключаемся к серверу socket
     let socket = io(socketUrl);
 
-    socket.emit("sendNotif", {
-        task: 400,
-        processDistrib: true,
-    }) 
-
     //получить запланированные рассылки
     const distributions = await Distributionw.findAll({
         order: [
