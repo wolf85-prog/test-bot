@@ -596,7 +596,7 @@ const getDistributionsPlan = async() => {
 
                         const category = categories.find((cat)=>cat.label === item.receivers) //категория по-русски
                         //const userSpec = JSON.parse(blockedWork.dataValues.worklist).find(item2=> item2.cat === category.name || String.includes())
-                        console.log("userSpec: ", userSpec, category) 
+                        //console.log("userSpec: ", userSpec, category) 
                                
                         if (2>1) { //(userSpec || item.receiver === 'Удаленные') {
                             if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
