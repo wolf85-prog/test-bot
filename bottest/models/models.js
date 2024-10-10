@@ -102,6 +102,38 @@ const SoundNotif = sequelize.define('soundnotifs', {
     delivered: {type: DataTypes.BOOLEAN}, //доставлено
 })
 
+const Specialist = sequelize.define('specialist', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},  
+    fio: {type: DataTypes.STRING},
+    chatId: {type: DataTypes.STRING, unique: true},
+    phone: {type: DataTypes.STRING},
+    phone2: {type: DataTypes.STRING},
+    specialization: {type: DataTypes.TEXT},  
+    city: {type: DataTypes.STRING},
+    skill: {type: DataTypes.TEXT},
+    promoId: {type: DataTypes.STRING}, 
+    rank: {type: DataTypes.INTEGER}, 
+    merch: {type: DataTypes.STRING},
+    company: {type: DataTypes.STRING},
+    comteg: {type: DataTypes.TEXT},
+    comteg2: {type: DataTypes.TEXT},
+    comment: {type: DataTypes.TEXT}, 
+    comment2: {type: DataTypes.TEXT}, 
+    age: {type: DataTypes.STRING},
+    reyting: {type: DataTypes.STRING},
+    inn: {type: DataTypes.STRING}, 
+    passport: {type: DataTypes.TEXT},
+    profile: {type: DataTypes.TEXT},
+    dogovor: {type: DataTypes.BOOLEAN}, 
+    samozanjatost: {type: DataTypes.BOOLEAN},
+    passportScan: {type: DataTypes.TEXT},
+    email: {type: DataTypes.STRING},  
+    blockW: {type: DataTypes.BOOLEAN},
+    deleted: {type: DataTypes.BOOLEAN},
+    great: {type: DataTypes.BOOLEAN}, //hello
+    block18: {type: DataTypes.BOOLEAN},
+})
+
 
 module.exports = {
     UserBot, 
@@ -114,4 +146,5 @@ module.exports = {
     Plan,
     SoundNotif,
     //Task,
+    Specialist,
 }

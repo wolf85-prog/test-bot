@@ -68,7 +68,7 @@ const {categories} = require("./bottest/data/categories")
 
 //подключение к БД PostreSQL
 const sequelize = require('./bottest/connections/db')
-const {Plan, Project, Distributionw, SoundNotif} = require('./bottest/models/models');
+const {Plan, Project, Distributionw, SoundNotif, Specialist} = require('./bottest/models/models');
 const {Message, Conversation, Worker} = require('./bottest/models/workers')
 const getAllProjects = require("./bottest/common/getAllProjects");
 const getDatabaseId = require("./bottest/common/getDatabaseId");
@@ -588,7 +588,7 @@ const getDistributionsPlan = async() => {
                         }) 
 
                         //найти специалиста
-                        const blockedWork = await Worker.findOne({
+                        const blockedWork = await Specialist.findOne({
                             where: {
                                 chatId: user
                             },
@@ -718,7 +718,7 @@ const getDistributionsPlan = async() => {
                                         sendToTelegram = await $host.get(url_send_msg)
                                             .catch(async(err) => {
                                                 if (err.response.status === 403 && err.response.data.description === "Forbidden: bot was blocked by the user") {
-                                                    await Worker.update({ 
+                                                    await Specialist.update({ 
                                                         deleted: true  
                                                     },
                                                     {
@@ -772,7 +772,7 @@ const getDistributionsPlan = async() => {
                                         sendPhotoToTelegram = await $host.get(url_send_photo)
                                             .catch(async(err) => {
                                                 if (err.response.status === 403 && err.response.data.description === "Forbidden: bot was blocked by the user") {
-                                                    await Worker.update({ 
+                                                    await Specialist.update({ 
                                                         deleted: true  
                                                     },
                                                     {
