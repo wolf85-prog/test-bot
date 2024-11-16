@@ -1,5 +1,5 @@
-const { Distribution, Distributionw, Specialist }= require('../models/models')
-const {Message, Conversation, Worker} = require('../models/workers')
+const { Distributionw, Specialist }= require('../models/models')
+const {Message, Conversation} = require('../models/workers')
 
 const { Op } = require('sequelize')
 
@@ -69,7 +69,7 @@ class DistributionController {
                         },
                     })
 
-                    if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
+                    if (blockedWork.dataValues.blockW !== null && blockedWork.dataValues.blockW) {
                         console.log("Блок: ", user)
                     } else {
                         //найти беседу
