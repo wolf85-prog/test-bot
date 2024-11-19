@@ -599,7 +599,7 @@ const getDistributionsPlan = async() => {
                         //console.log("userSpec: ", userSpec, category) 
                                
                         if (2>1) { //(userSpec || item.receiver === 'Удаленные') {
-                            if (blockedWork.dataValues.block !== null && blockedWork.dataValues.block) {
+                            if (blockedWork.dataValues.blockW !== null && blockedWork.dataValues.blockW) {
                                 console.log("Блок: ", user)
                             } else {
                                 //найти беседу
