@@ -435,8 +435,8 @@ class DistributionController {
                         let keyboard2 = JSON.stringify({
                         inline_keyboard: [
                             [
-                                {"text": 'Vk', web_app: {url: 'https://vk.com/uley.team'}},
-                                {"text": 'Telegram', web_app: {url: 'https://t.me/uley_team'}},
+                                {"text": 'Vk', url: 'https://vk.com/uley.team'},
+                                {"text": 'Telegram', url: 'https://t.me/uley_team'},
                             ],
                         ]
                         });
