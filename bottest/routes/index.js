@@ -79,4 +79,6 @@ router.get('/smeta/:id', smetaController.smetaId)
 router.get('/distributionsw/send/:id/:type', distributionController.sendDistribW)
 //router.get('/distributionsw/send/:id', distributionController.sendDistribW)
 
+router.get('/distributionsw/custom/send/:id/:type', distributionController.sendDistribW2)
+
 module.exports = router
