@@ -480,15 +480,15 @@ class DistributionController {
                                 arrUsers[index-1].mess = sendTextToTelegram.data?.result?.message_id 
 
                                 //обновить бд рассылку
-                                // const newDistrib = await Distributionw.update(
-                                //     {   
-                                //         delivered: true,
-                                //         deleted: false,  
-                                //         report: JSON.stringify(arrUsers),  
-                                //         success: countSuccess
-                                //     },
-                                //     { where: {id: id} }
-                                // )
+                                const newDistrib = await Distributionw.update(
+                                    {   
+                                        delivered: true,
+                                        deleted: false,  
+                                        report: JSON.stringify(arrUsers),  
+                                        success: countSuccess
+                                    },
+                                    { where: {id: id} }
+                                )
                             }                    
                         } else {
                             if (type === '1') {
@@ -539,12 +539,12 @@ class DistributionController {
                                 arrUsers[index-1].mess = sendPhotoToTelegram.data?.result?.message_id   
 
                                 //обновить бд рассылку
-                                // const newDistrib = await Distributionw.update(
-                                //     { delivered: true,
-                                //         report: JSON.stringify(arrUsers),  
-                                //         success: countSuccess},
-                                //     { where: {id: id} }
-                                // )
+                                const newDistrib = await Distributionw.update(
+                                    { delivered: true,
+                                        report: JSON.stringify(arrUsers),  
+                                        success: countSuccess},
+                                    { where: {id: id} }
+                                )
                             }
                         }
                     
@@ -615,15 +615,15 @@ class DistributionController {
                         }
                     }  
 
-                    if (index === (selected.length-1)) {
-                        //обновить бд рассылку
-                        const newDistrib = await Distributionw.update(
-                            { delivered: true,
-                                report: JSON.stringify(arrUsers),  
-                                success: countSuccess},
-                            { where: {id: id} }
-                        )
-                    }
+                    // if (index === (selected.length-1)) {
+                    //     //обновить бд рассылку
+                    //     const newDistrib = await Distributionw.update(
+                    //         { delivered: true,
+                    //             report: JSON.stringify(arrUsers),  
+                    //             success: countSuccess},
+                    //         { where: {id: id} }
+                    //     )
+                    // }
 
                 }, 1000 * ++index) 
 
