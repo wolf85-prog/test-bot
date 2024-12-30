@@ -32,6 +32,7 @@ const chatTelegramId = process.env.CHAT_ID
 const chatAdminId = process.env.CHAT_ID
 const chatGiaId = process.env.GIA_CHAT_ID
 const botApiUrl = process.env.REACT_APP_API_URL;
+const webAppAddStavka = process.env.WEBAPP_STAVKA
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL
@@ -851,7 +852,7 @@ const getDistributionsPlan = async() => {
                             console.log("Сообщение не отправлено. Специальность не совпадает!")
                         }
 
-                        if (ind === objPlan.users.length) {
+                        if (ind === objPlan.users.length-1) {
                             //обновить бд рассылку
                             const newDistrib = await Distributionw.update(
                                 { delivered: true,

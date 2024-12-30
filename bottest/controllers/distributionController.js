@@ -7,6 +7,7 @@ const { Op } = require('sequelize')
 //const fetch = require('node-fetch');
 const axios = require("axios");
 
+const webAppAddStavka = process.env.WEBAPP_STAVKA
 const token = process.env.TELEGRAM_API_TOKEN_WORK
 const chatAdminId = process.env.CHAT_ID
 
@@ -614,7 +615,7 @@ class DistributionController {
                         }
                     }  
 
-                    if (index === (selected.length)) {
+                    if (index === (selected.length-1)) {
                         //обновить бд рассылку
                         const newDistrib = await Distributionw.update(
                             { delivered: true,
