@@ -384,9 +384,6 @@ class DistributionController {
                         },
                     })
 
-                    if (blockedWork.dataValues.blockW !== null && blockedWork.dataValues.blockW) {
-                        console.log("Блок: ", user)
-                    } else {
                         //найти беседу
                         const conversation = await Conversation.findOne({
                             where: {
@@ -433,11 +430,14 @@ class DistributionController {
                             });
                         }
 
+                        const image_new = 'https://proj.uley.team/upload/2024-12-31T09:44:46.631Z.jpg'
+                        const image_new2 = 'https://proj.uley.team/upload/2024-12-31T09:47:17.936Z.jpg'
+
                         let keyboard2 = JSON.stringify({
                         inline_keyboard: [
                             [
                                 {"text": 'Vk', url: 'https://vk.com/uley.team'},
-                                {"text": 'Telegram', url: 'https://t.me/uley_team'},
+                                // {"text": 'Telegram', url: 'https://t.me/uley_team'},
                             ],
                         ]
                         });
@@ -446,72 +446,19 @@ class DistributionController {
                         //отправить в телеграмм
                         let sendTextToTelegram
                         let sendPhotoToTelegram
-                        let url_send_photo                   
+                        let sendPhotoToTelegram2
+                        let url_send_photo   
+                        let url_send_photo2               
                         
                         if (text !== '') {
-                            const url_send_msg = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${user}&parse_mode=html&text=${text.replace(/\n/g, '%0A')}`
-                            //const url_send_msg = `https://api.telegram.org/bot${token}/getChat?chat_id=${user}`
-                            
-                            console.log("Отправка текста...")
-                            
-                            sendTextToTelegram = await $host.get(url_send_msg)
-                                    .catch(async(err) => {
-                                        if (err.response.status === 403 && err.response.data.description === "Forbidden: bot was blocked by the user") {
-                                            await Specialist.update({ 
-                                                deleted: true  
-                                            },
-                                            {
-                                                where: {
-                                                    chatId: user,
-                                                },
-                                            }) 
-                                        }
-                                    });
-  
-
-                            const { status } = sendTextToTelegram;              
-
-                            if (status === 200) {
-                                console.log("статус 200 текст")
-                                countSuccess = countSuccess + 1 
-                                
-                                //обновить статус доставки
-                                arrUsers[index-1].status = 200  
-                                arrUsers[index-1].mess = sendTextToTelegram.data?.result?.message_id 
-
-                                //обновить бд рассылку
-                                const newDistrib = await Distributionw.update(
-                                    {   
-                                        delivered: true,
-                                        deleted: false,  
-                                        report: JSON.stringify(arrUsers),  
-                                        success: countSuccess
-                                    },
-                                    { where: {id: id} }
-                                )
-                            }                    
+                           
                         } else {
-                            if (type === '1') {
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_photo2: ", url_send_photo)
-                            } 
-                            else if (type === '2') { 
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendDocument?chat_id=${user}&document=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_document2: ", url_send_photo)
-                            }
-                            else if (type === '3') { 
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendAudio?chat_id=${user}&audio=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_audio2: ", url_send_photo)
-                            }
-                            else if (type === '4') { 
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendVideo?chat_id=${user}&video=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_video2: ", url_send_photo)
-                            }
-                            else {
-                                url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_else2: ", url_send_photo)
-                            }
-                          
+
+                            url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image_new}`
+                            console.log("url_send_else2: ", url_send_photo)
+                            
+                            url_send_photo2 = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image_new2}&reply_markup=${keyboard2}`
+                            console.log("url_send_else2: ", url_send_photo2)
 
                             sendPhotoToTelegram = await $host.get(url_send_photo)
                                 .catch(async(err) => {
@@ -527,7 +474,6 @@ class DistributionController {
                                     }
                                 });
                             
-
                             const { status } = sendPhotoToTelegram;
 
                             if (status === 200 && text === '') {
@@ -538,92 +484,79 @@ class DistributionController {
                                 arrUsers[index-1].status = 200
                                 arrUsers[index-1].mess = sendPhotoToTelegram.data?.result?.message_id   
 
-                                //обновить бд рассылку
-                                const newDistrib = await Distributionw.update(
-                                    { delivered: true,
-                                        report: JSON.stringify(arrUsers),  
-                                        success: countSuccess},
-                                    { where: {id: id} }
-                                )
                             }
+
+                            sendPhotoToTelegram2 = await $host.get(url_send_photo2)
                         }
                     
                         //отправить в админку
-                        let message = {};
-                        if (text !== '') {
-                            console.log("no file")
-                                message = {
-                                    senderId: chatAdminId, 
-                                    receiverId: user,
-                                    conversationId: conversation_id,
-                                    type: "text",
-                                    text: text,
-                                    isBot: true,
-                                    messageId: sendTextToTelegram.data?.result?.message_id,
-                                    buttons: '',
-                                }
-                        } else if (image) {
-                            console.log("file yes")
-                                message = {
-                                    senderId: chatAdminId, 
-                                    receiverId: user,
-                                    conversationId: conversation_id,
-                                    type: "image",
-                                    text: image,
-                                    isBot: true,
-                                    messageId: sendPhotoToTelegram.data?.result?.message_id,
-                                    buttons: textButton,
-                                }
-                        }
-                        //console.log("message send: ", message);
+                        let message = {};                      
+                        message = {
+                            senderId: chatAdminId, 
+                            receiverId: user,
+                            conversationId: conversation_id,
+                            type: "image",
+                            text: image_new,
+                            isBot: true,
+                            messageId: sendPhotoToTelegram.data?.result?.message_id,
+                            buttons: textButton,
+                        }        
 
                         //сохранение сообщения в базе данных wmessage
                         await Message.create(message)
-
-                        //сохранить в контексте
-                        if(!image) {
                             
-                           // socket.emit("addUser", user)
-                            
-                            //отправить сообщение в админку
-                            socket.emit("sendAdminSpec", { 
+                        //отправить сообщение в админку
+                        socket.emit("sendAdminSpec", { 
                                 senderId: chatAdminId,
                                 receiverId: user,
-                                text: text,
-                                type: 'text',
-                                buttons: textButton,
-                                convId: conversation_id,
-                                messageId: sendTextToTelegram.data.result.message_id,
-                                isBot: true,
-                            })
-                        } else {
-                            // Подключаемся к серверу socket
-                            // let socket = io(socketUrl);
-                            // socket.emit("addUser", user)
-                            
-                            //отправить сообщение в админку
-                            socket.emit("sendAdminSpec", { 
-                                senderId: chatAdminId,
-                                receiverId: user,
-                                text: image,
+                                text: image_new,
                                 type: 'image',
                                 buttons: textButton,
                                 convId: conversation_id,
                                 messageId: sendPhotoToTelegram.data.result.message_id,
                                 isBot: true,
-                            })
-                        }
-                    }  
+                        })
 
-                    // if (index === (selected.length-1)) {
-                    //     //обновить бд рассылку
-                    //     const newDistrib = await Distributionw.update(
-                    //         { delivered: true,
-                    //             report: JSON.stringify(arrUsers),  
-                    //             success: countSuccess},
-                    //         { where: {id: id} }
-                    //     )
-                    // }
+
+                        //2
+                        //отправить в админку
+                        let message2 = {};                      
+                        message2 = {
+                            senderId: chatAdminId, 
+                            receiverId: user,
+                            conversationId: conversation_id,
+                            type: "image",
+                            text: image_new2,
+                            isBot: true,
+                            messageId: sendPhotoToTelegram2.data?.result?.message_id,
+                            buttons: textButton,
+                        }        
+
+                        //сохранение сообщения в базе данных wmessage
+                        await Message.create(message2)
+                            
+                        //отправить сообщение в админку
+                        socket.emit("sendAdminSpec", { 
+                                senderId: chatAdminId,
+                                receiverId: user,
+                                text: image_new2,
+                                type: 'image',
+                                buttons: textButton,
+                                convId: conversation_id,
+                                messageId: sendPhotoToTelegram2.data.result.message_id,
+                                isBot: true,
+                        })
+                        
+
+                    if (index === (selected.length-1)) {
+                        //обновить бд рассылку
+                        const newDistrib = await Distributionw.update(
+                            { delivered: true,
+                                report: JSON.stringify(arrUsers),  
+                                success: countSuccess},
+                            { where: {id: id} }
+                        )
+                    }
 
                 }, 1000 * ++index) 
 
