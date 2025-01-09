@@ -229,30 +229,36 @@ class DistributionController {
                                 });
                             
 
-                            const { status } = sendPhotoToTelegram;
+                            if (sendPhotoToTelegram) {
+                                console.log("Отправки сообщения в телеграмм прошла успешно!")
+                                const { status } = sendPhotoToTelegram;
 
-                            if (status === 200 && text === '') {
-                                console.log("статус 200 фото")
-                                countSuccess = countSuccess + 1  
-                                        
-                                //обновить статус доставки
-                                arrUsers[index-1].status = 200
-                                arrUsers[index-1].mess = sendPhotoToTelegram.data?.result?.message_id   
+                                if (status === 200 && text === '') {
+                                    //console.log("статус 200 фото")
+                                    countSuccess = countSuccess + 1  
+                                            
+                                    //обновить статус доставки
+                                    arrUsers[index-1].status = 200
+                                    arrUsers[index-1].mess = sendPhotoToTelegram.data?.result?.message_id   
 
-                                //обновить бд рассылку
-                                // const newDistrib = await Distributionw.update(
-                                //     { delivered: true,
-                                //         report: JSON.stringify(arrUsers),  
-                                //         success: countSuccess},
-                                //     { where: {id: id} }
-                                // )
+                                    //обновить бд рассылку
+                                    // const newDistrib = await Distributionw.update(
+                                    //     { delivered: true,
+                                    //         report: JSON.stringify(arrUsers),  
+                                    //         success: countSuccess},
+                                    //     { where: {id: id} }
+                                    // )
+                                }
+                            } else {
+                                console.log("Ошибка отправки сообщения в телеграмм!")
                             }
+  
                         }
                     
                         //отправить в админку
                         let message = {};
                         if (text !== '') {
-                            console.log("no file")
+                            //console.log("no file")
                                 message = {
                                     senderId: chatAdminId, 
                                     receiverId: user,
@@ -264,7 +270,7 @@ class DistributionController {
                                     buttons: '',
                                 }
                         } else if (image) {
-                            console.log("file yes")
+                            //console.log("file yes")
                                 message = {
                                     senderId: chatAdminId, 
                                     receiverId: user,
@@ -326,7 +332,7 @@ class DistributionController {
                         )
                     }
 
-                }, 1000 * ++index) 
+                }, 2000 * ++index) 
 
             })
 
