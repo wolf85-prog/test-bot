@@ -230,7 +230,7 @@ class DistributionController {
                             
 
                             if (sendPhotoToTelegram) {
-                                console.log("Отправки сообщения в телеграмм прошла успешно!")
+                                console.log("ОТПРАВКА СООБЩЕНИЯ В ТЕЛЕГРАММ ПРОШЛА УСПЕШНО (отправка сразу)!")
                                 const { status } = sendPhotoToTelegram;
 
                                 if (status === 200 && text === '') {
@@ -250,7 +250,7 @@ class DistributionController {
                                     // )
                                 }
                             } else {
-                                console.log("Ошибка отправки сообщения в телеграмм!")
+                                console.log("ОШИБКА ОТПРАВКИ СООБЩЕНИЯ В ТЕЛЕГРАММ (отправка сразу)!")
                             }
   
                         }
@@ -284,13 +284,13 @@ class DistributionController {
                         }
                         //console.log("message send: ", message);
 
-                        //сохранение сообщения в базе данных wmessage
-                        await Message.create(message)
+                        if (sendPhotoToTelegram) {
+                            //сохранение сообщения в базе данных wmessage
+                            await Message.create(message)
+                        } 
 
                         //сохранить в контексте
                         if(!image) {
-                            
-                           // socket.emit("addUser", user)
                             
                             //отправить сообщение в админку
                             socket.emit("sendAdminSpec", { 
@@ -304,21 +304,19 @@ class DistributionController {
                                 isBot: true,
                             })
                         } else {
-                            // Подключаемся к серверу socket
-                            // let socket = io(socketUrl);
-                            // socket.emit("addUser", user)
-                            
-                            //отправить сообщение в админку
-                            socket.emit("sendAdminSpec", { 
-                                senderId: chatAdminId,
-                                receiverId: user,
-                                text: image,
-                                type: 'image',
-                                buttons: textButton,
-                                convId: conversation_id,
-                                messageId: sendPhotoToTelegram.data.result.message_id,
-                                isBot: true,
-                            })
+                            if (sendPhotoToTelegram) {
+                                //отправить сообщение в админку
+                                socket.emit("sendAdminSpec", { 
+                                    senderId: chatAdminId,
+                                    receiverId: user,
+                                    text: image,
+                                    type: 'image',
+                                    buttons: textButton,
+                                    convId: conversation_id,
+                                    messageId: sendPhotoToTelegram.data.result.message_id,
+                                    isBot: true,
+                                })
+                            }
                         }
                     }  
 
@@ -330,6 +328,7 @@ class DistributionController {
                                 success: countSuccess},
                             { where: {id: id} }
                         )
+                        console.log("Обновление рассылки (отчет): ", newDistrib)
                     }
 
                 }, 2000 * ++index) 

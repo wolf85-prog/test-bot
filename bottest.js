@@ -711,7 +711,7 @@ const getDistributionsPlan = async() => {
                                     });
                                 }
     
-                                try {
+                                //try {
                                     //отправить в телеграмм
                                     if (item.text !== '') {
                                         const url_send_msg = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${user}&parse_mode=html&text=${item.text.replace(/\n/g, '%0A')}`
@@ -783,31 +783,37 @@ const getDistributionsPlan = async() => {
                                                     }) 
                                                 }
                                             });
+
+                                        if (sendPhotoToTelegram) {
+                                            console.log("ОТПРАВКА СООБЩЕНИЯ В ТЕЛЕГРАММ ПРОШЛА УСПЕШНО (планирование)!")
     
-                                        const { status } = sendPhotoToTelegram;
-    
-                                        if (status === 200 && item.text === '') {
-                                            countSuccess = countSuccess + 1  
-                                            
-                                            //обновить статус доставки
-                                            arrUsers[ind-1].status = 200 
-                                            arrUsers[ind-1].mess = sendPhotoToTelegram.data?.result?.message_id   
-    
-    
-                                            // //обновить бд рассылку
-                                            // const newDistrib = await Distributionw.update(
-                                            //     { delivered: true,
-                                            //         report: JSON.stringify(arrUsers),  
-                                            //         success: countSuccess},
-                                            //     { where: {id: item.id} }
-                                            // )
+                                            const { status } = sendPhotoToTelegram;
+        
+                                            if (status === 200 && item.text === '') {
+                                                countSuccess = countSuccess + 1  
+                                                
+                                                //обновить статус доставки
+                                                arrUsers[ind-1].status = 200 
+                                                arrUsers[ind-1].mess = sendPhotoToTelegram.data?.result?.message_id   
+        
+        
+                                                // //обновить бд рассылку
+                                                // const newDistrib = await Distributionw.update(
+                                                //     { delivered: true,
+                                                //         report: JSON.stringify(arrUsers),  
+                                                //         success: countSuccess},
+                                                //     { where: {id: item.id} }
+                                                // )
+                                            }
+                                        } else {
+                                            console.log("ОШИБКА ОТПРАВКИ СООБЩЕНИЯ (через планирование)!")
                                         }
                                     }
                                 
-                                } catch (error) {
-                                    console.log("Ошибка отправки сообщения рассылки...")
-                                    console.error(error.message)
-                                }
+                                // } catch (error) {
+                                //     console.log("ОШИБКА ОТПРАВКИ СООБЩЕНИЯ (через планирование)!")
+                                //     console.error(error.message)
+                                // }
     
                                 //отправить в админку
                                 let message = {};
@@ -836,23 +842,26 @@ const getDistributionsPlan = async() => {
                                         buttons: item.button ? item.button : '',
                                     }
                                 }
-                                //console.log("message send: ", message);
-    
-                                //сохранение сообщения в базе данных wmessage
-                                await Message.create(message)
+
+                                if (sendPhotoToTelegram) {
+                                    //сохранение сообщения в базе данных wmessage
+                                    await Message.create(message)
+                                } 
     
                                 //сохранить в контексте
                                 if(!item.image) {
                                     addNewMessage2(user, item.text, 'text', '', conversation_id, sendToTelegram.data?.result?.message_id, true, socket);
                                 } else {
-                                    addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
+                                    if (sendPhotoToTelegram) {
+                                        addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
+                                    }
                                 }
                             } // end if block     
                         } else {
                             console.log("Сообщение не отправлено. Специальность не совпадает!")
                         }
 
-                        if (ind === objPlan.users.length-1) {
+                        if (ind === objPlan.users.length) {
                             //обновить бд рассылку
                             const newDistrib = await Distributionw.update(
                                 { delivered: true,
@@ -860,6 +869,7 @@ const getDistributionsPlan = async() => {
                                     success: countSuccess},
                                 { where: {id: item.id} }
                             )
+                            console.log("Обновление рассылки (отчет): ", newDistrib)
 
                             console.log("Рассылка завершена: i=", ind)
                             socket.emit("sendNotif", {
