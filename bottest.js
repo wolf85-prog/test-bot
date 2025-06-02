@@ -849,13 +849,13 @@ const getDistributionsPlan = async() => {
                                 } 
     
                                 //сохранить в контексте
-                                if(!item.image) {
-                                    addNewMessage2(user, item.text, 'text', '', conversation_id, sendToTelegram.data?.result?.message_id, true, socket);
-                                } else {
-                                    if (sendPhotoToTelegram) {
-                                        addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
-                                    }
-                                }
+                                // if(!item.image) {
+                                //     addNewMessage2(user, item.text, 'text', '', conversation_id, sendToTelegram.data?.result?.message_id, true, socket);
+                                // } else {
+                                //     if (sendPhotoToTelegram) {
+                                //         addNewMessage2(user, host + item.image, 'image', item.button, conversation_id, sendPhotoToTelegram.data?.result?.message_id, true, socket);
+                                //     }
+                                // }
                             } // end if block     
                         } else {
                             //console.log("Сообщение не отправлено. Специальность не совпадает!")

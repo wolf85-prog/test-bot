@@ -290,34 +290,34 @@ class DistributionController {
                         } 
 
                         //сохранить в контексте
-                        if(!image) {
+                        // if(!image) {
                             
-                            //отправить сообщение в админку
-                            socket.emit("sendAdminSpec", { 
-                                senderId: chatAdminId,
-                                receiverId: user,
-                                text: text,
-                                type: 'text',
-                                buttons: textButton,
-                                convId: conversation_id,
-                                messageId: sendTextToTelegram.data.result.message_id,
-                                isBot: true,
-                            })
-                        } else {
-                            if (sendPhotoToTelegram) {
-                                //отправить сообщение в админку
-                                socket.emit("sendAdminSpec", { 
-                                    senderId: chatAdminId,
-                                    receiverId: user,
-                                    text: image,
-                                    type: 'image',
-                                    buttons: textButton,
-                                    convId: conversation_id,
-                                    messageId: sendPhotoToTelegram.data.result.message_id,
-                                    isBot: true,
-                                })
-                            }
-                        }
+                        //     //отправить сообщение в админку
+                        //     socket.emit("sendAdminSpec", { 
+                        //         senderId: chatAdminId,
+                        //         receiverId: user,
+                        //         text: text,
+                        //         type: 'text',
+                        //         buttons: textButton,
+                        //         convId: conversation_id,
+                        //         messageId: sendTextToTelegram.data.result.message_id,
+                        //         isBot: true,
+                        //     })
+                        // } else {
+                        //     if (sendPhotoToTelegram) {
+                        //         //отправить сообщение в админку
+                        //         socket.emit("sendAdminSpec", { 
+                        //             senderId: chatAdminId,
+                        //             receiverId: user,
+                        //             text: image,
+                        //             type: 'image',
+                        //             buttons: textButton,
+                        //             convId: conversation_id,
+                        //             messageId: sendPhotoToTelegram.data.result.message_id,
+                        //             isBot: true,
+                        //         })
+                        //     }
+                        // }
                     }  
 
                     if (index === (selected.length)) {
