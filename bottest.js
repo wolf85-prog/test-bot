@@ -539,8 +539,8 @@ const getDistributionsPlan = async() => {
         let countSuccess = 0
         const date1 = item.datestart //дата отправки рассылки
         const dateNow = new Date().getTime() + 10800000 //текущая дата
-        console.log("date1: ", new Date(date1))
-        console.log("dateNow: ", new Date(dateNow))
+        //console.log("date1: ", new Date(date1))
+        //console.log("dateNow: ", new Date(dateNow))
 
         const d = new Date(date1);
         const month = String(d.getMonth()+1).padStart(2, "0");
@@ -552,7 +552,7 @@ const getDistributionsPlan = async() => {
         let arrUsers = []
 
         const milliseconds = Math.floor(new Date(date1) - new Date(dateNow));       
-        console.log("milliseconds: ", milliseconds)
+        //console.log("milliseconds: ", milliseconds)
 
         //console.log("Категория: ", item.receivers)
 
@@ -568,12 +568,12 @@ const getDistributionsPlan = async() => {
                 uuid: item.uuid     
             }
 
-            console.log("!!!!Планирую запуск отправки собщения..." + (index+1))
+            //console.log("!!!!Планирую запуск отправки собщения..." + (index+1))
             const timerId = setTimeout(async() => {
                
                 objPlan.users.map(async (user, ind) => {
                     setTimeout(async()=> { 
-                        console.log("Пользователю ID: " + user + " сообщение " + item.text + " отправлено!", ind)
+                        //console.log("Пользователю ID: " + user + " сообщение " + item.text + " отправлено!", ind)
 
                         //let conversationId = await getConversation(user)
                         let conversation_id  
@@ -601,7 +601,7 @@ const getDistributionsPlan = async() => {
                                
                         if (2>1) { //(userSpec || item.receiver === 'Удаленные') {
                             if (blockedWork.dataValues.blockW !== null && blockedWork.dataValues.blockW) {
-                                console.log("Блок: ", user)
+                                //console.log("Блок: ", user)
                             } else {
                                 //найти беседу
                                 const conversation = await Conversation.findOne({
@@ -618,8 +618,8 @@ const getDistributionsPlan = async() => {
                                     {
                                         members: [user, chatAdminId],
                                     })
-                                    console.log("Беседа успешно создана: ", conv) 
-                                    console.log("conversationId: ", conv.id)
+                                    //console.log("Беседа успешно создана: ", conv) 
+                                    //console.log("conversationId: ", conv.id)
                                     
                                     conversation_id = conv.id
                                 } else {
@@ -667,7 +667,7 @@ const getDistributionsPlan = async() => {
     
                                 //Передаем данные боту
                                 if (item.button === '') {
-                                    console.log("textButton: НЕТ")
+                                    //console.log("textButton: НЕТ")
                                     keyboard = JSON.stringify({
                                         inline_keyboard: [
                                             [
@@ -751,23 +751,23 @@ const getDistributionsPlan = async() => {
                                     } else {
                                         if (item.type === 1) {
                                             url_send_photo = `https://api.telegram.org/bot${token2}/sendPhoto?chat_id=${user}&photo=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
-                                            console.log("url_send_photo2: ", url_send_photo)
+                                            //console.log("url_send_photo2: ", url_send_photo)
                                         } 
                                         else if (item.type === 2) { 
                                             url_send_photo = `https://api.telegram.org/bot${token2}/sendDocument?chat_id=${user}&document=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
-                                            console.log("url_send_photo2: ", url_send_photo)
+                                            //console.log("url_send_photo2: ", url_send_photo)
                                         }
                                         else if (item.type === 3) { 
                                             url_send_photo = `https://api.telegram.org/bot${token2}/sendAudio?chat_id=${user}&audio=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
-                                            console.log("url_send_photo2: ", url_send_photo)
+                                            //console.log("url_send_photo2: ", url_send_photo)
                                         }
                                         else if (item.type === 4) { 
                                             url_send_photo = `https://api.telegram.org/bot${token2}/sendVideo?chat_id=${user}&video=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
-                                            console.log("url_send_photo2: ", url_send_photo)
+                                            //console.log("url_send_photo2: ", url_send_photo)
                                         }
                                         else {
                                             url_send_photo = `https://api.telegram.org/bot${token2}/sendPhoto?chat_id=${user}&photo=${item.image}&reply_markup=${item.editButton ? keyboard : keyboard2}`
-                                            console.log("url_send_photo2: ", url_send_photo)
+                                            //console.log("url_send_photo2: ", url_send_photo)
                                         }
     
                                         sendPhotoToTelegram = await $host.get(url_send_photo)
@@ -785,7 +785,7 @@ const getDistributionsPlan = async() => {
                                             });
 
                                         if (sendPhotoToTelegram) {
-                                            console.log("ОТПРАВКА СООБЩЕНИЯ В ТЕЛЕГРАММ ПРОШЛА УСПЕШНО (планирование)!")
+                                            //console.log("ОТПРАВКА СООБЩЕНИЯ В ТЕЛЕГРАММ ПРОШЛА УСПЕШНО (планирование)!")
     
                                             const { status } = sendPhotoToTelegram;
         
@@ -806,7 +806,7 @@ const getDistributionsPlan = async() => {
                                                 // )
                                             }
                                         } else {
-                                            console.log("ОШИБКА ОТПРАВКИ СООБЩЕНИЯ (через планирование)!")
+                                            //console.log("ОШИБКА ОТПРАВКИ СООБЩЕНИЯ (через планирование)!")
                                         }
                                     }
                                 
@@ -819,7 +819,7 @@ const getDistributionsPlan = async() => {
                                 let message = {};
                                 
                                 if(!item.image) {
-                                    console.log("no file")
+                                    //console.log("no file")
                                     message = {
                                         senderId: chatAdminId, 
                                         receiverId: user,
@@ -858,7 +858,7 @@ const getDistributionsPlan = async() => {
                                 }
                             } // end if block     
                         } else {
-                            console.log("Сообщение не отправлено. Специальность не совпадает!")
+                            //console.log("Сообщение не отправлено. Специальность не совпадает!")
                         }
 
                         if (ind === objPlan.users.length) {
@@ -872,26 +872,24 @@ const getDistributionsPlan = async() => {
                             console.log("Обновление рассылки (отчет): ", newDistrib)
 
                             console.log("Рассылка завершена: i=", ind)
-                            socket.emit("sendNotif", {
-                                task: 400,
-                                processDistrib: false,
-                            })  
-                            socket.disconnect() 
+                            // socket.emit("sendNotif", {
+                            //     task: 400,
+                            //     processDistrib: false,
+                            // })  
+                            // socket.disconnect() 
                         } else {
                             console.log("Идет рассылка...: i=", ind)                      
-                            //setTimeout(()=> {
-                                socket.emit("sendNotif", {
-                                    task: 400,
-                                    processDistrib: true,
-                                })  
+                            // socket.emit("sendNotif", {
+                            //     task: 400,
+                            //     processDistrib: true,
+                            // })  
 
-                                socket.emit("sendProcess", { 
-                                    process: "5",
-                                    data: true,
-                                    interval: "1",
-                                    time: "S",
-                                })
-                            //}, 1000 * ind)
+                            // socket.emit("sendProcess", { 
+                            //     process: "5",
+                            //     data: true,
+                            //     interval: "1",
+                            //     time: "S",
+                            // })
                         }
                         
                     }, 1000 * ++ind) 

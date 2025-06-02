@@ -24,7 +24,7 @@ class DistributionController {
     //send message
     async sendDistribW(req, res) {
         const {id, type} = req.params  
-        console.log("id, type: ", id, type)
+        //console.log("id, type: ", id, type)
         let arrUsers = []
         let countSuccess = 0
 
@@ -53,7 +53,7 @@ class DistributionController {
             selected.map(async (user, index) => {      
                 setTimeout(async()=> { 
                 
-                    console.log(index + " Пользователю ID: " + user + " сообщение отправляется!")
+                    //console.log(index + " Пользователю ID: " + user + " сообщение отправляется!")
                     let  conversation_id  
 
                     //по-умолчанию пока сообщение не отправлено
@@ -71,7 +71,7 @@ class DistributionController {
                     })
 
                     if (blockedWork.dataValues.blockW !== null && blockedWork.dataValues.blockW) {
-                        console.log("Блок: ", user)
+                        //console.log("Блок: ", user)
                     } else {
                         //найти беседу
                         const conversation = await Conversation.findOne({
@@ -88,8 +88,8 @@ class DistributionController {
                             {
                                 members: [user, chatAdminId],
                             })
-                            console.log("Беседа успешно создана: ", conv) 
-                            console.log("conversationId: ", conv.id)
+                            //console.log("Беседа успешно создана: ", conv) 
+                            //console.log("conversationId: ", conv.id)
                             
                             conversation_id = conv.id
                         } else {
@@ -100,7 +100,7 @@ class DistributionController {
                         //Передаем данные боту
                         let keyboard
                         if (textButton === '') {
-                            console.log("textButton: НЕТ")
+                            //console.log("textButton: НЕТ")
                             keyboard = JSON.stringify({
                                 inline_keyboard: [
                                     [
@@ -153,7 +153,7 @@ class DistributionController {
                             const url_send_msg = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${user}&parse_mode=html&text=${text.replace(/\n/g, '%0A')}`
                             //const url_send_msg = `https://api.telegram.org/bot${token}/getChat?chat_id=${user}`
                             
-                            console.log("Отправка текста...")
+                            //console.log("Отправка текста...")
                             
                             sendTextToTelegram = await $host.get(url_send_msg)
                                     .catch(async(err) => {
@@ -173,7 +173,7 @@ class DistributionController {
                             const { status } = sendTextToTelegram;              
 
                             if (status === 200) {
-                                console.log("статус 200 текст")
+                                //console.log("статус 200 текст")
                                 countSuccess = countSuccess + 1 
                                 
                                 //обновить статус доставки
@@ -194,23 +194,23 @@ class DistributionController {
                         } else {
                             if (type === '1') {
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_photo2: ", url_send_photo)
+                                //console.log("url_send_photo2: ", url_send_photo)
                             } 
                             else if (type === '2') { 
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendDocument?chat_id=${user}&document=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_document2: ", url_send_photo)
+                                //console.log("url_send_document2: ", url_send_photo)
                             }
                             else if (type === '3') { 
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendAudio?chat_id=${user}&audio=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_audio2: ", url_send_photo)
+                                //console.log("url_send_audio2: ", url_send_photo)
                             }
                             else if (type === '4') { 
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendVideo?chat_id=${user}&video=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_video2: ", url_send_photo)
+                                //console.log("url_send_video2: ", url_send_photo)
                             }
                             else {
                                 url_send_photo = `https://api.telegram.org/bot${token}/sendPhoto?chat_id=${user}&photo=${image}&reply_markup=${editButton ? keyboard : keyboard2}`
-                                console.log("url_send_else2: ", url_send_photo)
+                                //console.log("url_send_else2: ", url_send_photo)
                             }
                           
 
