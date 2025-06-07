@@ -132,6 +132,23 @@ const Specialist = sequelize.define('specialist', {
     deleted: {type: DataTypes.BOOLEAN},
     great: {type: DataTypes.BOOLEAN}, //hello
     block18: {type: DataTypes.BOOLEAN},
+    krest: {type: DataTypes.BOOLEAN}, //bad
+    projectAll: {type: DataTypes.INTEGER},
+    projectMonth: {type: DataTypes.INTEGER},
+    lateness: {type: DataTypes.INTEGER},
+    noExit: {type: DataTypes.INTEGER},
+    passeria: {type: DataTypes.STRING},
+    pasnumber: {type: DataTypes.STRING},
+    paskemvidan: {type: DataTypes.STRING},
+    pasdatevidan: {type: DataTypes.STRING},
+    pascode: {type: DataTypes.STRING},
+    pasbornplace: {type: DataTypes.STRING},
+    pasaddress: {type: DataTypes.STRING},
+    surname: {type: DataTypes.STRING},
+    name: {type: DataTypes.STRING},
+    secondname: {type: DataTypes.STRING},
+    pasdateborn: {type: DataTypes.STRING},
+    projects: {type: DataTypes.TEXT},
 })
 
 
