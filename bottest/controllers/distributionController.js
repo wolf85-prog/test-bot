@@ -113,7 +113,7 @@ class DistributionController {
                             keyboard = JSON.stringify({
                                 inline_keyboard: [
                                     [
-                                        {"text": textButton, url: 'https://vk.com/uley.team?from=groups&w=wall-212603682_240'}, 
+                                        {"text": textButton, url: target}, 
                                     ],
                                 ]
                             });
